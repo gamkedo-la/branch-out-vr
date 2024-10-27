@@ -7,14 +7,10 @@ public abstract class TreePart : MonoBehaviour
 
     [SerializeField]
     float currentEnergy;
+
     public virtual void Trim()
     {
-        //cut branch off - for now, just cut entire branch, later on implement separating into 2 GameObject's at the touched point on collider.
+        //cut branch off - for now, just cut entire branch, later on implement cutting off at closest node.
         Destroy(gameObject);
-    }
-
-    public virtual void Grow()
-    {
-        
     }
 }

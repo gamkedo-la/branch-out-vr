@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Branch : TreePart, IPointerClickHandler
+public class Branch : TreePart, IGrowable, IPointerClickHandler
 {
     [SerializeField]
     bool isMain;
@@ -10,5 +10,10 @@ public class Branch : TreePart, IPointerClickHandler
     {
         Debug.Log("Trim branch");
         Trim();
+    }
+
+    public void Grow()
+    {
+        throw new System.NotImplementedException();
     }
 }
