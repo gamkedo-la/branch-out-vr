@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputHandler : MonoBehaviour
+/// <summary>
+/// Enables input on start. Available class for other input managing funtionality as needed.
+/// </summary>
+public class PlayerInputManager : MonoBehaviour
 {
-    private PlayerInputHandler _instance;
-    public static PlayerInputHandler Instance { get; private set; }
+    public static PlayerInputManager Instance { get; private set; }
     [SerializeField]
     public InputActionAsset inputActions;
 
@@ -25,13 +25,19 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        CreateSingleton();
+    }
+
+    private void CreateSingleton()
+    {
+        if (Instance != null && Instance != this)
         {
             Destroy(this);
         }
+        else
+        {
+            Instance = this;
+        }
+        DontDestroyOnLoad(gameObject);
     }
 }

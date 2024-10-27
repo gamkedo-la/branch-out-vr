@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Scissors : MonoBehaviour
+public class Scissors : MonoBehaviour, IGrabbable
 {
     private InputAction trim;
 
@@ -11,10 +9,31 @@ public class Scissors : MonoBehaviour
     LayerMask treeLayer;
     private void OnEnable()
     {
-        trim = PlayerInputHandler.Instance.inputActions.FindAction("Trim");
+        trim = PlayerInputManager.Instance.inputActions.FindAction("Trim");
 
         trim.performed += _ => RaycastTrim();
     }
+
+    void IGrabbable.OnGrab()
+    {
+        if (!GamePlatformManager.IsVRMode)
+        {
+            return;
+        }
+        
+        throw new System.NotImplementedException();
+    }
+
+    void IGrabbable.OnRelease()
+    {
+        if (!GamePlatformManager.IsVRMode)
+        {
+            return;
+        }
+
+        throw new System.NotImplementedException();
+    }
+
     private void RaycastTrim()
     {
         if (GamePlatformManager.IsVRMode)

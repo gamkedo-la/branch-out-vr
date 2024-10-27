@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR;
@@ -10,9 +9,6 @@ using UnityEngine.XR.Management;
 public class GamePlatformManager : MonoBehaviour
 {
     public static bool IsVRMode { get; private set; }
-
-
-    public static event Action ActivateVRModeEvent;
 
     /// <summary>
     /// The GameObject in the scene that contains our VR rig setup.
@@ -69,8 +65,6 @@ public class GamePlatformManager : MonoBehaviour
             Debug.Log("VR mode and device detected, enabling VR.");
             xrOrigin.SetActive(true);
             webGL.SetActive(false);
-            ActivateVRModeEvent?.Invoke();
-
         }
 
         else
