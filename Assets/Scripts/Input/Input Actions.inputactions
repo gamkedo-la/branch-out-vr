@@ -90,8 +90,8 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "f37630af-5fbf-4bd0-b40a-00321954ea5e",
-                    "path": "<OculusHMD>/devicePosition",
+                    "id": "84a6d71c-dc87-4e7f-9bc4-eec611c27bf8",
+                    "path": "<TrackedDevice>/devicePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -101,11 +101,11 @@
                 },
                 {
                     "name": "",
-                    "id": "8b941e93-9d95-4f97-bf03-314ec847b4d9",
-                    "path": "<OculusHMD>/centerEyePosition",
+                    "id": "c974535f-d9d8-4e41-881f-e0211ce630b1",
+                    "path": "<TrackedDevice>/centerEyePosition",
                     "interactions": "",
                     "processors": "",
-                    "groups": "VR",
+                    "groups": "",
                     "action": "HeadPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
