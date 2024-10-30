@@ -216,7 +216,7 @@
             "id": "5b30e0f7-9c12-43b3-92da-b63fcb8f889b",
             "actions": [
                 {
-                    "name": "Trim",
+                    "name": "UseTool",
                     "type": "Button",
                     "id": "847065ee-fe19-4a30-9b03-e508d6fd88b6",
                     "expectedControlType": "Button",
@@ -233,40 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "Trim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fab9a8cb-bb57-46e6-8081-5917e9413a10",
-                    "path": "<OculusTouchController>{LeftHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "Trim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9f8bc66a-6a66-4969-8926-ca9e158d6681",
-                    "path": "<XRController>{RightHand}/triggerButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "Trim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6d874253-a9d5-43ce-8255-d77faecd35b6",
-                    "path": "<XRSimulatedController>/triggerButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Trim",
+                    "action": "UseTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -277,7 +244,88 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trim",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf5eccef-7ac0-4a19-935d-33c511a95b2f",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "WebGL",
+            "id": "67382e67-268b-44b1-9491-7d2d4bc826b7",
+            "actions": [
+                {
+                    "name": "SwitchTool",
+                    "type": "Button",
+                    "id": "ce7df1db-5b2e-4e08-be3e-ccdd0fafb29c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Position",
+                    "type": "Value",
+                    "id": "b51bed6e-c435-4425-9ead-da2cafe0ca89",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "50e39b2b-21bb-4380-a169-3e834c9ac2b6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "b4143ec6-3886-492c-9395-08f01c9cde7c",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "SwitchTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9430b22b-4685-4353-bac8-a32d19846835",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9556f252-7700-4f78-b3d3-6ad394605072",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

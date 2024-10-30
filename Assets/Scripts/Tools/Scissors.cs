@@ -1,17 +1,10 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Scissors : MonoBehaviour, IGrabbable
+public class Scissors : Tool, IGrabbable
 {
-    private InputAction trim;
-
-    [SerializeField]
-    LayerMask treeLayer;
     private void OnEnable()
     {
-        trim = PlayerInputManager.Instance.inputActions.FindAction("Trim");
-
-        trim.performed += _ => RaycastTrim();
+        useTool.action.performed += _ => RaycastTrim();
     }
 
     void IGrabbable.OnGrab()
@@ -20,8 +13,9 @@ public class Scissors : MonoBehaviour, IGrabbable
         {
             return;
         }
+        MakeActiveTool();
+        toolRB.isKinematic = true;
         
-        throw new System.NotImplementedException();
     }
 
     void IGrabbable.OnRelease()
@@ -30,8 +24,7 @@ public class Scissors : MonoBehaviour, IGrabbable
         {
             return;
         }
-
-        throw new System.NotImplementedException();
+        toolRB.isKinematic = false;
     }
 
     private void RaycastTrim()
@@ -39,7 +32,7 @@ public class Scissors : MonoBehaviour, IGrabbable
         if (GamePlatformManager.IsVRMode)
         {
             Debug.Log("Raycast to check for branch to trim.");
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 25, treeLayer))
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 25, treeLayerForRaycasts))
             {
                 Debug.Log("hit object " + hit.collider.gameObject.name);
                 Branch target = hit.collider.gameObject.GetComponent<Branch>();
@@ -50,6 +43,20 @@ public class Scissors : MonoBehaviour, IGrabbable
                 }
             }
         }
+    }
 
+    public override void MakeActiveTool()
+    {
+        base.MakeActiveTool();
+    }
+
+    public override void DropTool()
+    {
+        base.DropTool();
+    }
+
+    private void OnDisable()
+    {
+        useTool.action.performed -= _ => RaycastTrim();
     }
 }
