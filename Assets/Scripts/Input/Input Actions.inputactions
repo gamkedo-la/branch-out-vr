@@ -105,7 +105,7 @@
                     "path": "<TrackedDevice>/centerEyePosition",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "VR",
                     "action": "HeadPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -124,7 +124,7 @@
                 {
                     "name": "",
                     "id": "5093b58d-4afc-4039-8213-e42e75ba35c5",
-                    "path": "<XRInputV1::Oculus::OculusQuest>/devicerotation",
+                    "path": "<XRHMD>/deviceRotation",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
