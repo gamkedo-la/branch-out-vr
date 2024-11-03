@@ -13,7 +13,7 @@ public class Scissors : Tool, IGrabbable
             return;
         }
         isActive = true;
-        toolRB.isKinematic = true;
+        //toolRB.isKinematic = true;
     }
 
     void IGrabbable.OnRelease()
@@ -44,6 +44,17 @@ public class Scissors : Tool, IGrabbable
                 }
             }
         }
+    }
+
+    public override void WebGLSwitchToDifferentTool()
+    {
+        isActive = false;
+        transform.position = defaultPosition.transform.position;
+    }
+
+    public override void WebGLMakeActiveTool()
+    {
+        isActive = true;
     }
 
     public override void UseTool()

@@ -14,7 +14,9 @@ public abstract class Tool : MonoBehaviour
 
     public Rigidbody toolRB;
 
+    public virtual void WebGLMakeActiveTool() { }
 
+    public virtual void WebGLSwitchToDifferentTool() { }
     public virtual void UseTool() { }
 
 }

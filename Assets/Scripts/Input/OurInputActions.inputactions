@@ -258,17 +258,6 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "62fec13c-ba4b-4033-a4a1-b90ac6950d9a",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "UseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "LeftHandUseTool",
                     "id": "c92d8775-f17e-4ac7-a469-a7cd8a48e13f",
                     "path": "OneModifier",
@@ -341,7 +330,7 @@
             "id": "67382e67-268b-44b1-9491-7d2d4bc826b7",
             "actions": [
                 {
-                    "name": "SwitchTool",
+                    "name": "SwitchTools",
                     "type": "Button",
                     "id": "ce7df1db-5b2e-4e08-be3e-ccdd0fafb29c",
                     "expectedControlType": "Button",
@@ -367,7 +356,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchTool",
+                    "action": "SwitchTools",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -378,7 +367,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "SwitchTool",
+                    "action": "SwitchTools",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -389,7 +378,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchTool",
+                    "action": "SwitchTools",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
