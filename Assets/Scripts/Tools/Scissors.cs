@@ -2,20 +2,18 @@ using UnityEngine;
 
 public class Scissors : Tool, IGrabbable
 {
-    private void OnEnable()
+    private void Start()
     {
-        useTool.action.performed += _ => RaycastTrim();
+        isActive = false;
     }
-
     void IGrabbable.OnGrab()
     {
         if (!GamePlatformManager.IsVRMode)
         {
             return;
         }
-        MakeActiveTool();
+        isActive = true;
         toolRB.isKinematic = true;
-        
     }
 
     void IGrabbable.OnRelease()
@@ -24,11 +22,14 @@ public class Scissors : Tool, IGrabbable
         {
             return;
         }
-        toolRB.isKinematic = false;
+        //toolRB.isKinematic = false;
+        isActive = false;
+        transform.position = defaultPosition.transform.position;
     }
 
     private void RaycastTrim()
     {
+        Debug.Log("Raycast trim called.");
         if (GamePlatformManager.IsVRMode)
         {
             Debug.Log("Raycast to check for branch to trim.");
@@ -45,18 +46,14 @@ public class Scissors : Tool, IGrabbable
         }
     }
 
-    public override void MakeActiveTool()
+    public override void UseTool()
     {
-        base.MakeActiveTool();
+        Debug.Log("Use tool called within scissors script.");
+        RaycastTrim();
     }
 
-    public override void DropTool()
+    public bool CheckIfActive()
     {
-        base.DropTool();
-    }
-
-    private void OnDisable()
-    {
-        useTool.action.performed -= _ => RaycastTrim();
+        return isActive;
     }
 }

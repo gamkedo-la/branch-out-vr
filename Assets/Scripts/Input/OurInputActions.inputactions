@@ -1,8 +1,8 @@
 {
-    "name": "Input Actions",
+    "name": "OurInputActions",
     "maps": [
         {
-            "name": "VRMovementTracking",
+            "name": "VR",
             "id": "58941bea-890c-4447-95a7-1241bc5222fb",
             "actions": [
                 {
@@ -85,13 +85,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "8141bb5f-0389-4703-9b27-a86e51797a16",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.5)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "84a6d71c-dc87-4e7f-9bc4-eec611c27bf8",
-                    "path": "<TrackedDevice>/devicePosition",
+                    "path": "<XRHMD>/devicePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -102,7 +111,7 @@
                 {
                     "name": "",
                     "id": "c974535f-d9d8-4e41-881f-e0211ce630b1",
-                    "path": "<TrackedDevice>/centerEyePosition",
+                    "path": "<XRHMD>/centerEyePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -113,7 +122,7 @@
                 {
                     "name": "",
                     "id": "37c4dd11-380d-4aea-b050-02aee60e21a7",
-                    "path": "<OculusHMD>/centerEyeRotation",
+                    "path": "<XRHMD>/centerEyeRotation",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -208,6 +217,28 @@
                     "action": "RightHandTrackingState",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8c8c70bd-0b9e-432b-a92f-5c0c3c7386b2",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9496f706-aeaa-4e2d-bc20-430789e60996",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -238,26 +269,70 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "4da57638-bbe4-4da5-a596-552864fa5e40",
-                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "name": "LeftHandUseTool",
+                    "id": "c92d8775-f17e-4ac7-a469-a7cd8a48e13f",
+                    "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "UseTool",
-                    "isComposite": false,
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "cf5eccef-7ac0-4a19-935d-33c511a95b2f",
+                    "name": "modifier",
+                    "id": "92c3e3ec-29cd-4f8d-b8ce-322674b8f49e",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "6c0fc13b-6b34-4f7c-b3a3-f937467f3c15",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "RightHandUseTool",
+                    "id": "3f41c471-9559-4a62-b497-24c943ded774",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseTool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "ea9dd0a5-cff8-4838-af20-01a60ec3454b",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "f3c3509a-d9d8-48cf-9290-aa6479e12311",
                     "path": "<XRController>{RightHand}/primaryButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
                     "action": "UseTool",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 }
             ]
         },
