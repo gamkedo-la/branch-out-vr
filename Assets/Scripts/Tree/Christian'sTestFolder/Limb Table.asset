@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399e77c223ed4204ea0dcac971a55ee4, type: 3}
   m_Name: Limb Table
   m_EditorClassIdentifier: 
-  trunkTest: {fileID: 0}
+  trunkTest: {fileID: 7570404441295541022, guid: ea56edbc6b34d0f4a90196975bc1db08, type: 3}
+  branchTest: {fileID: 344552957425278452, guid: bbe139d529137df4ba37ba3203774e8e, type: 3}
