@@ -1,27 +1,38 @@
 using System;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class TrunkTest : MonoBehaviour
+public class TrunkTest : TreeLimbBase
 {
-    public UnityEvent GrowthHappenedEvent;
-    public Vector2 minRotations,maxRotations;
+    int branchesCreated;
+    public int branchCount;
+
+    public BranchTest branchTestPrefab;
     public TrunkTest trunkPrefab;
-    public TrunkTest previousTrunk;
-    public TrunkTest nextTrunk;
-    public Transform top;
+
 
     //add a random rotation to the trunk and subscribe the growth function to the passed in growth event
-    public void Initialize(UnityEvent growEvent, TrunkTest previousTrunk)
+    public void Initialize(UnityEvent growEvent, TrunkTest previousLimb)
     {
-        this.previousTrunk = previousTrunk;
-        if (previousTrunk != null)
+        //find the trunk reference from the lookup table
+        //needed for reusing prefab
+        trunkPrefab = limbContainer.trunkTest;
+        branchTestPrefab = limbContainer.branchTest;
+
+        //randomize number of branches on this node
+        branchCount = Random.Range(0, 4);
+
+
+        base.Initialize(growEvent);
+        this.previousLimb = previousLimb;
+        if (previousLimb != null)
         {
             transform.localEulerAngles = GetRandomRotations();
         }
 
-        growEvent.AddListener(Grow);
     }
 
     // Start is called before the first frame update
@@ -35,28 +46,34 @@ public class TrunkTest : MonoBehaviour
     {
 
     }
-
-    Vector3 GetRandomRotations()
+    void HandleBranches()
     {
-        Vector3 randomVector = new Vector3();
+        for (int i = 0; i < branchCount; i++)
+        {
+            TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), top.rotation, transform);
+            branchedLimbs.Add(limb);
+            (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
 
-        randomVector.x = Random.Range(minRotations.x, maxRotations.x);
-        randomVector.y = 0f;
-        randomVector.z = Random.Range(minRotations.y, maxRotations.y);
-
-        return randomVector;
+            branchesCreated++;
+        }
     }
 
+
     //When growth happens trigger the growth event
-    public void Grow()
-    {
-        GrowthHappenedEvent.Invoke();
+    public override void Grow()
+    {   
+        base.Grow();
+        
+        //right now creates branches based on a random amount should switch to a percentage chance
+        if(branchesCreated < branchCount)
+        HandleBranches();
 
-        if (nextTrunk == null)
+        //If a next limb in sequence doesn't exist make one
+        if (nextLimb ==null)
         {
-            nextTrunk = Instantiate(trunkPrefab, top.position, top.rotation, transform);
-
-            nextTrunk.Initialize(GrowthHappenedEvent, this);
+            TreeLimbBase limb = Instantiate(trunkPrefab, top.position, top.rotation, transform);
+            nextLimb = (limb);
+            (limb as TrunkTest).Initialize(GrowthHappenedEvent, this);
         }
 
     }
