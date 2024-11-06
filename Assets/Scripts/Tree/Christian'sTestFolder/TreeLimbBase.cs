@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class TreeLimbBase : MonoBehaviour
 {
+    float growSubChance = .5f;
+    float terminateChance = .5f;
     public LimbContainer limbContainer;
 
     public Vector2 minRotations, maxRotations;
@@ -16,7 +18,7 @@ public class TreeLimbBase : MonoBehaviour
     public Transform top;
 
 
-    public UnityEvent GrowthHappenedEvent;
+    public UnityEvent GrowthHappenedEvent = new UnityEvent();
     public virtual void Initialize(UnityEvent growEvent)
     {
         growEvent.AddListener(Grow);
@@ -51,5 +53,13 @@ public class TreeLimbBase : MonoBehaviour
         GrowthHappenedEvent.Invoke();
 
 
+    }
+    public bool WillGrowSub()
+    {
+        return Random.value < growSubChance;
+    }
+    public bool WillLimbContinue()
+    {
+        return Random.value < terminateChance;
     }
 }
