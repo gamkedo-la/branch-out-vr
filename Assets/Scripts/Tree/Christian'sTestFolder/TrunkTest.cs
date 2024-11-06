@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -48,28 +45,23 @@ public class TrunkTest : TreeLimbBase
     }
     void HandleBranches()
     {
-        for (int i = 0; i < branchCount; i++)
-        {
-            TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), top.rotation, transform);
-            branchedLimbs.Add(limb);
-            (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
-
-            branchesCreated++;
-        }
+        TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
+        branchedLimbs.Add(limb);
+        (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
     }
 
 
     //When growth happens trigger the growth event
     public override void Grow()
-    {   
+    {
         base.Grow();
-        
+
         //right now creates branches based on a random amount should switch to a percentage chance
-        if(branchesCreated < branchCount)
-        HandleBranches();
+        if (WillGrowSub())
+            HandleBranches();
 
         //If a next limb in sequence doesn't exist make one
-        if (nextLimb ==null)
+        if (nextLimb == null)
         {
             TreeLimbBase limb = Instantiate(trunkPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
