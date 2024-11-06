@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class BranchTest : TreeLimbBase
 {
+    public SecondaryBranch secondaryBranchPrefab;
     BranchTest branchPrefab;
+
     float percentageToEndBranch;
 
     //Initialize if spawned from a trunk
@@ -36,7 +38,7 @@ public class BranchTest : TreeLimbBase
     void Initialize()
     {
         branchPrefab = limbContainer.branchTest;
-        percentageToEndBranch = Random.value;
+        secondaryBranchPrefab = limbContainer.secondaryBranch;
     }
 
     // Start is called before the first frame update
@@ -50,11 +52,23 @@ public class BranchTest : TreeLimbBase
     {
         
     }
+    void HandleBranches()
+    {
+        TreeLimbBase limb = Instantiate(secondaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
+        branchedLimbs.Add(limb);
+        (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this);
+    }
 
     public override void Grow()
     {
         base.Grow();
-        if (nextLimb == null)
+
+        //right now creates branches based on a random amount should switch to a percentage chance
+        if (WillGrowSub())
+            HandleBranches();
+
+
+        if (nextLimb == null && WillLimbContinue())
         {
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
