@@ -6,4 +6,5 @@ public class LimbContainer : ScriptableObject
 {
     public TrunkTest trunkTest;
     public BranchTest branchTest;
+    public SecondaryBranch secondaryBranch;
 }
