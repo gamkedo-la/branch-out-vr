@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class SecondaryBranch : TreeLimbBase
 {
+    TertiaryBranch tertiaryBranchPrefab;
     SecondaryBranch secondaryBranchPrefab;
     float percentageToEndBranch;
 
@@ -36,6 +37,7 @@ public class SecondaryBranch : TreeLimbBase
     }
     void Initialize()
     {
+        tertiaryBranchPrefab = limbContainer.tertiaryBranch;
         secondaryBranchPrefab = limbContainer.secondaryBranch;
         percentageToEndBranch = Random.value;
     }
@@ -52,9 +54,20 @@ public class SecondaryBranch : TreeLimbBase
 
     }
 
+    void HandleBranches()
+    {
+        TreeLimbBase limb = Instantiate(tertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
+        branchedLimbs.Add(limb);
+        (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this);
+    }
+
     public override void Grow()
     {
         base.Grow();
+
+        if (WillGrowSub())
+            HandleBranches();
+
         if (nextLimb == null && WillLimbContinue())
         {
             TreeLimbBase limb = Instantiate(secondaryBranchPrefab, top.position, top.rotation, transform);
