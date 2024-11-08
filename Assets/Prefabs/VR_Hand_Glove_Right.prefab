@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightHand_model
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: cbe4e4250570e7347ac177013a2cb665, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e67ace79feb779a4796a49006ecdbb1b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

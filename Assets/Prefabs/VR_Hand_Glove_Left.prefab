@@ -48,9 +48,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5306957739862060131, guid: 9d4e8c8263d1c984299cd061b4cd4bbd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: -13
+      objectReference: {fileID: 0}
     - target: {fileID: 8280173117793700967, guid: 9d4e8c8263d1c984299cd061b4cd4bbd, type: 3}
       propertyPath: m_Name
-      value: VR_Hand_Glove_Right
+      value: VR_Hand_Glove_Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
