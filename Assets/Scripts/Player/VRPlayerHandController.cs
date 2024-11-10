@@ -15,7 +15,7 @@ public class VRPlayerHandController : MonoBehaviour
     bool isLeftHand = false;
 
     [SerializeField]
-    GameObject heldItemAttachPoint;
+    GameObject handAttachPoint;
 
     [SerializeField]
     private IGrabbable grabbableInRange;
@@ -23,11 +23,13 @@ public class VRPlayerHandController : MonoBehaviour
     [SerializeField]
     InputActionAsset inputActions;
 
-    InputAction grabAction;
+    private InputAction grabAction;
 
-    InputAction useToolAction;
+    private InputAction useToolAction;
 
-    UnityEngine.XR.InputDevice hapticDevice;
+    private UnityEngine.XR.InputDevice hapticDevice;
+
+    private GameObject itemAttachPoint;
 
     private void OnEnable()
     {
@@ -54,6 +56,7 @@ public class VRPlayerHandController : MonoBehaviour
             hapticDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         }
         Debug.Log("haptic device: " + hapticDevice.name);
+
     }
 
     private void TryGetHapticDevice()
@@ -119,14 +122,17 @@ public class VRPlayerHandController : MonoBehaviour
                 {
                     activeTool = tool;
                     heldObject = activeTool.gameObject;
+                    itemAttachPoint = activeTool.toolAttachPoint;
                     grabbableInRange.OnGrab();
                 }
             }
             if (heldObject != null)
             {
                 Debug.Log("Setting position and rotation of tool relative to hand.");
-                heldObject.transform.SetParent(heldItemAttachPoint.transform);
+                heldObject.transform.SetParent(handAttachPoint.transform);
+
                 heldObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
             }
         }
     }

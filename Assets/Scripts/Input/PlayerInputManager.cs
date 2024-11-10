@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager Instance { get; private set; }
-    [SerializeField]
+
     public InputActionAsset inputActions;
 
     private InputActionMap vrInputActions;

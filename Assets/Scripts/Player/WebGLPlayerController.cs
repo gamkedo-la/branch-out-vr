@@ -16,6 +16,9 @@ public class WebGLPlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> tools;
 
+    [SerializeField]
+    GameObject hand;
+
     private InputAction mousePositionAction;
 
     private InputAction switchToolAction;
@@ -63,12 +66,12 @@ public class WebGLPlayerController : MonoBehaviour
 
     private void SwitchTools(InputAction.CallbackContext context)
     {
-        //NOTE: Currently the only possible tool is Scissors, so I just hardcode that for now - must change later.
+        //NOTE: Currently the only possible tool is Scissors, so I just hardcoded that for now - must change later.
         if (activeTool == null)
         {
             activeToolObject = tools[0];
             activeToolObject.transform.SetParent(transform);
-            activeToolObject.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+            activeToolObject.transform.position = transform.position;
             activeTool = tools[0].GetComponent<Tool>();
             activeTool.WebGLMakeActiveTool();
         }
