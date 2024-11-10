@@ -23,17 +23,17 @@ public class VRPlayerHandController : MonoBehaviour
     [SerializeField]
     InputActionAsset inputActions;
 
+    [SerializeField]
+    private HandPoseController handPoseController;
+
     private InputAction grabAction;
 
     private InputAction useToolAction;
 
     private UnityEngine.XR.InputDevice hapticDevice;
 
-    private GameObject itemAttachPoint;
-
     private void OnEnable()
     {
-        Debug.Log("On enable.");
         GamePlatformManager.OnVRInitialized += TryGetHapticDevice;
 
         grabAction = inputActions.FindAction("Grab");
@@ -56,7 +56,7 @@ public class VRPlayerHandController : MonoBehaviour
             hapticDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         }
         Debug.Log("haptic device: " + hapticDevice.name);
-
+        handPoseController = GetComponentInChildren<HandPoseController>();
     }
 
     private void TryGetHapticDevice()
@@ -122,7 +122,7 @@ public class VRPlayerHandController : MonoBehaviour
                 {
                     activeTool = tool;
                     heldObject = activeTool.gameObject;
-                    itemAttachPoint = activeTool.toolAttachPoint;
+                    handPoseController.HoldTool(heldObject.name);
                     grabbableInRange.OnGrab();
                 }
             }
@@ -139,14 +139,12 @@ public class VRPlayerHandController : MonoBehaviour
 
     private void Release()
     {
-        if (grabbableInRange != null)
-        {
-            grabbableInRange.OnRelease();
-        }
+        grabbableInRange?.OnRelease();
 
         if (heldObject != null)
         {
             Debug.Log("Release held object.");
+            handPoseController.NoTool(heldObject.name);
             heldObject.GetComponent<IGrabbable>().OnRelease();
             if (activeTool != null)
             {

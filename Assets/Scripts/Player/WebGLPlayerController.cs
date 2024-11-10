@@ -19,6 +19,8 @@ public class WebGLPlayerController : MonoBehaviour
     [SerializeField]
     GameObject hand;
 
+    private HandPoseController handPoseController;
+
     private InputAction mousePositionAction;
 
     private InputAction switchToolAction;
@@ -50,6 +52,7 @@ public class WebGLPlayerController : MonoBehaviour
     private void Start()
     {
         playerPosition = Vector3.zero;
+        handPoseController = hand.GetComponentInChildren<HandPoseController>();
     }
 
     private void UpdatePlayerPosition(InputAction.CallbackContext context)
@@ -74,10 +77,13 @@ public class WebGLPlayerController : MonoBehaviour
             activeToolObject.transform.position = transform.position;
             activeTool = tools[0].GetComponent<Tool>();
             activeTool.WebGLMakeActiveTool();
+            handPoseController.HoldTool(activeToolObject.name);
         }
         else
         {
             activeToolObject.transform.SetParent(null);
+            handPoseController.NoTool(activeToolObject.name);
+            activeToolObject = null;
             activeTool.WebGLSwitchToDifferentTool();
             activeTool = null;
         }

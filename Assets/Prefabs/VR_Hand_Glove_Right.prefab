@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 617907172531902986}
+  - component: {fileID: 2556570916531138985}
   m_Layer: 0
   m_Name: VR_Hand_Glove_Right
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 5306957739862060131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2556570916531138985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280173117793700967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551d0dd065282c14eada17a5d8e5606c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2253547104880375321}
 --- !u!1001 &5633053770322643848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,6 +119,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe4e4250570e7347ac177013a2cb665, type: 3}
+--- !u!95 &2253547104880375321 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cbe4e4250570e7347ac177013a2cb665, type: 3}
+  m_PrefabInstance: {fileID: 5633053770322643848}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5306957739862060131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cbe4e4250570e7347ac177013a2cb665, type: 3}

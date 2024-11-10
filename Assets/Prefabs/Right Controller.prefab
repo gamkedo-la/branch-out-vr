@@ -141,8 +141,9 @@ MonoBehaviour:
   activeTool: {fileID: 0}
   heldObject: {fileID: 0}
   isLeftHand: 0
-  heldItemAttachPoint: {fileID: 8815609675381489826}
+  handAttachPoint: {fileID: 8815609675381489826}
   inputActions: {fileID: -944628639613478452, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
+  handPoseController: {fileID: 2099175065177858752}
 --- !u!1 &8815609675381489826
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,6 +232,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d4e8c8263d1c984299cd061b4cd4bbd, type: 3}
+--- !u!114 &2099175065177858752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2556570916531138985, guid: 9d4e8c8263d1c984299cd061b4cd4bbd, type: 3}
+  m_PrefabInstance: {fileID: 4493192945698493289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551d0dd065282c14eada17a5d8e5606c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3947467063345826147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 617907172531902986, guid: 9d4e8c8263d1c984299cd061b4cd4bbd, type: 3}

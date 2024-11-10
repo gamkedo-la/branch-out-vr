@@ -377,7 +377,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "SwitchTools",
                     "isComposite": false,
                     "isPartOfComposite": true
