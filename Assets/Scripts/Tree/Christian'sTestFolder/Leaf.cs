@@ -42,6 +42,9 @@ public class Leaf : TreeLimbBase
     public override void Grow()
     {
         base.Grow();
+
+        if (!IsMature)
+            return;
     }
 
 }

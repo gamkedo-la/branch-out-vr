@@ -65,6 +65,9 @@ public class SecondaryBranch : TreeLimbBase
     {
         base.Grow();
 
+        if (!IsMature)
+            return;
+
         if (WillGrowSub())
             HandleBranches();
 

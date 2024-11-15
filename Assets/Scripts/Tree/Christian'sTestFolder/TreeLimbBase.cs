@@ -5,7 +5,29 @@ using UnityEngine.Events;
 
 public class TreeLimbBase : MonoBehaviour
 {
-    float growSubChance = .5f;
+    public bool IsMature {  
+        get {return isMature; }
+        private set
+        {
+            isMature = value;
+        } 
+    }
+    [SerializeField]
+    bool isMature;
+    public float MaturityPercent
+    {
+        get { return maturityPercent; }
+        private set
+        {
+            maturityPercent = Mathf.Clamp01(value);
+            SetSize(maturityPercent);
+            IsMature = maturityPercent >= 1;
+        }
+    }
+    [SerializeField]
+    float maturityPercent;
+
+    float growSubChance = .25f;
     float terminateChance = .5f;
     public LimbContainer limbContainer;
 
@@ -21,6 +43,7 @@ public class TreeLimbBase : MonoBehaviour
     public UnityEvent GrowthHappenedEvent = new UnityEvent();
     public virtual void Initialize(UnityEvent growEvent)
     {
+        MaturityPercent = 0f;
         growEvent.AddListener(Grow);
     }
     // Start is called before the first frame update
@@ -34,6 +57,12 @@ public class TreeLimbBase : MonoBehaviour
     {
         
     }
+
+    public void SetSize(float maturityPercent)
+    {
+        transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, maturityPercent);
+    }
+
     public Vector3 GetRandomRotations()
     {
         Vector3 randomVector = new Vector3();
@@ -51,7 +80,9 @@ public class TreeLimbBase : MonoBehaviour
     public virtual void Grow()
     {
         GrowthHappenedEvent.Invoke();
-
+        
+        if(MaturityPercent < 1)
+            MaturityPercent += .1f;
 
     }
     public bool WillGrowSub()

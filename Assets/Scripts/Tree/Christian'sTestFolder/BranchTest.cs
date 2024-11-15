@@ -63,8 +63,11 @@ public class BranchTest : TreeLimbBase
     {
         base.Grow();
 
+        if (!IsMature)
+            return;
+
         //right now creates branches based on a random amount should switch to a percentage chance
-        if (WillGrowSub())
+        if (WillGrowSub() )
             HandleBranches();
 
 
