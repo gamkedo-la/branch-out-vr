@@ -65,8 +65,11 @@ public class TertiaryBranch : TreeLimbBase
     {
         base.Grow();
 
+
+        if (!IsMature)
+            return;
         //if (WillGrowSub())
-           // HandleBranches();
+        // HandleBranches();
 
         if (nextLimb == null && WillLimbContinue())
         {
