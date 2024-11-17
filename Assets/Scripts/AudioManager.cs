@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public enum MusicClipNames { Ginseng, YlangYlang };
+    public enum MusicClipNames { Ginseng, YlangYlang, Mint };
     public static AudioManager Instance { get; private set; }
 
     [SerializeField]

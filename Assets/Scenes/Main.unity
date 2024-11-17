@@ -198,7 +198,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.207
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -298,6 +298,7 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: 02dbcd9f7c97a124e95b7fb93c6c8845, type: 3}
   - {fileID: 8300000, guid: b4af9528158c20945a752dfbd8ba3b1c, type: 3}
+  - {fileID: 8300000, guid: 2db50e14670a7034ea6644926fe42e6f, type: 3}
   sfxClips: []
 --- !u!4 &215065632
 Transform:
@@ -1424,15 +1425,15 @@ PrefabInstance:
       objectReference: {fileID: 1044041122}
     - target: {fileID: 6849959301422131508, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6849959301422131508, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6849959301422131508, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6849959301422131508, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1507,6 +1508,14 @@ PrefabInstance:
     - target: {fileID: 4758374618083842970, guid: bec9363df7279ae41963dcd832e89f3f, type: 3}
       propertyPath: m_Name
       value: TempTree
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922674952435031021, guid: bec9363df7279ae41963dcd832e89f3f, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922674952435031021, guid: bec9363df7279ae41963dcd832e89f3f, type: 3}
+      propertyPath: m_Constraints
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 8961355631136412036, guid: bec9363df7279ae41963dcd832e89f3f, type: 3}
       propertyPath: m_LocalPosition.x
