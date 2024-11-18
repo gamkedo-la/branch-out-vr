@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Scissors : Tool, IGrabbable
 {
+    [SerializeField]
+    private GameObject trimRaycastPoint;
     private void Start()
     {
         isActive = false;
@@ -27,9 +29,30 @@ public class Scissors : Tool, IGrabbable
         transform.position = defaultPosition.transform.position;
     }
 
+    private void OnDrawGizmos()
+    {
+                Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward);
+
+    }
     private void RaycastTrim()
     {
         Debug.Log("Raycast trim called.");
+        if (!GamePlatformManager.IsVRMode)
+        {
+            Debug.Log("Raycast in flat mode.");
+            if (Physics.Raycast(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward, out RaycastHit hitInfo, 25, treeLayerForRaycasts))
+            {
+                GameObject target = hitInfo.collider.gameObject;
+                if (target != null)
+                {
+                    Debug.Log(target.name);
+                    if (target.TryGetComponent<TreePart>(out TreePart part))
+                    {
+                        part.Trim();
+                    }
+                }
+            }
+        }
         if (GamePlatformManager.IsVRMode)
         {
             Debug.Log("Raycast to check for branch to trim.");

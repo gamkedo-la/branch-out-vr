@@ -25,6 +25,8 @@ public class WebGLPlayerController : MonoBehaviour
 
     private InputAction switchToolAction;
 
+    private InputAction useToolAction;
+
     private Vector3 playerPosition;
 
     private IGrabbable grabbable;
@@ -36,6 +38,7 @@ public class WebGLPlayerController : MonoBehaviour
     {
         mousePositionAction = inputActions.FindAction("Position");
         switchToolAction = inputActions.FindAction("SwitchTools");
+        useToolAction = inputActions.FindAction("UseTool");
 
         if (mousePositionAction != null)
         {
@@ -47,6 +50,19 @@ public class WebGLPlayerController : MonoBehaviour
             switchToolAction.performed += inputContext => SwitchTools(inputContext);
         }
 
+        if (useToolAction != null)
+        {
+            useToolAction.performed += _ => OnUseTool();
+        }
+    }
+
+    private void OnUseTool()
+    {
+        Debug.Log("Mouse left button click");
+        if (activeTool != null)
+        {
+            activeTool.UseTool();
+        }
     }
 
     private void Start()
@@ -64,6 +80,7 @@ public class WebGLPlayerController : MonoBehaviour
             mouseViewportPos.z = 1.6f;
             playerPosition = webGLCamera.ViewportToWorldPoint(mouseViewportPos);
             transform.position = playerPosition;
+            Cursor.visible = false;
         }
     }
 
@@ -101,5 +118,9 @@ public class WebGLPlayerController : MonoBehaviour
             switchToolAction.performed -= inputContext => SwitchTools(inputContext);
         }
 
+        if (useToolAction != null)
+        {
+            useToolAction.performed -= _ => OnUseTool();
+        }
     }
 }

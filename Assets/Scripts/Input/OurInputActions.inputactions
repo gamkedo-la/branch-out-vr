@@ -322,6 +322,17 @@
                     "action": "UseTool",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "71f52dcf-51eb-4e1f-b0d7-1081c1f52a58",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
