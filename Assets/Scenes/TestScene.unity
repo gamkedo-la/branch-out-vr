@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trunkTest: {fileID: 7570404441295541022, guid: ea56edbc6b34d0f4a90196975bc1db08, type: 3}
-  growthTime: 2
+  growthTime: 0.2
   progress: 0
   GrowthHappenedEvent:
     m_PersistentCalls:
