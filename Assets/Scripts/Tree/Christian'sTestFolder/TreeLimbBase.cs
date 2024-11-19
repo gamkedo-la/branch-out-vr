@@ -29,6 +29,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public int maxChildLimbCount = 2;
     float growSubChance = .25f;
+    public bool terminated;
     float terminateChance = .5f;
     public LimbContainer limbContainer;
 
@@ -100,8 +101,11 @@ public class TreeLimbBase : MonoBehaviour
     {
         return Random.value < growSubChance;
     }
-    public bool WillLimbContinue()
+    public bool LimbTerminated()
     {
-        return Random.value < terminateChance;
+        if(terminated == false)
+            terminated = Random.value < terminateChance;
+        
+        return terminated;
     }
 }

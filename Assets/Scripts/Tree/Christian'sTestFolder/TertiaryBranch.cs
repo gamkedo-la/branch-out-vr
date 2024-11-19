@@ -67,7 +67,10 @@ public class TertiaryBranch : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (nextLimb == null && WillLimbContinue())
+        if (LimbTerminated())
+            return;
+
+        if (nextLimb == null)
         {
             TreeLimbBase limb = Instantiate(leafPrefab, top.position, Quaternion.Euler(GetRandomRotations()), transform);
             nextLimb = (limb);

@@ -68,7 +68,10 @@ public class BranchTest : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (nextLimb == null && WillLimbContinue())
+        if(LimbTerminated()) 
+            return;
+
+        if (nextLimb == null)
         {
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
