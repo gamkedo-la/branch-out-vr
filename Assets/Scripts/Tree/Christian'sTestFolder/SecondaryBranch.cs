@@ -53,9 +53,9 @@ public class SecondaryBranch : TreeLimbBase
     {
 
     }
-
-    void HandleBranches()
+    public override void AddChild()
     {
+        base.AddChild();
         TreeLimbBase limb = Instantiate(tertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
         (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this);
@@ -67,9 +67,6 @@ public class SecondaryBranch : TreeLimbBase
 
         if (!IsMature)
             return;
-
-        if (WillGrowSub())
-            HandleBranches();
 
         if (nextLimb == null && WillLimbContinue())
         {

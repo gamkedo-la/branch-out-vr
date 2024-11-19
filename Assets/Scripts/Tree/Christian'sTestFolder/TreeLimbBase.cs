@@ -27,6 +27,7 @@ public class TreeLimbBase : MonoBehaviour
     [SerializeField]
     float maturityPercent;
 
+    public int maxChildLimbCount = 2;
     float growSubChance = .25f;
     float terminateChance = .5f;
     public LimbContainer limbContainer;
@@ -58,6 +59,10 @@ public class TreeLimbBase : MonoBehaviour
         
     }
 
+    public virtual void AddChild()
+    {
+
+    }
     public void SetSize(float maturityPercent)
     {
         transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, maturityPercent);
@@ -82,7 +87,13 @@ public class TreeLimbBase : MonoBehaviour
         GrowthHappenedEvent.Invoke();
         
         if(MaturityPercent < 1)
-            MaturityPercent += .1f;
+        {
+            MaturityPercent += .1f; 
+            return;
+        }
+
+        if(branchedLimbs.Count < maxChildLimbCount && WillGrowSub())
+            AddChild();
 
     }
     public bool WillGrowSub()

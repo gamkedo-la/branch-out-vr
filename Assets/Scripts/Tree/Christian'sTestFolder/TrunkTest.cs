@@ -43,13 +43,13 @@ public class TrunkTest : TreeLimbBase
     {
 
     }
-    void HandleBranches()
+    public override void AddChild()
     {
+        base.AddChild();
         TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
         (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
     }
-
 
     //When growth happens trigger the growth event
     public override void Grow()
@@ -58,10 +58,6 @@ public class TrunkTest : TreeLimbBase
 
         if (!IsMature)
             return;
-
-        //right now creates branches based on a random amount should switch to a percentage chance
-        if (WillGrowSub())
-            HandleBranches();
 
         //If a next limb in sequence doesn't exist make one
         if (nextLimb == null)

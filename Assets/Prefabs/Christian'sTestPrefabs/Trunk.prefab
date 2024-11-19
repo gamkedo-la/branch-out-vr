@@ -77,11 +77,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ac2edab277973499de8cfffb706cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMature: 0
+  maturityPercent: 0
+  maxChildLimbCount: 1
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   minRotations: {x: -15, y: -15}
   maxRotations: {x: 15, y: 15}
   previousLimb: {fileID: 0}
-  nextLimbs: []
+  branchedLimbs: []
+  nextLimb: {fileID: 0}
   top: {fileID: 5315611409034019387}
   GrowthHappenedEvent:
     m_PersistentCalls:

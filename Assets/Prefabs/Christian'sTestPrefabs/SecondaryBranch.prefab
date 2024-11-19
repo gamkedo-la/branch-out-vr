@@ -184,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2295d32e83ae9be49ab8f7c7c0f65b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMature: 0
+  maturityPercent: 0
+  maxChildLimbCount: 1
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   minRotations: {x: -45, y: -45}
   maxRotations: {x: 45, y: 45}
