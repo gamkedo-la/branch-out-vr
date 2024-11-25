@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Composites;
 
 public class WebGLPlayerController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class WebGLPlayerController : MonoBehaviour
 
     private InputAction useToolAction;
 
+    private InputAction rotateViewAction;
+
     private Vector3 playerPosition;
 
     private IGrabbable grabbable;
@@ -39,6 +42,7 @@ public class WebGLPlayerController : MonoBehaviour
         mousePositionAction = inputActions.FindAction("Position");
         switchToolAction = inputActions.FindAction("SwitchTools");
         useToolAction = inputActions.FindAction("UseTool");
+        rotateViewAction = inputActions.FindAction("RotateView");
 
         if (mousePositionAction != null)
         {
@@ -77,10 +81,11 @@ public class WebGLPlayerController : MonoBehaviour
         if (input != null)
         {
             Vector3 mouseViewportPos = webGLCamera.ScreenToViewportPoint(input);
-            mouseViewportPos.z = 1.6f;
+            mouseViewportPos.z = 1f;
             playerPosition = webGLCamera.ViewportToWorldPoint(mouseViewportPos);
+            playerPosition.z = 0.1f;
             transform.position = playerPosition;
-            Cursor.visible = false;
+            //Cursor.visible = false;
         }
     }
 
@@ -105,6 +110,8 @@ public class WebGLPlayerController : MonoBehaviour
             activeTool = null;
         }
     }
+
+
 
     private void OnDisable()
     {

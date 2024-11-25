@@ -357,6 +357,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "RotateView",
+                    "type": "Value",
+                    "id": "237fec50-7c41-403d-9901-c3c6f112456a",
+                    "expectedControlType": "",
+                    "processors": "NormalizeVector2,InvertVector2",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -403,6 +412,39 @@
                     "action": "Position",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "a2de0135-3a08-4342-bd39-785564e69255",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateView",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "fa033364-3d39-4e1c-b54b-ded1c4fd0ee3",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RotateView",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "9f3d0b4c-0de9-45a2-9fb6-31f2678427d6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RotateView",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
