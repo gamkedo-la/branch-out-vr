@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 144524289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -678,10 +678,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 237fec50-7c41-403d-9901-c3c6f112456a
     m_ActionName: WebGL/RotateView[/Mouse/middleButton,/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 689f3938-bfcc-49e1-9e12-565c3c13ed8b
-    m_ActionName: WebGL/MouseClick[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: WebGL
