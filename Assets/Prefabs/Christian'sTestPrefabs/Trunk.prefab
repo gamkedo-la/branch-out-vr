@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5315611409034019387}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7984887681328327443}
   - component: {fileID: 7570404441295541022}
-  m_Layer: 0
+  - component: {fileID: -513423824207498195}
+  - component: {fileID: 8092062476568775400}
+  m_Layer: 7
   m_Name: Trunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +82,7 @@ MonoBehaviour:
   isMature: 0
   maturityPercent: 0
   maxChildLimbCount: 1
+  terminated: 0
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   minRotations: {x: -15, y: -15}
   maxRotations: {x: 15, y: 15}
@@ -87,12 +90,67 @@ MonoBehaviour:
   branchedLimbs: []
   nextLimb: {fileID: 0}
   top: {fileID: 5315611409034019387}
+  rigidbody: {fileID: -513423824207498195}
   GrowthHappenedEvent:
     m_PersistentCalls:
       m_Calls: []
   branchCount: 0
   branchTestPrefab: {fileID: 344552957425278452, guid: bbe139d529137df4ba37ba3203774e8e, type: 3}
   trunkPrefab: {fileID: 0}
+--- !u!54 &-513423824207498195
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805738654172296811}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 136
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8092062476568775400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3805738654172296811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba7b5c546858064b9ec41411abce708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickedOnEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7570404441295541022}
+        m_TargetAssemblyTypeName: TreeLimbBase, Assembly-CSharp
+        m_MethodName: CutLimb
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5828106478689141719
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +163,7 @@ GameObject:
   - component: {fileID: 6508908605994753154}
   - component: {fileID: 4622529350422533200}
   - component: {fileID: 1127017173309066655}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +251,7 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5000001
