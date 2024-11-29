@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class TreeLimbBase : MonoBehaviour
 {
@@ -41,6 +43,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public Transform top;
 
+    public Rigidbody rigidbody;
 
     public UnityEvent GrowthHappenedEvent = new UnityEvent();
     public virtual void Initialize(UnityEvent growEvent)
@@ -51,7 +54,7 @@ public class TreeLimbBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+     
     }
 
     // Update is called once per frame
@@ -107,5 +110,20 @@ public class TreeLimbBase : MonoBehaviour
             terminated = Random.value < terminateChance;
         
         return terminated;
+    }
+    public virtual void CutLimb()
+    {
+        transform.parent = null;
+
+        print("df");
+        rigidbody.isKinematic = false;
+
+        if(previousLimb.nextLimb == this)
+        previousLimb.nextLimb = null;
+
+        if (previousLimb.branchedLimbs.Contains(this))
+            previousLimb.branchedLimbs.Remove(this);
+
+        previousLimb.GrowthHappenedEvent.RemoveListener(Grow);
     }
 }
