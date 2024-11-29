@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class TreeLimbBase : MonoBehaviour
 {
+    public bool cut = false;
     public bool IsMature {  
         get {return isMature; }
         private set
@@ -92,7 +93,7 @@ public class TreeLimbBase : MonoBehaviour
         
         if(MaturityPercent < 1)
         {
-            MaturityPercent += .1f; 
+            MaturityPercent += .01f; 
             return;
         }
 
@@ -113,10 +114,11 @@ public class TreeLimbBase : MonoBehaviour
     }
     public virtual void CutLimb()
     {
+        cut = true;
+
         transform.parent = null;
 
-        print("df");
-        rigidbody.isKinematic = false;
+        TurnOnPhysics();
 
         if(previousLimb.nextLimb == this)
         previousLimb.nextLimb = null;
@@ -125,5 +127,45 @@ public class TreeLimbBase : MonoBehaviour
             previousLimb.branchedLimbs.Remove(this);
 
         previousLimb.GrowthHappenedEvent.RemoveListener(Grow);
+
+        StartCoroutine(ShrinkLimbForDeletion());
+    }
+
+    public virtual void TurnOnPhysics()
+    {
+
+        rigidbody.isKinematic = false;
+
+/*        foreach(TreeLimbBase treeLimbBase in branchedLimbs)
+        {
+            TurnOnPhysics();
+        }*/
+
+/*        if(nextLimb)
+            nextLimb.TurnOnPhysics();*/
+    }
+
+    public void OnDestroy()
+    {
+        print("sd");
+/*        foreach(TreeLimbBase treeLimbBase in branchedLimbs)
+        {
+            Destroy(treeLimbBase.gameObject);
+        }*/
+    }
+
+    public IEnumerator ShrinkLimbForDeletion()
+    {
+        float progress = 0f;
+        while(progress < 1)
+        {
+            progress += .00001f;
+
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, progress);
+
+            yield return new WaitForSeconds(.01f);
+        }
+
+        Destroy(this.gameObject);
     }
 }

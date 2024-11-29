@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4107a63c349334fa3c5291bb6070ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cut: 0
   isMature: 0
   maturityPercent: 0
   maxChildLimbCount: 1

@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4abdd6f512e10468aa63dc3adf3ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cut: 0
   isMature: 0
   maturityPercent: 0
   maxChildLimbCount: 4
