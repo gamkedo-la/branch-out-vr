@@ -19,15 +19,16 @@ public class HandPoseController : MonoBehaviour
     public void HoldTool(string toolName)
     {
         toolName = toolName.FirstCharacterToUpper();
-        string animatorParameter = $"Has{toolName}";
-
+        //string animatorParameter = $"Has{toolName}";
+        string animatorParameter = "HasScissors";
         animator.SetBool(animatorParameter, true);
     }
 
     public void NoTool(string lastToolName)
     {
         lastToolName = lastToolName.FirstCharacterToUpper();
-        string animatorParameter = $"Has{lastToolName}";
+        //string animatorParameter = $"Has{lastToolName}";
+        string animatorParameter = "HasScissors";
         animator.SetBool(animatorParameter, false);
     }
 }

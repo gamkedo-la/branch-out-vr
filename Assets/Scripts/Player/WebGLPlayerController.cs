@@ -92,23 +92,35 @@ public class WebGLPlayerController : MonoBehaviour
     private void SwitchTools(InputAction.CallbackContext context)
     {
         //NOTE: Currently the only possible tool is Scissors, so I just hardcoded that for now - must change later.
-        if (activeTool == null)
-        {
-            activeToolObject = tools[0];
-            activeToolObject.transform.SetParent(transform);
-            activeToolObject.transform.position = transform.position;
-            activeTool = tools[0].GetComponent<Tool>();
-            activeTool.WebGLMakeActiveTool();
-            handPoseController.HoldTool(activeToolObject.name);
-        }
-        else
+        int currentIndex = 0;
+        if (activeTool != null)
         {
             activeToolObject.transform.SetParent(null);
-            handPoseController.NoTool(activeToolObject.name);
-            activeToolObject = null;
             activeTool.WebGLSwitchToDifferentTool();
-            activeTool = null;
+            currentIndex = tools.IndexOf(activeTool.gameObject);
+            if (currentIndex + 1 < tools.Count)
+            {
+                currentIndex++;
+            }
+            else
+            {
+                activeToolObject.transform.SetParent(null);
+                handPoseController.NoTool(activeToolObject.name);
+                activeToolObject = null;
+                activeTool.WebGLSwitchToDifferentTool();
+                activeTool = null;
+                return;
+            }
+
         }
+
+        activeToolObject = tools[currentIndex];
+        activeTool = tools[currentIndex].GetComponent<Tool>();
+        GameObject activeToolAttachPoint = activeTool.toolAttachPoint;
+        activeToolObject.transform.SetParent(transform);
+        activeToolAttachPoint.transform.position = transform.position;
+        activeTool.WebGLMakeActiveTool();
+        handPoseController.HoldTool(activeToolObject.name);
     }
 
 

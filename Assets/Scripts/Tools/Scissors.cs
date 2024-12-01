@@ -71,18 +71,16 @@ public class Scissors : Tool, IGrabbable
 
     public override void WebGLSwitchToDifferentTool()
     {
-        isActive = false;
-        transform.position = defaultPosition.transform.position;
+        base.WebGLSwitchToDifferentTool();
     }
 
     public override void WebGLMakeActiveTool()
     {
-        isActive = true;
+        base.WebGLMakeActiveTool();
     }
 
     public override void UseTool()
     {
-        Debug.Log("Use tool called within scissors script.");
         RaycastTrim();
     }
 
