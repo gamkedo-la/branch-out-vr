@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wire : Tool, IGrabbable
@@ -9,6 +7,10 @@ public class Wire : Tool, IGrabbable
         isActive = false;
     }
 
+    public override void UseTool()
+    {
+        Debug.Log("Use wire tool (empty for now)");
+    }
     public override void WebGLMakeActiveTool()
     {
         base.WebGLMakeActiveTool();
