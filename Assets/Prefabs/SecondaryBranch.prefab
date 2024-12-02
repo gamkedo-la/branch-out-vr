@@ -167,7 +167,6 @@ MonoBehaviour:
   canCut: 1
   isMain: 0
   nodes: []
-  secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 1745757637227369993}
   branchPrefab: {fileID: 0}
@@ -274,7 +273,6 @@ MonoBehaviour:
   canCut: 1
   isMain: 0
   nodes: []
-  secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 8415978752682110388}
   branchPrefab: {fileID: 0}
@@ -543,7 +541,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6512617512929425899}
@@ -717,7 +715,6 @@ MonoBehaviour:
   canCut: 1
   isMain: 0
   nodes: []
-  secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 3640900297693811099}
   branchPrefab: {fileID: 0}
@@ -856,7 +853,6 @@ MonoBehaviour:
   canCut: 1
   isMain: 0
   nodes: []
-  secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 3165984036694472468}
   branchPrefab: {fileID: 8815367527981442942}
@@ -990,7 +986,7 @@ GameObject:
   - component: {fileID: 4808458156508905225}
   - component: {fileID: 1027989660221735504}
   m_Layer: 3
-  m_Name: Branch
+  m_Name: SecondaryBranch
   m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,7 +1031,6 @@ MonoBehaviour:
   - {fileID: 3848124553531243323}
   - {fileID: 4858151767570547636}
   - {fileID: 1295770208259595995}
-  secondaryBranchPrefab: {fileID: 8815367527981442942, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
   test: 0
 --- !u!54 &1027989660221735504
 Rigidbody:
@@ -1140,7 +1135,6 @@ MonoBehaviour:
   canCut: 1
   isMain: 0
   nodes: []
-  secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 227636479642014271}
   branchPrefab: {fileID: 0}

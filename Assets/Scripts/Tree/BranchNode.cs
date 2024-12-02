@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BranchSection : Branch
+public class BranchNode : Branch
 {
     [SerializeField]
     GameObject meshRendererObjectForBone;
@@ -13,6 +13,7 @@ public class BranchSection : Branch
         {
             meshRendererObjectForBone.SetActive(false);
             canCut = false;
+            gameObject.SetActive(false);
             base.Trim();
         }
     }
