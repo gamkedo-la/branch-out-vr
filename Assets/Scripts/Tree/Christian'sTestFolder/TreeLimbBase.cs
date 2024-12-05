@@ -47,9 +47,9 @@ public class TreeLimbBase : MonoBehaviour
     public Rigidbody rigidbody;
 
     public UnityEvent GrowthHappenedEvent = new UnityEvent();
-    public virtual void Initialize(UnityEvent growEvent)
+    public virtual void Initialize(UnityEvent growEvent, float maturity = 0f)
     {
-        MaturityPercent = 0f;
+        MaturityPercent = maturity;
         growEvent.AddListener(Grow);
     }
     // Start is called before the first frame update

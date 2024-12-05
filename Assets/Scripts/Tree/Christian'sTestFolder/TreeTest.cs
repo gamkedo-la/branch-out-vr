@@ -16,7 +16,7 @@ public class TreeTest : MonoBehaviour
     void Start()
     {
         //create the first node of the trunk and initialize it
-        TrunkTest temp = Instantiate(trunkTest, transform);
+        TrunkTest temp = Instantiate(trunkTest, transform, false);
 
         temp.Initialize(GrowthHappenedEvent, null);
 

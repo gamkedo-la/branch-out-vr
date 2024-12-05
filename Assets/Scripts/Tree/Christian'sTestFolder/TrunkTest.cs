@@ -18,17 +18,17 @@ public class TrunkTest : TreeLimbBase
         //needed for reusing prefab
         trunkPrefab = limbContainer.trunkTest;
         branchTestPrefab = limbContainer.branchTest;
-
+        transform.localScale = Vector3.one;
         //randomize number of branches on this node
         branchCount = Random.Range(0, 4);
 
 
-        base.Initialize(growEvent);
-        this.previousLimb = previousLimb;
-        if (previousLimb != null)
+        base.Initialize(growEvent, 1f);
+        //this.previousLimb = previousLimb;
+/*        if (previousLimb != null)
         {
             transform.localEulerAngles = GetRandomRotations();
-        }
+        }*/
 
     }
 
@@ -46,6 +46,7 @@ public class TrunkTest : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
+        Debug.Log("Add child to trunk");
         TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
         (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
@@ -56,7 +57,7 @@ public class TrunkTest : TreeLimbBase
     {
         base.Grow();
 
-        if (!IsMature)
+/*        if (!IsMature)
             return;
 
         //If a next limb in sequence doesn't exist make one
@@ -65,7 +66,7 @@ public class TrunkTest : TreeLimbBase
             TreeLimbBase limb = Instantiate(trunkPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
             (limb as TrunkTest).Initialize(GrowthHappenedEvent, this);
-        }
+        }*/
 
     }
 }
