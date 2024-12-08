@@ -83,7 +83,7 @@ MonoBehaviour:
   cut: 0
   isMature: 0
   maturityPercent: 0
-  maxChildLimbCount: 5
+  maxChildLimbCount: 6
   terminated: 0
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   minRotations: {x: -15, y: -15}

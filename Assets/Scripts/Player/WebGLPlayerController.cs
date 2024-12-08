@@ -35,6 +35,8 @@ public class WebGLPlayerController : MonoBehaviour
 
     private GameObject activeToolObject;
 
+    private GameObject activeToolAttachPoint;
+
 
     private void OnEnable()
     {
@@ -94,6 +96,7 @@ public class WebGLPlayerController : MonoBehaviour
         int currentIndex = 0;
         if (activeTool != null)
         {
+            activeToolAttachPoint.transform.localPosition = Vector3.zero;
             activeToolObject.transform.SetParent(null);
             activeTool.WebGLSwitchToDifferentTool();
             currentIndex = tools.IndexOf(activeTool.gameObject);
@@ -103,7 +106,6 @@ public class WebGLPlayerController : MonoBehaviour
             }
             else
             {
-                activeToolObject.transform.SetParent(null);
                 handPoseController.NoTool(activeToolObject.name);
                 activeToolObject = null;
                 activeTool.WebGLSwitchToDifferentTool();
@@ -115,7 +117,7 @@ public class WebGLPlayerController : MonoBehaviour
 
         activeToolObject = tools[currentIndex];
         activeTool = tools[currentIndex].GetComponent<Tool>();
-        GameObject activeToolAttachPoint = activeTool.toolAttachPoint;
+        activeToolAttachPoint = activeTool.toolAttachPoint;
         activeToolObject.transform.SetParent(transform);
         activeToolAttachPoint.transform.position = transform.position;
         activeTool.WebGLMakeActiveTool();
