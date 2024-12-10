@@ -147,7 +147,6 @@ public class TreeLimbBase : MonoBehaviour
 
     public void OnDestroy()
     {
-        print("sd");
 /*        foreach(TreeLimbBase treeLimbBase in branchedLimbs)
         {
             Destroy(treeLimbBase.gameObject);
