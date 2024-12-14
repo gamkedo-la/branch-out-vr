@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2553109597675769812}
   - component: {fileID: 4764481372655470613}
   - component: {fileID: 8942962999494954319}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,8 @@ GameObject:
   - component: {fileID: 344552957425278452}
   - component: {fileID: -4765530094563019513}
   - component: {fileID: 2520163742170484134}
-  m_Layer: 7
+  - component: {fileID: 3187923989120479346}
+  m_Layer: 3
   m_Name: Branch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,6 +228,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!136 &3187923989120479346
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4976722479052031246}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.46, z: 0}
 --- !u!1 &7837735056577892335
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2306316585842130509}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,6 +290,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7949957678383430223}
     m_Modifications:
+    - target: {fileID: 1295770208259595995, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2810143361186694740, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -306,11 +334,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3245038788321757556, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286065188884640719, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848124553531243323, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294234069451936700, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858151767570547636, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8815367527981442942, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
       propertyPath: m_Name
       value: Branch
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5809275288568850133, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 6562868811678832, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 5817706620794494870, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 3767077750192724449, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 7177946716639877649, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 908871174764065276, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 839325011636121844, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 3844170170412940975, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 3182431199377204448, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 869259474444429369, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
+    - {fileID: 1027989660221735504, guid: 8b1438585a5829b4eb036053a5475f55, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

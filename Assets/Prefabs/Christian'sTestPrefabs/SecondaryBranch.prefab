@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3559063293094762045}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 370966206177590673}
   - component: {fileID: 1169744545261977168}
   - component: {fileID: 5240965498382288361}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,8 @@ GameObject:
   - component: {fileID: 4359772727681169963}
   - component: {fileID: 1486547232359954145}
   - component: {fileID: 1522706237422362354}
-  m_Layer: 7
+  - component: {fileID: 7569038984742792766}
+  m_Layer: 3
   m_Name: SecondaryBranch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,6 +258,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!136 &7569038984742792766
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273869559449286542}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.04
+  m_Height: 0.51
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.23, z: 0}
 --- !u!1001 &5498214293176630529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -265,6 +289,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 325307105853915754}
     m_Modifications:
+    - target: {fileID: 1295770208259595995, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2810143361186694740, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -305,11 +333,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3245038788321757556, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286065188884640719, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848124553531243323, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294234069451936700, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858151767570547636, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8815367527981442942, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
       propertyPath: m_Name
       value: SecondaryBranch
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 908871174764065276, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 839325011636121844, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 3844170170412940975, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 3182431199377204448, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 869259474444429369, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 5809275288568850133, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 6562868811678832, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 5817706620794494870, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 3767077750192724449, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 7177946716639877649, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
+    - {fileID: 1027989660221735504, guid: cb01dc3401a39f0419e3e24581071ab6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

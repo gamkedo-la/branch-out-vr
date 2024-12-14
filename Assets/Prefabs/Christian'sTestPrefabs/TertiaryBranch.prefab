@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3148299759137610709}
   - component: {fileID: 5782922591868728748}
   - component: {fileID: 5187738803841094987}
-  m_Layer: 7
+  - component: {fileID: 5443759060362280153}
+  m_Layer: 3
   m_Name: TertiaryBranch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +120,29 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!136 &5443759060362280153
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440457084062111880}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.009155087
+  m_Height: 0.15866405
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.07090375, z: 0}
 --- !u!1 &609763732662768876
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8488176526836588764}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +186,7 @@ GameObject:
   - component: {fileID: 6036898965986179314}
   - component: {fileID: 1872226263328151270}
   - component: {fileID: 2091451731393249278}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +289,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9115383447769472552}
     m_Modifications:
+    - target: {fileID: 1295770208259595995, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2810143361186694740, guid: 361f8928374b44348a15dab033a3755a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -305,11 +333,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3245038788321757556, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3286065188884640719, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3848124553531243323, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294234069451936700, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858151767570547636, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8815367527981442942, guid: 361f8928374b44348a15dab033a3755a, type: 3}
       propertyPath: m_Name
       value: TertiaryBranch
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 908871174764065276, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 839325011636121844, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 3844170170412940975, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 3182431199377204448, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 869259474444429369, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 5809275288568850133, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 6562868811678832, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 5817706620794494870, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 3767077750192724449, guid: 361f8928374b44348a15dab033a3755a, type: 3}
+    - {fileID: 7177946716639877649, guid: 361f8928374b44348a15dab033a3755a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
