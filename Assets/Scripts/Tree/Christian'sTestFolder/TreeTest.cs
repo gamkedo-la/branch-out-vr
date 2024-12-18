@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class TreeTest : MonoBehaviour
 {
+    public LimbContainer limbContainer;
     public TrunkTest trunkTest;
     public float growthTime = 2f;
     [SerializeField]
@@ -16,9 +17,9 @@ public class TreeTest : MonoBehaviour
     void Start()
     {
         //create the first node of the trunk and initialize it
-        TrunkTest temp = Instantiate(trunkTest, transform, false);
+        trunkTest = Instantiate(limbContainer.trunkTest, transform, false);
 
-        temp.Initialize(GrowthHappenedEvent, null);
+        trunkTest.Initialize(GrowthHappenedEvent, null);
 
     }
 
@@ -30,6 +31,8 @@ public class TreeTest : MonoBehaviour
 
         if (progress > growthTime)
             Grow();
+
+
     }
 
     //Reset timer and raise event for all nodes in the tree to update
@@ -38,5 +41,7 @@ public class TreeTest : MonoBehaviour
         progress = 0;
 
         GrowthHappenedEvent?.Invoke();
+
+        trunkTest.Energy = 10f;
     }
 }
