@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.26330543, g: 0.9150943, b: 0.8380915, a: 1}
+  m_AmbientSkyColor: {r: 0.98742133, g: 0.9809049, b: 0.8352715, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: e95bc0fdbbc10824196bda725e88f3c2, type: 2}
   m_HaloStrength: 0.5
@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 4186a4b0a7c57d24597264c14b5dba96, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 981a417923df3924e821268c997b8b57, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2935,6 +2935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boulder3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6765e13b3a7741439b73029103ed096, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3763,7 +3767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1207473438
 Transform:
   m_ObjectHideFlags: 0
@@ -4002,6 +4006,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e133897c67f3b694b832ab7b41992db7, type: 3}
       propertyPath: m_Name
       value: boulder5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e133897c67f3b694b832ab7b41992db7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4541,6 +4549,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d9c42f680446a364ba3fe99d491f08c9, type: 3}
       propertyPath: m_Name
       value: boulder2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d9c42f680446a364ba3fe99d491f08c9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5456,6 +5468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boulder6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0bfd04fde127dbc45ad1a764a1dccde1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5736,6 +5752,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boulder4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de8cd01d9b1859344910c3bb1a4ab633, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5865,6 +5885,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a142ce811c2acd24cbf8433303c54a82, type: 3}
       propertyPath: m_Name
       value: boulder1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a142ce811c2acd24cbf8433303c54a82, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6570,6 +6594,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: boulder7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 48b1b2df624e0f140aa146ebaaaea563, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6724,6 +6752,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8c2771feae7c75f4ea56792623d424b6, type: 3}
       propertyPath: m_Name
       value: boulder8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8c2771feae7c75f4ea56792623d424b6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
