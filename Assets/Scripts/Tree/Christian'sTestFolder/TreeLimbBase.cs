@@ -7,6 +7,21 @@ using UnityEngine.EventSystems;
 
 public class TreeLimbBase : MonoBehaviour
 {
+    [SerializeField]
+    EnergySystemValues energySystemValues;
+    #region Energy
+    public float Energy 
+    {
+        get { return energy; } 
+        set {energy = value;}
+    }
+    [SerializeField]
+    float energy = 0;
+
+    public UnityEvent EnergyDepletedEvent;
+    #endregion
+
+
     public bool cut = false;
     public bool IsMature {  
         get {return isMature; }
