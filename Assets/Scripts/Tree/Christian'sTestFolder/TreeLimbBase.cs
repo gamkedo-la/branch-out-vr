@@ -83,6 +83,12 @@ public class TreeLimbBase : MonoBehaviour
     {
 
     }
+
+    public float TakeEnergy(float amount)
+    {
+        Energy -= amount;
+        return amount;
+    }
     public void SetSize(float maturityPercent)
     {
         transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, maturityPercent);
@@ -104,6 +110,12 @@ public class TreeLimbBase : MonoBehaviour
     }
     public virtual void Grow()
     {
+        if(previousLimb != null) 
+            Energy += previousLimb.TakeEnergy(1);
+
+        if(Energy <= 0)
+            return;
+
         GrowthHappenedEvent.Invoke();
         
         if(MaturityPercent < 1)
