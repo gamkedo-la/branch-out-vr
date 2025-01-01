@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 546e7c468fa03c54c9ab3e389f2f1cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treeLayerForRaycasts:
+  branchNodeLayerForTools:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   defaultPosition: {fileID: 0}
   toolAttachPoint: {fileID: 862354164525821360}
   isActive: 0

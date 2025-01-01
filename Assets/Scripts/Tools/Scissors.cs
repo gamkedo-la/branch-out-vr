@@ -34,15 +34,19 @@ public class Scissors : Tool, IGrabbable
                 Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward);
 
     }
-    private void RaycastTrim()
+    /// <summary>
+    /// Cuts the tree at a branch determined by a raycast from the scissors tip in WebGL, or by proximity in VR.
+    /// </summary>
+    private void TrimTree()
     {
-        Debug.Log("Raycast trim called.");
+        
         if (!GamePlatformManager.IsVRMode)
         {
             Debug.Log("Raycast in flat mode.");
-            if (Physics.Raycast(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward, out RaycastHit hitInfo, 25, treeLayerForRaycasts))
+            Ray ray = Camera.main.ScreenPointToRay(trimRaycastPoint.transform.position);
+            if (Physics.Raycast(ray, out RaycastHit hit, 100.0f, branchNodeLayerForTools))
             {
-                GameObject target = hitInfo.collider.gameObject;
+                GameObject target = hit.collider.gameObject;
                 if (target != null)
                 {
                     Debug.Log(target.name);
@@ -53,19 +57,38 @@ public class Scissors : Tool, IGrabbable
                 }
             }
         }
+
         if (GamePlatformManager.IsVRMode)
         {
-            Debug.Log("Raycast to check for branch to trim.");
-            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 25, treeLayerForRaycasts))
+            Collider[] closestBranches = Physics.OverlapSphere(transform.position, 5f, branchNodeLayerForTools);
+
+            if (closestBranches.Length > 0)
             {
-                Debug.Log("hit object " + hit.collider.gameObject.name);
-                Branch target = hit.collider.gameObject.GetComponent<Branch>();
-                if (target)
+                GameObject closestBranch = null;
+                float closestDistance = 5f;
+                for (int i = 0; i < closestBranches.Length; i++)
                 {
-                    Debug.Log("Trim on branch");
-                    target.Trim();
+                    Vector3 closestPointOnCollider = closestBranches[i].ClosestPoint(trimRaycastPoint.transform.position);
+                    float distance = Vector3.Distance(transform.position, closestPointOnCollider);
+                    if (distance < closestDistance)
+                    {
+                        closestBranch = closestBranches[i].gameObject;
+                        closestDistance = distance;
+                    }
+                }
+
+                if (closestBranch != null)
+                {
+                    closestBranch.TryGetComponent<TreePart>(out TreePart part);
+                    part.Trim();
                 }
             }
+
+            else
+            {
+                Debug.Log("No branches close enough to trim.");
+            }
+
         }
     }
 
@@ -81,7 +104,7 @@ public class Scissors : Tool, IGrabbable
 
     public override void UseTool()
     {
-        RaycastTrim();
+        TrimTree();
     }
 
     public bool CheckIfActive()

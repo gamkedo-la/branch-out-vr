@@ -27,15 +27,13 @@ public class WebGLPlayerController : MonoBehaviour
 
     private InputAction useToolAction;
 
-    private InputAction rotateViewAction;
-
     private Vector3 playerPosition;
-
-    private IGrabbable grabbable;
 
     private GameObject activeToolObject;
 
     private GameObject activeToolAttachPoint;
+
+    private float handDistanceFromCamera = 3f;
 
 
     private void OnEnable()
@@ -43,7 +41,6 @@ public class WebGLPlayerController : MonoBehaviour
         mousePositionAction = inputActions.FindAction("Position");
         switchToolAction = inputActions.FindAction("SwitchTools");
         useToolAction = inputActions.FindAction("UseTool");
-        rotateViewAction = inputActions.FindAction("RotateView");
 
         if (mousePositionAction != null)
         {
@@ -81,11 +78,19 @@ public class WebGLPlayerController : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         if (input != null)
         {
-            Vector3 mouseViewportPos = webGLCamera.ScreenToViewportPoint(input);
-            mouseViewportPos.z = 1f;
+            Vector3 mouseViewportPos = new Vector3(input.x / Screen.width, input.y / Screen.height, 1f);
+
+            float adjustedZ = webGLCamera.transform.position.z - handDistanceFromCamera;
+           
+
+            mouseViewportPos.x = (mouseViewportPos.x - 0.5f) * handDistanceFromCamera + 0.5f;
+            mouseViewportPos.y = (mouseViewportPos.y - 0.5f) * handDistanceFromCamera + 0.5f;
+
+
             playerPosition = webGLCamera.ViewportToWorldPoint(mouseViewportPos);
-            playerPosition.z = 0.1f;
-            transform.position = playerPosition;
+            playerPosition.z = webGLCamera.transform.position.z - handDistanceFromCamera;
+
+            transform.position = playerPosition; 
             //Cursor.visible = false;
         }
     }

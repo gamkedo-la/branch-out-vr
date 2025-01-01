@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Tool : MonoBehaviour
 {
     
-    public LayerMask treeLayerForRaycasts;
+    public LayerMask branchNodeLayerForTools;
 
     public GameObject defaultPosition;
 

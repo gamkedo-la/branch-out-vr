@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 5809275288568850133}
   - component: {fileID: 1295770208259595995}
   - component: {fileID: 908871174764065276}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Bone.004
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -170,7 +170,6 @@ MonoBehaviour:
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 1745757637227369993}
-  branchPrefab: {fileID: 0}
 --- !u!54 &908871174764065276
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -210,7 +209,7 @@ GameObject:
   - component: {fileID: 6562868811678832}
   - component: {fileID: 4858151767570547636}
   - component: {fileID: 839325011636121844}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Bone.003
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -277,7 +276,6 @@ MonoBehaviour:
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 8415978752682110388}
-  branchPrefab: {fileID: 0}
 --- !u!54 &839325011636121844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -653,7 +651,7 @@ GameObject:
   - component: {fileID: 3767077750192724449}
   - component: {fileID: 3245038788321757556}
   - component: {fileID: 3182431199377204448}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Bone.001
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -720,7 +718,6 @@ MonoBehaviour:
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 3640900297693811099}
-  branchPrefab: {fileID: 0}
 --- !u!54 &3182431199377204448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -792,7 +789,7 @@ GameObject:
   - component: {fileID: 5817706620794494870}
   - component: {fileID: 3848124553531243323}
   - component: {fileID: 3844170170412940975}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Bone.002
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -859,7 +856,6 @@ MonoBehaviour:
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 3165984036694472468}
-  branchPrefab: {fileID: 8815367527981442942}
 --- !u!54 &3844170170412940975
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1143,7 +1139,6 @@ MonoBehaviour:
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 227636479642014271}
-  branchPrefab: {fileID: 0}
 --- !u!54 &869259474444429369
 Rigidbody:
   m_ObjectHideFlags: 0
