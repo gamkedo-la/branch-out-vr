@@ -11,6 +11,7 @@ public class TreeTest : MonoBehaviour
     public float growthTime = 2f;
     public float currentTotalEnergy = 10000f;
     public float currentFreeEnergy = 10000f;
+     
     [SerializeField]
     float progress = 0;
 
@@ -35,6 +36,7 @@ public class TreeTest : MonoBehaviour
         trunkTest = Instantiate(limbContainer.trunkTest, transform, false);
 
         trunkTest.Initialize(GrowthHappenedEvent, null);
+        currentTotalEnergy = 10000f;
         trunkTest.Energy = 10000f;
         currentFreeEnergy = 0;
     }
@@ -43,6 +45,18 @@ public class TreeTest : MonoBehaviour
     {
         currentTotalEnergy += amount;
         currentFreeEnergy += amount;
+    }
+
+    public void RemoveEnergy(float amount)
+    {
+        currentTotalEnergy -= amount;
+    }
+
+    public void StressReaction()
+    {
+        //TODO: need to determine and code criteria for tree becoming stressed and not putting any energy towards growth, change energy visualization colors if extreme
+        //losing x percentage of energy within short span of time
+        //watered too frequently
     }
 
     void Update()

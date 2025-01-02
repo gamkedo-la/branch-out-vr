@@ -7,8 +7,7 @@ using UnityEngine.EventSystems;
 
 public class TreeLimbBase : MonoBehaviour
 {
-    [SerializeField]
-    EnergySystemValues energySystemValues;
+    public EnergySystemValues energySystemValues;
     #region Energy
     public float Energy 
     {

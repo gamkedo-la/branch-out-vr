@@ -15,9 +15,6 @@ public class EnergySystemValues : ScriptableObject
     //If the pooled energy reaches the minimum requirement for growth, that energy cannot ever be returned to the system.
     //If it has not reached the minimum requirement for growth, and the total free energy gets too low, it will be returned to the system. 
 
-    [Tooltip("Timestep for the energy system (+Time.deltaTime until 'tick' is reached, then call progress event).")]
-    public float tick = 1.0f;
-
     [Tooltip("Energy points that a leaf group brings in every tick.")]
     public float leafEnergyGainPerTick = 1.0f;
 

@@ -5,7 +5,6 @@ public class EnergyTickTimer :MonoBehaviour
 {
     public static event Action Tick;
 
-
     [SerializeField]
     private float realTimeSeconds = 1f;
 

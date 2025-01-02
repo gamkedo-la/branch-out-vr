@@ -71,6 +71,8 @@ public class BranchTest : TreeLimbBase
         if(LimbTerminated()) 
             return;
 
+        //TODO: need to adjust so that nextLimb grabs new growth point before it grows; also, newly grown branch must become a child of the BranchNode object it grows off of in order 
+        //to have all branches removed when the parent node is cut
         if (nextLimb == null)
         {
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);

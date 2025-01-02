@@ -25,10 +25,12 @@ public class Leaf : TreeLimbBase
 
     } 
 
+    /// <summary>
+    /// Every leaf node will create energy for the tree every Tick.
+    /// </summary>
     private void Photosynthesis()
     {
-        Debug.Log("Leaf create energy");
-        TreeTest.Instance.CreateEnergy(1); 
+        TreeTest.Instance.CreateEnergy(energySystemValues.leafEnergyGainPerTick); 
     }
 
     void Initialize()

@@ -185,6 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a4abdd6f512e10468aa63dc3adf3ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energySystemValues: {fileID: 11400000, guid: 8b86754177dc16040b25ade5b8890740, type: 2}
+  energy: 0
+  EnergyDepletedEvent:
+    m_PersistentCalls:
+      m_Calls: []
   cut: 0
   isMature: 0
   maturityPercent: 0
@@ -197,6 +202,7 @@ MonoBehaviour:
   branchedLimbs: []
   nextLimb: {fileID: 0}
   top: {fileID: 0}
+  nodes: []
   rigidbody: {fileID: 6723477918682127835}
   GrowthHappenedEvent:
     m_PersistentCalls:

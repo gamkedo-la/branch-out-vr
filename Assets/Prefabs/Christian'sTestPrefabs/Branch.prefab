@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4107a63c349334fa3c5291bb6070ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySystemValues: {fileID: 0}
+  energySystemValues: {fileID: 11400000, guid: 8b86754177dc16040b25ade5b8890740, type: 2}
   energy: 0
   EnergyDepletedEvent:
     m_PersistentCalls:

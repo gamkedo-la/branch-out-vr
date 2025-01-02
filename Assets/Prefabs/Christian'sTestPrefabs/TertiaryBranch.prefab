@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8c118c627a64549b7b0c8eb80ad45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energySystemValues: {fileID: 0}
+  energySystemValues: {fileID: 11400000, guid: 8b86754177dc16040b25ade5b8890740, type: 2}
   energy: 0
   EnergyDepletedEvent:
     m_PersistentCalls:
