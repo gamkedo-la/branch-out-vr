@@ -5,7 +5,7 @@ public abstract class Tool : MonoBehaviour
     
     public LayerMask branchNodeLayerForTools;
 
-    public GameObject defaultPosition;
+    public GameObject defaultTransform;
 
     public GameObject toolAttachPoint;
 
@@ -21,7 +21,8 @@ public abstract class Tool : MonoBehaviour
     public virtual void WebGLSwitchToDifferentTool() 
     {
         isActive = false;
-        transform.position = defaultPosition.transform.position;
+        transform.position = defaultTransform.transform.position;
+        transform.rotation = defaultTransform.transform.rotation;
     }
     public virtual void UseTool() { }
 

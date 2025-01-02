@@ -58,6 +58,7 @@ public class TreeLimbBase : MonoBehaviour
     public TreeLimbBase nextLimb;
 
     public Transform top;
+    public List<BranchNode> nodes;
 
     public Rigidbody rigidbody;
 

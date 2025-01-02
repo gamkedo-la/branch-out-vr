@@ -39,6 +39,6 @@ public class Wire : Tool, IGrabbable
         }
         //toolRB.isKinematic = false;
         isActive = false;
-        transform.position = defaultPosition.transform.position;
+        transform.position = defaultTransform.transform.position;
     }
 }

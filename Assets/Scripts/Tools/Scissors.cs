@@ -26,13 +26,21 @@ public class Scissors : Tool, IGrabbable
         }
         //toolRB.isKinematic = false;
         isActive = false;
-        transform.position = defaultPosition.transform.position;
+        transform.position = defaultTransform.transform.position;
     }
 
     private void OnDrawGizmos()
     {
-                Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward);
+                Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward * 10);
 
+    }
+
+    private void Update()
+    {
+        if (isActive)
+        {
+            trimRaycastPoint.transform.forward = Camera.main.transform.forward;
+        }
     }
     /// <summary>
     /// Cuts the tree at a branch determined by a raycast from the scissors tip in WebGL, or by proximity in VR.
@@ -42,9 +50,7 @@ public class Scissors : Tool, IGrabbable
         
         if (!GamePlatformManager.IsVRMode)
         {
-            Debug.Log("Raycast in flat mode.");
-            Ray ray = Camera.main.ScreenPointToRay(trimRaycastPoint.transform.position);
-            if (Physics.Raycast(ray, out RaycastHit hit, 100.0f, branchNodeLayerForTools))
+            if (Physics.Raycast(trimRaycastPoint.transform.position, transform.forward, out RaycastHit hit, 100f, branchNodeLayerForTools))
             {
                 GameObject target = hit.collider.gameObject;
                 if (target != null)

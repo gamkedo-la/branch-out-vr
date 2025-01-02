@@ -57,6 +57,10 @@ public class TrunkTest : TreeLimbBase
     {
         base.Grow();
 
+        if (TreeTest.Instance.currentFreeEnergy > 0)
+        {
+            Energy += 1;
+        }
 /*        if (!IsMature)
             return;
 

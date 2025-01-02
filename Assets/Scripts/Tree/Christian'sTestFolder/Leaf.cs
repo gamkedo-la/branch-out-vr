@@ -7,9 +7,12 @@ public class Leaf : TreeLimbBase
 {
     float percentageToEndBranch;
 
+    private void OnEnable()
+    {
+        EnergyTickTimer.Tick += Photosynthesis;
+    }
 
     //Initialize if spawned from a branch
-
     public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch)
     {
         base.Initialize(growEvent);
@@ -21,27 +24,27 @@ public class Leaf : TreeLimbBase
         Initialize();
 
     } 
+
+    private void Photosynthesis()
+    {
+        Debug.Log("Leaf create energy");
+        TreeTest.Instance.CreateEnergy(1); 
+    }
+
     void Initialize()
     {
         //tertiaryBranchPrefab = limbContainer.tertiaryBranch;
         //percentageToEndBranch = Random.value;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public override void Grow()
     {
         base.Grow();
+    }
+
+    private void OnDisable()
+    {
+        EnergyTickTimer.Tick -= Photosynthesis;
     }
 
 }

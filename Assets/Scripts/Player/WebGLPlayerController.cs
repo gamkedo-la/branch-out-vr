@@ -33,7 +33,7 @@ public class WebGLPlayerController : MonoBehaviour
 
     private GameObject activeToolAttachPoint;
 
-    private float handDistanceFromCamera = 3f;
+    private float handDistanceFromCamera = 1.75f;
 
 
     private void OnEnable()
@@ -60,7 +60,6 @@ public class WebGLPlayerController : MonoBehaviour
 
     private void OnUseTool()
     {
-        Debug.Log("Mouse left button click");
         if (activeTool != null)
         {
             activeTool.UseTool();
@@ -80,9 +79,6 @@ public class WebGLPlayerController : MonoBehaviour
         {
             Vector3 mouseViewportPos = new Vector3(input.x / Screen.width, input.y / Screen.height, 1f);
 
-            float adjustedZ = webGLCamera.transform.position.z - handDistanceFromCamera;
-           
-
             mouseViewportPos.x = (mouseViewportPos.x - 0.5f) * handDistanceFromCamera + 0.5f;
             mouseViewportPos.y = (mouseViewportPos.y - 0.5f) * handDistanceFromCamera + 0.5f;
 
@@ -91,8 +87,8 @@ public class WebGLPlayerController : MonoBehaviour
             playerPosition.z = webGLCamera.transform.position.z - handDistanceFromCamera;
 
             transform.position = playerPosition; 
-            //Cursor.visible = false;
         }
+        transform.forward = Camera.main.transform.forward;
     }
 
     private void SwitchTools(InputAction.CallbackContext context)
@@ -123,7 +119,8 @@ public class WebGLPlayerController : MonoBehaviour
         activeToolObject = tools[currentIndex];
         activeTool = tools[currentIndex].GetComponent<Tool>();
         activeToolAttachPoint = activeTool.toolAttachPoint;
-        activeToolObject.transform.SetParent(transform);
+        activeToolObject.transform.position = transform.position;
+        activeToolObject.transform.SetParent(transform, true);
         activeToolAttachPoint.transform.position = transform.position;
         activeTool.WebGLMakeActiveTool();
         handPoseController.HoldTool(activeToolObject.name);
