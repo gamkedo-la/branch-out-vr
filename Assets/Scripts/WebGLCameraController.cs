@@ -26,7 +26,7 @@ public class WebGLCameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        rotateCamera = PlayerInputManager.Instance.inputActions.FindAction("RotateView");
+        rotateCamera = PlayerInputManager.Instance?.inputActions.FindAction("RotateView");
 
         if (rotateCamera != null)
         {
