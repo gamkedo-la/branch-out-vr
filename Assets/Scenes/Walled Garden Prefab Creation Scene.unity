@@ -5625,10 +5625,6 @@ PrefabInstance:
       propertyPath: tree
       value: 
       objectReference: {fileID: 317770422}
-    - target: {fileID: 4002017333440448525, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6005601838073635837, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_Name
       value: WebGL
