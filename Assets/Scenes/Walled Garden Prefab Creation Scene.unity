@@ -2279,6 +2279,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9106788964220680817, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9961947
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106788964220680817, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.08715578
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106788964220680817, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5613,13 +5625,17 @@ PrefabInstance:
       propertyPath: tree
       value: 
       objectReference: {fileID: 317770422}
+    - target: {fileID: 4002017333440448525, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6005601838073635837, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_Name
       value: WebGL
       objectReference: {fileID: 0}
     - target: {fileID: 6005601838073635837, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6825864868914730926, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_IsActive

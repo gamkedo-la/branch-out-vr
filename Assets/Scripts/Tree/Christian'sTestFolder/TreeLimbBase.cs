@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class TreeLimbBase : MonoBehaviour
 {
@@ -20,7 +18,7 @@ public class TreeLimbBase : MonoBehaviour
     public UnityEvent EnergyDepletedEvent;
     #endregion
 
-
+    public TreeTest thisTree;
     public bool cut = false;
     public bool IsMature {  
         get {return isMature; }
@@ -81,6 +79,19 @@ public class TreeLimbBase : MonoBehaviour
 
     public virtual void AddChild()
     {
+
+    }
+
+    public virtual void SetThisTree(TreeTest tree)
+    {
+        thisTree = tree;
+        if (nodes.Count > 0)
+        {
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                nodes[i].thisTree = tree;
+            }
+        }
 
     }
 

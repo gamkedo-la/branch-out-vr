@@ -4,10 +4,18 @@ public class Scissors : Tool, IGrabbable
 {
     [SerializeField]
     private GameObject trimRaycastPoint;
+
+    /// <summary>
+    /// Size of the sphere that checks for branches to cut in VR mode. 
+    /// </summary>
+    [SerializeField]
+    private float overlapSphereRadius = 5f;
+
     private void Start()
     {
         isActive = false;
     }
+
     void IGrabbable.OnGrab()
     {
         if (!GamePlatformManager.IsVRMode)
@@ -31,25 +39,19 @@ public class Scissors : Tool, IGrabbable
 
     private void OnDrawGizmos()
     {
-                Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward * 10);
-
-    }
-
-    private void Update()
-    {
-        if (isActive)
-        {
-            trimRaycastPoint.transform.forward = Camera.main.transform.forward;
-        }
+        //visualize the line for cutting branches
+        Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward * 10);
     }
     /// <summary>
-    /// Cuts the tree at a branch determined by a raycast from the scissors tip in WebGL, or by proximity in VR.
+    /// Cuts the tree at a branch determined by a raycast from the scissors tip in WebGL, or by proximity in VR. - TODO: move functionality for finding nearby branches so that we can
+    /// highlight the branch that will be cut for player before they use the tool
     /// </summary>
     private void TrimTree()
     {
-        
+        //if we're in WebGL mode, use a raycast to determine branch to cut
         if (!GamePlatformManager.IsVRMode)
         {
+            //does this line up correctly in play mode? 
             if (Physics.Raycast(trimRaycastPoint.transform.position, transform.forward, out RaycastHit hit, 100f, branchNodeLayerForTools))
             {
                 GameObject target = hit.collider.gameObject;
@@ -63,15 +65,17 @@ public class Scissors : Tool, IGrabbable
                 }
             }
         }
-
+        //if in VR mode, use proximity to determine branch to cut
         if (GamePlatformManager.IsVRMode)
         {
-            Collider[] closestBranches = Physics.OverlapSphere(transform.position, 5f, branchNodeLayerForTools);
+            //are any branches close enough to cut? 
+            Collider[] closestBranches = Physics.OverlapSphere(transform.position, overlapSphereRadius, branchNodeLayerForTools);
 
             if (closestBranches.Length > 0)
             {
                 GameObject closestBranch = null;
-                float closestDistance = 5f;
+                float closestDistance = overlapSphereRadius;
+                //loop through any branches close enough to find the closest one
                 for (int i = 0; i < closestBranches.Length; i++)
                 {
                     Vector3 closestPointOnCollider = closestBranches[i].ClosestPoint(trimRaycastPoint.transform.position);
@@ -106,6 +110,7 @@ public class Scissors : Tool, IGrabbable
     public override void WebGLMakeActiveTool()
     {
         base.WebGLMakeActiveTool();
+        //trimRaycastPoint.transform.forward = Camera.main.transform.forward;
     }
 
     public override void UseTool()

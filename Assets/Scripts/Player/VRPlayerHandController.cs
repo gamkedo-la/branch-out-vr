@@ -20,10 +20,9 @@ public class VRPlayerHandController : MonoBehaviour
     private IGrabbable grabbableInRange;
 
     [SerializeField]
-    InputActionAsset inputActions;
-
-    [SerializeField]
     private HandPoseController handPoseController;
+
+    private InputActionAsset inputActions;
 
     private InputAction grabAction;
 
@@ -33,6 +32,7 @@ public class VRPlayerHandController : MonoBehaviour
 
     private void OnEnable()
     {
+        inputActions = PlayerInputManager.Instance.inputActions;
         GamePlatformManager.OnVRInitialized += TryGetHapticDevice;
 
         grabAction = inputActions.FindAction("Grab");

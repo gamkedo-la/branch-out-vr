@@ -12,10 +12,11 @@ public class SecondaryBranch : TreeLimbBase
 
     //Initialize if spawned from a branch
 
-    public void Initialize(UnityEvent growEvent, BranchTest previousBranch)
+    public void Initialize(UnityEvent growEvent, BranchTest previousBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
+        SetThisTree(tree);
         if (previousBranch != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -24,10 +25,11 @@ public class SecondaryBranch : TreeLimbBase
 
     } 
     //Initialize if spawned from a trunk
-    public void Initialize(UnityEvent growEvent, SecondaryBranch previousTrunk)
+    public void Initialize(UnityEvent growEvent, SecondaryBranch previousTrunk, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;
+        SetThisTree(tree);
         if (previousTrunk != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -58,7 +60,7 @@ public class SecondaryBranch : TreeLimbBase
         base.AddChild();
         TreeLimbBase limb = Instantiate(tertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
-        (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this);
+        (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
     }
 
     public override void Grow()
@@ -75,7 +77,7 @@ public class SecondaryBranch : TreeLimbBase
         {
             TreeLimbBase limb = Instantiate(secondaryBranchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
-            (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this);
+            (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         }
 
     }

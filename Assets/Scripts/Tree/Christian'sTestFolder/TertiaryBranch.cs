@@ -12,10 +12,11 @@ public class TertiaryBranch : TreeLimbBase
 
     //Initialize if spawned from a branch
 
-    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch)
+    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTertiaryBranch;
+        SetThisTree(tree);
         if (previousTertiaryBranch != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -24,10 +25,11 @@ public class TertiaryBranch : TreeLimbBase
 
     } 
     //Initialize if spawned from a trunk
-    public void Initialize(UnityEvent growEvent, SecondaryBranch previousSecondaryBranch)
+    public void Initialize(UnityEvent growEvent, SecondaryBranch previousSecondaryBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousSecondaryBranch;
+        SetThisTree(tree);
         if (previousSecondaryBranch != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -58,7 +60,7 @@ public class TertiaryBranch : TreeLimbBase
         base.AddChild();
         TreeLimbBase limb = Instantiate(leafPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
-        (limb as Leaf).Initialize(GrowthHappenedEvent, this);
+        (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
     }
     public override void Grow()
     {
@@ -74,7 +76,7 @@ public class TertiaryBranch : TreeLimbBase
         {
             TreeLimbBase limb = Instantiate(leafPrefab, top.position, Quaternion.Euler(GetRandomRotations()), transform);
             nextLimb = (limb);
-            (limb as Leaf).Initialize(GrowthHappenedEvent, this);
+            (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
         }
 
     }

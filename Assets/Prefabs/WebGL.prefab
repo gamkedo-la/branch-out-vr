@@ -80,7 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webGLCamera: {fileID: 1319255024650141191}
   activeTool: {fileID: 0}
-  inputActions: {fileID: -944628639613478452, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
   tools:
   - {fileID: 0}
   - {fileID: 0}

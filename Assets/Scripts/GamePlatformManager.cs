@@ -12,6 +12,7 @@ public class GamePlatformManager : MonoBehaviour
     public static bool IsVRMode { get; private set; }
 
     public static event Action OnVRInitialized;
+    public static event Action OnWebGLInitialized;
 
     /// <summary>
     /// The GameObject in the scene that contains our VR rig setup.
@@ -27,10 +28,10 @@ public class GamePlatformManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(InitializeVR());
+        StartCoroutine(CheckInitializeVR());
     }
 
-    private IEnumerator InitializeVR()
+    private IEnumerator CheckInitializeVR()
     {
         if (XRGeneralSettings.Instance.Manager.activeLoader == null)
         {
@@ -76,6 +77,7 @@ public class GamePlatformManager : MonoBehaviour
             Debug.Log("No VR Device. Running in \"flat\" mode.");
             xrOrigin.SetActive(false);
             webGL.SetActive(true);
+            OnWebGLInitialized?.Invoke();
 
             //Stop and deinitialize XR if it was running.
             if (XRGeneralSettings.Instance.Manager.activeLoader != null)

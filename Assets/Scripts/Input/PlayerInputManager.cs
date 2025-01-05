@@ -13,19 +13,15 @@ public class PlayerInputManager : MonoBehaviour
 
     private InputActionMap vrInputActions;
 
-    private void OnEnable()
+    private void Awake()
     {
+        CreateSingleton();
         inputActions.Enable();
         vrInputActions = inputActions.actionMaps.First((map) => map.name.Contains("VR"));
         if (vrInputActions == null)
         {
             Debug.LogError("No action map associated with VR movement tracking. Make sure the name of the action map contains VR.");
         }
-    }
-
-    private void Awake()
-    {
-        CreateSingleton();
     }
 
     private void CreateSingleton()

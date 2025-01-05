@@ -10,8 +10,6 @@ public class WebGLPlayerController : MonoBehaviour
     [SerializeField]
     Tool activeTool;
 
-    [SerializeField]
-    InputActionAsset inputActions;
 
     [SerializeField]
     private List<GameObject> tools;
@@ -35,12 +33,15 @@ public class WebGLPlayerController : MonoBehaviour
 
     private float handDistanceFromCamera = 1.75f;
 
+    private InputActionAsset inputActions;
 
     private void OnEnable()
     {
+        inputActions = PlayerInputManager.Instance.inputActions;
         mousePositionAction = inputActions.FindAction("Position");
         switchToolAction = inputActions.FindAction("SwitchTools");
         useToolAction = inputActions.FindAction("UseTool");
+        WebGLCameraController.OnCameraViewRotated += UpdatePlayerRotation;
 
         if (mousePositionAction != null)
         {
@@ -83,12 +84,30 @@ public class WebGLPlayerController : MonoBehaviour
             mouseViewportPos.y = (mouseViewportPos.y - 0.5f) * handDistanceFromCamera + 0.5f;
 
 
-            playerPosition = webGLCamera.ViewportToWorldPoint(mouseViewportPos);
-            playerPosition.z = webGLCamera.transform.position.z - handDistanceFromCamera;
+            Vector3 worldPosition = webGLCamera.ViewportToWorldPoint(mouseViewportPos);
+
+            Vector3 cameraRight = webGLCamera.transform.right;
+            Vector3 cameraUp = webGLCamera.transform.up;
+
+            Vector3 cameraForward = webGLCamera.transform.forward;
+            Vector3 cameraOrigin = webGLCamera.transform.position;
+
+            Vector3 offsetFromCamera = (worldPosition - cameraOrigin);
+            
+            playerPosition = cameraOrigin + cameraForward * handDistanceFromCamera + Vector3.Dot(offsetFromCamera, cameraRight) * cameraRight + Vector3.Dot(offsetFromCamera, cameraUp) * cameraUp;
 
             transform.position = playerPosition; 
         }
+
+    }
+
+    private void UpdatePlayerRotation()
+    {
         transform.forward = Camera.main.transform.forward;
+        if (activeToolObject != null)
+        {
+            activeToolObject.transform.forward = transform.forward;
+        }
     }
 
     private void SwitchTools(InputAction.CallbackContext context)
@@ -119,9 +138,9 @@ public class WebGLPlayerController : MonoBehaviour
         activeToolObject = tools[currentIndex];
         activeTool = tools[currentIndex].GetComponent<Tool>();
         activeToolAttachPoint = activeTool.toolAttachPoint;
-        activeToolObject.transform.position = transform.position;
+        activeToolObject.transform.position = hand.transform.position;
         activeToolObject.transform.SetParent(transform, true);
-        activeToolAttachPoint.transform.position = transform.position;
+        activeToolAttachPoint.transform.position = hand.transform.position;
         activeTool.WebGLMakeActiveTool();
         handPoseController.HoldTool(activeToolObject.name);
     }
@@ -144,5 +163,7 @@ public class WebGLPlayerController : MonoBehaviour
         {
             useToolAction.performed -= _ => OnUseTool();
         }
+        WebGLCameraController.OnCameraViewRotated -= UpdatePlayerRotation;
+
     }
 }

@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class TreeTest : MonoBehaviour
 {
-    public static TreeTest Instance { get; private set; }
     public LimbContainer limbContainer;
     public TrunkTest trunkTest;
     public float growthTime = 2f;
@@ -18,24 +15,12 @@ public class TreeTest : MonoBehaviour
 
     public UnityEvent GrowthHappenedEvent;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
     void Start()
     {
         //create the first node of the trunk and initialize it
         trunkTest = Instantiate(limbContainer.trunkTest, transform, false);
 
-        trunkTest.Initialize(GrowthHappenedEvent, null);
+        trunkTest.Initialize(GrowthHappenedEvent, null, this);
         currentTotalEnergy = 10000f;
         trunkTest.Energy = 10000f;
         currentFreeEnergy = 0;

@@ -12,7 +12,7 @@ public class TrunkTest : TreeLimbBase
 
 
     //add a random rotation to the trunk and subscribe the growth function to the passed in growth event
-    public void Initialize(UnityEvent growEvent, TrunkTest previousLimb)
+    public void Initialize(UnityEvent growEvent, TrunkTest previousLimb, TreeTest tree)
     {
         //find the trunk reference from the lookup table
         //needed for reusing prefab
@@ -21,7 +21,7 @@ public class TrunkTest : TreeLimbBase
         transform.localScale = Vector3.one;
         //randomize number of branches on this node
         branchCount = Random.Range(0, 4);
-
+        thisTree = transform.parent.GetComponent<TreeTest>();
 
         base.Initialize(growEvent, 1f);
         //this.previousLimb = previousLimb;
@@ -32,24 +32,13 @@ public class TrunkTest : TreeLimbBase
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public override void AddChild()
     {
         base.AddChild();
         Debug.Log("Add child to trunk");
         TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
-        (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
+        (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
     }
 
     //When growth happens trigger the growth event
@@ -57,7 +46,7 @@ public class TrunkTest : TreeLimbBase
     {
         base.Grow();
 
-        if (TreeTest.Instance.currentFreeEnergy > 0)
+        if (thisTree.currentFreeEnergy > 0)
         {
             Energy += 1;
         }

@@ -11,10 +11,11 @@ public class BranchTest : TreeLimbBase
     float percentageToEndBranch;
 
     //Initialize if spawned from a trunk
-    public void Initialize(UnityEvent growEvent, TrunkTest previousTrunk)
+    public void Initialize(UnityEvent growEvent, TrunkTest previousTrunk, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;
+        SetThisTree(tree);
         if (previousTrunk != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -24,10 +25,11 @@ public class BranchTest : TreeLimbBase
     }
     //Initialize if spawned from a branch
 
-    public void Initialize(UnityEvent growEvent, BranchTest previousBranch)
+    public void Initialize(UnityEvent growEvent, BranchTest previousBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
+        SetThisTree(tree);
         if (previousBranch != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -41,24 +43,13 @@ public class BranchTest : TreeLimbBase
         secondaryBranchPrefab = limbContainer.secondaryBranch;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public override void AddChild()
     {
         base.AddChild();
 
         TreeLimbBase limb = Instantiate(secondaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
-        (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this);
+        (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
     }
 
     public override void Grow()
@@ -77,7 +68,7 @@ public class BranchTest : TreeLimbBase
         {
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
-            (limb as BranchTest).Initialize(GrowthHappenedEvent, this);
+            (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
         }
 
     }

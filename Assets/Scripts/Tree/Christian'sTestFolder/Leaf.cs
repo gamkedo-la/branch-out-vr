@@ -13,10 +13,11 @@ public class Leaf : TreeLimbBase
     }
 
     //Initialize if spawned from a branch
-    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch)
+    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTertiaryBranch;
+        SetThisTree(tree);
         if (previousTertiaryBranch != null)
         {
             transform.localEulerAngles = GetRandomRotations();
@@ -30,7 +31,14 @@ public class Leaf : TreeLimbBase
     /// </summary>
     private void Photosynthesis()
     {
-        TreeTest.Instance.CreateEnergy(energySystemValues.leafEnergyGainPerTick); 
+        if (thisTree != null)
+        {
+            thisTree.CreateEnergy(energySystemValues.leafEnergyGainPerTick);
+        }
+        else
+        {
+            Debug.LogWarning("Error: Leaf has no reference to its tree.");
+        }
     }
 
     void Initialize()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,8 @@ public class WebGLCameraController : MonoBehaviour
 
     [SerializeField]
     float maxVerticalAngle = 80f;
+
+    public static event Action OnCameraViewRotated;
 
     private Vector3 offset;
 
@@ -66,7 +69,7 @@ public class WebGLCameraController : MonoBehaviour
 
         transform.position = tree.transform.position + offset;
         transform.LookAt(tree.transform.position);
-
+        OnCameraViewRotated?.Invoke();
     }
 
     private void OnDisable()
