@@ -79,7 +79,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public virtual void AddChild()
     {
-
+        Energy -= 50;
     }
 
     public virtual void SetThisTree(TreeTest tree)
@@ -122,7 +122,7 @@ public class TreeLimbBase : MonoBehaviour
     public virtual void Grow()
     {
         if(previousLimb != null) 
-            Energy += previousLimb.TakeEnergy(1);
+            Energy += previousLimb.TakeEnergy(.25f);
 
         if(Energy <= 0)
             return;
@@ -141,7 +141,7 @@ public class TreeLimbBase : MonoBehaviour
     }
     public bool WillGrowSub()
     {
-        return Random.value < growSubChance;
+        return energy>=100;
     }
     public bool LimbTerminated()
     {
