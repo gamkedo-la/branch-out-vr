@@ -49,7 +49,9 @@ public class Leaf : TreeLimbBase
 
     public override void Grow()
     {
-        base.Grow();
+        //base.Grow();
+
+        Photosynthesis();
     }
 
     private void OnDisable()
