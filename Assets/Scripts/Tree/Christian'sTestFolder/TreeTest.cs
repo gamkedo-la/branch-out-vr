@@ -21,8 +21,8 @@ public class TreeTest : MonoBehaviour
         trunkTest = Instantiate(limbContainer.trunkTest, transform, false);
 
         trunkTest.Initialize(GrowthHappenedEvent, null, this);
-        currentTotalEnergy = 10000f;
-        trunkTest.Energy = 10000f;
+        //currentTotalEnergy = 10000f;
+        //trunkTest.Energy = 10000f;
         currentFreeEnergy = 0;
     }
 
@@ -59,6 +59,14 @@ public class TreeTest : MonoBehaviour
     public void Grow()
     {
         progress = 0;
+
+        currentTotalEnergy += 1;
+
+        if (currentFreeEnergy >= 0)
+        {
+            trunkTest.Energy += 1;
+            RemoveEnergy(1f);
+        }
 
         GrowthHappenedEvent?.Invoke();
     }
