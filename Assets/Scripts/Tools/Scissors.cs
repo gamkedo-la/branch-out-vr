@@ -60,6 +60,7 @@ public class Scissors : Tool, IGrabbable
                     Debug.Log(target.name);
                     if (target.TryGetComponent<TreePart>(out TreePart part))
                     {
+                        AudioManager.Instance.PlaySFX("SFX_ScissorCut");
                         part.Trim();
                     }
                 }
@@ -109,6 +110,7 @@ public class Scissors : Tool, IGrabbable
 
     public override void WebGLMakeActiveTool()
     {
+        AudioManager.Instance.PlaySFX("SFX_ScissorEquip");
         base.WebGLMakeActiveTool();
         //trimRaycastPoint.transform.forward = Camera.main.transform.forward;
     }

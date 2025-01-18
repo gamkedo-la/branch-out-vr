@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour
     List<AudioClip> musicClips;
 
     [SerializeField]
-    List<AudioClip> sfxClips;
+    private Sound[] sfxClips;
 
     private void Awake()
     {
@@ -41,9 +41,30 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMusic(MusicClipNames trackName)
     {
+        if (musicClips.Count == 0)
+            return;
         audioSource.clip = musicClips[(int)trackName];
         audioSource.Play();
     }
 
+    public void PlaySFX(string soundName)
+    {
+        foreach (Sound s in sfxClips)
+        {
+            if (s.name == soundName)
+            {
+                audioSource.PlayOneShot(s.clip, s.volume);
+            }
+        }
+    }
 
+
+}
+
+[Serializable]
+public class Sound
+{
+    public string name;
+    public float volume;
+    public AudioClip clip;
 }
