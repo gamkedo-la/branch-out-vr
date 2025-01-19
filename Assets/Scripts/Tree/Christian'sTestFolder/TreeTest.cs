@@ -1,19 +1,33 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class TreeTest : MonoBehaviour
 {
+    [SerializeField] EnergyParticlesFlow energyParticlesManager;
     public LimbContainer limbContainer;
     public TrunkTest trunkTest;
     public float growthTime = 2f;
     public float currentTotalEnergy = 10000f;
     public float currentFreeEnergy = 10000f;
-     
+
+    public EnergyPathNode rootNode; //Root of the tree, for the energy particles path
+    private List<Transform> globalPathPoints = new();
+
     [SerializeField]
     float progress = 0;
 
 
     public UnityEvent GrowthHappenedEvent;
+
+    private void Awake()
+    {
+        if (rootNode == null)
+        {
+            rootNode = GetComponent<EnergyPathNode>();
+        }
+
+    }
 
     void Start()
     {
@@ -24,6 +38,19 @@ public class TreeTest : MonoBehaviour
         //currentTotalEnergy = 10000f;
         //trunkTest.Energy = 10000f;
         currentFreeEnergy = 0;
+        UpdateGlobalPath();
+
+    }
+
+    public void UpdateGlobalPath()
+    {
+        globalPathPoints = rootNode.GetPathPoints();
+        UpdateParticlesPath(globalPathPoints);
+    }
+
+    private void UpdateParticlesPath(List<Transform> pathPoints)
+    {
+        energyParticlesManager.SetPath(pathPoints);   
     }
 
     public void CreateEnergy(float amount)
