@@ -22,7 +22,8 @@ public class TrunkTest : TreeLimbBase
         //randomize number of branches on this node
         branchCount = Random.Range(0, 4);
         thisTree = transform.parent.GetComponent<TreeTest>();
-
+        pathNode = GetComponent<EnergyPathNode>();
+        thisTree.UpdateGlobalPath();
         base.Initialize(growEvent, 1f);
         //this.previousLimb = previousLimb;
 /*        if (previousLimb != null)
@@ -39,6 +40,10 @@ public class TrunkTest : TreeLimbBase
         TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
         (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
+        if (pathNode != null)
+        {
+            pathNode.AddChild(limb.nodes[0].pathNode);
+        }
     }
 
     //When growth happens trigger the growth event

@@ -7,24 +7,30 @@ public class EnergyPathNode : MonoBehaviour
 {
     public EnergyPathNode parent;
     public List<EnergyPathNode> children = new();
+    public bool root = false;
 
-    private void Awake()
+/*    private void Awake()
     {
-        if (transform.parent != null)
+        if (parent == null && !root)
         {
-            transform.parent.TryGetComponent<EnergyPathNode>(out parent);
-            if (parent != null)
+            if (transform.parent != null)
             {
-                parent.AddChild(this);
+                transform.parent.TryGetComponent<EnergyPathNode>(out parent);
+                if (parent != null)
+                {
+                    parent.AddChild(this);
+                }
             }
         }
-
     }
-
+*/
     public void AddChild(EnergyPathNode childNode)
     {
         children.Add(childNode);
-        childNode.parent = this;
+        if (childNode.parent != null )
+        {
+            childNode.parent = GetComponent<EnergyPathNode>();
+        }
     }
 
     public void RemoveChild(EnergyPathNode childNode)

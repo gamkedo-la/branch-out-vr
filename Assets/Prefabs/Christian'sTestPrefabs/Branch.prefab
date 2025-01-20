@@ -161,6 +161,7 @@ MonoBehaviour:
   EnergyDepletedEvent:
     m_PersistentCalls:
       m_Calls: []
+  thisTree: {fileID: 0}
   cut: 0
   isMature: 0
   maturityPercent: 0
@@ -183,6 +184,7 @@ MonoBehaviour:
   GrowthHappenedEvent:
     m_PersistentCalls:
       m_Calls: []
+  pathNode: {fileID: 0}
   secondaryBranchPrefab: {fileID: 0}
 --- !u!54 &-4765530094563019513
 Rigidbody:
@@ -371,6 +373,7 @@ MonoBehaviour:
   maxEnergy: 0
   currentEnergy: 0
   rb: {fileID: 0}
+  thisTree: {fileID: 0}
   canCut: 1
   isMain: 0
   nodes:

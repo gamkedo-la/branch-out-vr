@@ -25,6 +25,7 @@ public class TreeTest : MonoBehaviour
         if (rootNode == null)
         {
             rootNode = GetComponent<EnergyPathNode>();
+            rootNode.root = true;
         }
 
     }
@@ -33,8 +34,9 @@ public class TreeTest : MonoBehaviour
     {
         //create the first node of the trunk and initialize it
         trunkTest = Instantiate(limbContainer.trunkTest, transform, false);
-
         trunkTest.Initialize(GrowthHappenedEvent, null, this);
+        rootNode.AddChild(trunkTest.pathNode);
+
         //currentTotalEnergy = 10000f;
         //trunkTest.Energy = 10000f;
         currentFreeEnergy = 0;

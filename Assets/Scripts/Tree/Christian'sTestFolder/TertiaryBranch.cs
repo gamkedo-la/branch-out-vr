@@ -21,6 +21,7 @@ public class TertiaryBranch : TreeLimbBase
         {
             transform.localEulerAngles = GetRandomRotations();
         }
+        thisTree.UpdateGlobalPath();
         Initialize();
 
     } 
@@ -34,6 +35,7 @@ public class TertiaryBranch : TreeLimbBase
         {
             transform.localEulerAngles = GetRandomRotations();
         }
+        thisTree.UpdateGlobalPath();
         Initialize();
 
     }
@@ -61,6 +63,7 @@ public class TertiaryBranch : TreeLimbBase
         TreeLimbBase limb = Instantiate(leafPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
         branchedLimbs.Add(limb);
         (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
+        //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }
     public override void Grow()
     {

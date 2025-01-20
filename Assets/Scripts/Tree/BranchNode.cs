@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BranchNode : Branch
@@ -5,6 +6,19 @@ public class BranchNode : Branch
     [SerializeField]
     GameObject meshRendererObjectForBone;
 
+    public EnergyPathNode pathNode;
+
+    private void Start()
+    {
+        if (pathNode == null)
+        {
+            TryGetComponent<EnergyPathNode>(out pathNode);
+            if (pathNode == null)
+            {
+                pathNode = gameObject.AddComponent<EnergyPathNode>(); 
+            }
+        }
+    }
     public override void Trim()
     {
         if (canCut)

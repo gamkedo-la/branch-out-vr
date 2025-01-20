@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7243221614437598131}
   - component: {fileID: 5146566542319557607}
+  - component: {fileID: 3030516717998259864}
   m_Layer: 0
   m_Name: ProceduralTreeBase
   m_TagString: Untagged
@@ -45,13 +46,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf284706e245648b3eea60638f5b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyParticlesManager: {fileID: 0}
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   trunkTest: {fileID: 7570404441295541022, guid: ea56edbc6b34d0f4a90196975bc1db08, type: 3}
   growthTime: 0.01
+  currentTotalEnergy: 10000
+  currentFreeEnergy: 10000
+  rootNode: {fileID: 0}
   progress: 0
   GrowthHappenedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3030516717998259864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666839129558513308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3a842508f0d0b478438f8ef94071da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  children: []
+  root: 1
 --- !u!1001 &4987702989591724752
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -60,6 +60,8 @@ public class TreeLimbBase : MonoBehaviour
     public Rigidbody rigidbody;
 
     public UnityEvent GrowthHappenedEvent = new UnityEvent();
+
+    public EnergyPathNode pathNode;
     public virtual void Initialize(UnityEvent growEvent, float maturity = 0f)
     {
         MaturityPercent = maturity;

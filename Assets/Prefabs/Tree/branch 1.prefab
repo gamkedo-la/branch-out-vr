@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5302585245475504026}
   - component: {fileID: 5291123156410446702}
   - component: {fileID: 6184217163646456369}
+  - component: {fileID: 5115503021579952828}
   m_Layer: 7
   m_Name: Bone.001
   m_TagString: Tree
@@ -164,12 +165,14 @@ MonoBehaviour:
   maxEnergy: 0
   currentEnergy: 0
   rb: {fileID: 6184217163646456369}
+  thisTree: {fileID: 0}
   canCut: 1
   isMain: 0
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 7977910790232351863}
+  pathNode: {fileID: 5115503021579952828}
 --- !u!54 &6184217163646456369
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -197,6 +200,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
+--- !u!114 &5115503021579952828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170615716568703071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3a842508f0d0b478438f8ef94071da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 6268884888970754772}
+  children:
+  - {fileID: 1805045414765659200}
+  root: 0
 --- !u!1 &1300663860135364751
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,6 +228,7 @@ GameObject:
   - component: {fileID: 1369028742801452099}
   - component: {fileID: 8505125362873367620}
   - component: {fileID: 8397929060408827354}
+  - component: {fileID: 1805045414765659200}
   m_Layer: 7
   m_Name: Bone.002
   m_TagString: Tree
@@ -270,12 +290,14 @@ MonoBehaviour:
   maxEnergy: 0
   currentEnergy: 0
   rb: {fileID: 8397929060408827354}
+  thisTree: {fileID: 0}
   canCut: 1
   isMain: 0
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 8315486700730193126}
+  pathNode: {fileID: 1805045414765659200}
 --- !u!54 &8397929060408827354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -303,6 +325,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
+--- !u!114 &1805045414765659200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300663860135364751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3a842508f0d0b478438f8ef94071da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 5115503021579952828}
+  children:
+  - {fileID: 2125945709293092629}
+  root: 0
 --- !u!1 &3541164455456078876
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +474,7 @@ GameObject:
   - component: {fileID: 4254813267374680556}
   - component: {fileID: 1728826148601529599}
   - component: {fileID: 3137843474694812503}
+  - component: {fileID: 6268884888970754772}
   m_Layer: 3
   m_Name: Bone
   m_TagString: Tree
@@ -497,12 +536,14 @@ MonoBehaviour:
   maxEnergy: 0
   currentEnergy: 0
   rb: {fileID: 3137843474694812503}
+  thisTree: {fileID: 0}
   canCut: 1
   isMain: 0
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 116046086768439015}
+  pathNode: {fileID: 6268884888970754772}
 --- !u!54 &3137843474694812503
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -530,6 +571,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
+--- !u!114 &6268884888970754772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4044820715575680254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3a842508f0d0b478438f8ef94071da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  children:
+  - {fileID: 5115503021579952828}
+  root: 0
 --- !u!1 &5325920630273513833
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +690,7 @@ GameObject:
   - component: {fileID: 7782476067561389274}
   - component: {fileID: 1764714546539613745}
   - component: {fileID: 6330081506816265946}
+  - component: {fileID: 2125945709293092629}
   m_Layer: 7
   m_Name: Bone.003
   m_TagString: Tree
@@ -694,12 +752,14 @@ MonoBehaviour:
   maxEnergy: 0
   currentEnergy: 0
   rb: {fileID: 6330081506816265946}
+  thisTree: {fileID: 0}
   canCut: 1
   isMain: 0
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 5325920630273513833}
+  pathNode: {fileID: 2125945709293092629}
 --- !u!54 &6330081506816265946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -727,6 +787,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
+--- !u!114 &2125945709293092629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5338682675228857281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3a842508f0d0b478438f8ef94071da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 1805045414765659200}
+  children:
+  - {fileID: 3704830112389009463}
+  root: 0
 --- !u!1 &7579675008845395347
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +815,7 @@ GameObject:
   - component: {fileID: 8382503073862393622}
   - component: {fileID: 4985553535939188176}
   - component: {fileID: 8020336490663612379}
+  - component: {fileID: 3704830112389009463}
   m_Layer: 7
   m_Name: Bone.004
   m_TagString: Tree
@@ -800,12 +877,14 @@ MonoBehaviour:
   maxEnergy: 0
   currentEnergy: 0
   rb: {fileID: 8020336490663612379}
+  thisTree: {fileID: 0}
   canCut: 1
   isMain: 0
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
   meshRendererObjectForBone: {fileID: 3541164455456078876}
+  pathNode: {fileID: 3704830112389009463}
 --- !u!54 &8020336490663612379
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -833,6 +912,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
+--- !u!114 &3704830112389009463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579675008845395347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3a842508f0d0b478438f8ef94071da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 2125945709293092629}
+  children: []
+  root: 0
 --- !u!1 &7657972132946314581
 GameObject:
   m_ObjectHideFlags: 0
