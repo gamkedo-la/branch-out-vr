@@ -1,31 +1,23 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public enum MusicClipNames { Ginseng, YlangYlang, Mint };
     public static AudioManager Instance { get; private set; }
 
     [SerializeField]
-    private AudioSource audioSource;
+    private AudioSource sfxAudioSource;
 
     [SerializeField]
-    List<AudioClip> musicClips;
+    private Ambient[] ambientClips;
 
     [SerializeField]
     private Sound[] sfxClips;
 
-    private void Awake()
-    {
-        CreateSingleton();
-    }
+    private void Awake() => CreateSingleton();
 
-    private void Start()
-    {
-        PlayMusic(MusicClipNames.YlangYlang);
-    }
+    private void Start() => PlayAmbientSounds();
 
     private void CreateSingleton()
     {
@@ -39,12 +31,24 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-    public void PlayMusic(MusicClipNames trackName)
+
+    private void PlayAmbientSounds()
     {
-        if (musicClips.Count == 0)
-            return;
-        audioSource.clip = musicClips[(int)trackName];
-        audioSource.Play();
+        foreach (Ambient a in ambientClips)
+        {
+            if (a.clips != null && a.clips.Length > 0)
+            {
+                AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.loop = true;
+                audioSource.clip = a.clips[UnityEngine.Random.Range(0, a.clips.Length)];
+                audioSource.volume = a.volume;
+                audioSource.Play();
+            }
+            else
+            {
+                Debug.LogWarning("Ambient clips array is empty or null for an Ambient object.");
+            }
+        }
     }
 
     public void PlaySFX(string soundName)
@@ -53,18 +57,25 @@ public class AudioManager : MonoBehaviour
         {
             if (s.name == soundName)
             {
-                audioSource.PlayOneShot(s.clip, s.volume);
+                sfxAudioSource.PlayOneShot(s.clip, s.volume);
             }
         }
     }
 
+    #region Class
+    [Serializable]
+    private class Ambient
+    {
+        public float volume;
+        public AudioClip[] clips;
+    }
 
-}
-
-[Serializable]
-public class Sound
-{
-    public string name;
-    public float volume;
-    public AudioClip clip;
+    [Serializable]
+    private class Sound
+    {
+        public string name;
+        public float volume;
+        public AudioClip clip;
+    }
+    #endregion
 }

@@ -2606,14 +2606,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6cd51b14ee5784bac87623e61853c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 974554926}
-  musicClips: []
+  sfxAudioSource: {fileID: 974554926}
+  ambientClips:
+  - volume: 0.35
+    clips:
+    - {fileID: 8300000, guid: 02dbcd9f7c97a124e95b7fb93c6c8845, type: 3}
+    - {fileID: 8300000, guid: 0398bae5c30721a43a8880acea878fb2, type: 3}
+    - {fileID: 8300000, guid: b4af9528158c20945a752dfbd8ba3b1c, type: 3}
+  - volume: 0.25
+    clips:
+    - {fileID: 8300000, guid: 7f9d63978108db544aa224b351a92d61, type: 3}
+    - {fileID: 8300000, guid: 274b2d38a06bc724eb85a21e67d68a78, type: 3}
+    - {fileID: 8300000, guid: 1007202f46c31274384d43a9de63e69d, type: 3}
   sfxClips:
   - name: SFX_ScissorCut
-    volume: 0.25
+    volume: 0.6
     clip: {fileID: 8300000, guid: e11bed09621c26c40851ac446e06741c, type: 3}
   - name: SFX_ScissorEquip
-    volume: 0.25
+    volume: 0.6
     clip: {fileID: 8300000, guid: 67d0b98c6c0469a44887eae162968063, type: 3}
 --- !u!82 &974554926
 AudioSource:
