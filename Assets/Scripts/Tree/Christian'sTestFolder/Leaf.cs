@@ -5,7 +5,11 @@ using UnityEngine.Events;
 
 public class Leaf : TreeLimbBase
 {
-    float percentageToEndBranch;
+    [SerializeField] ParticleSystem leafParticles;
+
+    private bool donePlaying = false;
+    private float timer = 0f;
+    private float particlesStopTime;
 
     private void OnEnable()
     {
@@ -20,11 +24,15 @@ public class Leaf : TreeLimbBase
         SetThisTree(tree);
         if (previousTertiaryBranch != null)
         {
-            transform.localEulerAngles = GetRandomRotations();
+            transform.localEulerAngles = GetRandomBranchRotation();
         }
-        Initialize();
-
+        particlesStopTime = leafParticles.main.duration - 1;
     } 
+
+    private void StopLeafParticlePlay()
+    {
+        leafParticles.Pause();
+    }
 
     /// <summary>
     /// Every leaf node will create energy for the tree every Tick.
@@ -41,17 +49,21 @@ public class Leaf : TreeLimbBase
         }
     }
 
-    void Initialize()
-    {
-        //tertiaryBranchPrefab = limbContainer.tertiaryBranch;
-        //percentageToEndBranch = Random.value;
-    }
-
     public override void Grow()
     {
-        //base.Grow();
-
-        Photosynthesis();
+        if (donePlaying)
+        {
+            return;
+        }
+        if (timer < particlesStopTime)
+        {
+            timer += 0.01f;
+        }
+        else if (timer >= particlesStopTime && leafParticles.isPlaying)
+        {
+            StopLeafParticlePlay();
+            donePlaying = true;
+        }
     }
 
     private void OnDisable()

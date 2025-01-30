@@ -18,8 +18,8 @@ public class EnergySystemValues : ScriptableObject
     [Tooltip("Energy points that a leaf group brings in every tick.")]
     public float leafEnergyGainPerTick = 1.0f;
 
-    [Tooltip("Energy points that the root system brings in every tick.")]
-    public float rootEnergyGainPerTick = 1.0f;
+    [Tooltip("The maximum number of limbs that can grow at any one time. If this limit is reached, energy will not pool for new limb growth.")]
+    public int maxLimbsGrowing = 5;
 
     [Tooltip("When the tree becomes stressed due to frequent watering or cutting off parts of the tree, multiply energy gain by this value to reduce the rate.")]
     public float stressedEnergyGainModifier = 0.25f;

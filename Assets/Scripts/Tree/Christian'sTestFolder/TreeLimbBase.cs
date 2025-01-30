@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -48,7 +49,7 @@ public class TreeLimbBase : MonoBehaviour
     float terminateChance = .5f;
     public LimbContainer limbContainer;
 
-    public Vector2 minRotations, maxRotations;
+    public Vector2 minRotations, maxRotations, minNodeRotation, maxNodeRotation;
 
     public TreeLimbBase previousLimb;
     public List<TreeLimbBase> branchedLimbs;
@@ -62,6 +63,8 @@ public class TreeLimbBase : MonoBehaviour
     public UnityEvent GrowthHappenedEvent = new UnityEvent();
 
     public EnergyPathNode pathNode;
+
+    public Vector3 nextChildGrowPosition, nextChildGrowRotation;
     public virtual void Initialize(UnityEvent growEvent, float maturity = 0f)
     {
         MaturityPercent = maturity;
@@ -99,34 +102,45 @@ public class TreeLimbBase : MonoBehaviour
 
     public float TakeEnergy(float amount)
     {
-        Energy -= amount;
-        return amount;
+        if (Energy > 0)
+        {
+            Energy -= amount;
+            return amount;
+        }
+        else
+        {
+            return 0;
+        }
     }
     public void SetSize(float maturityPercent)
     {
         transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, maturityPercent);
     }
 
-    public Vector3 GetRandomRotations()
+    public Vector3 GetRandomBranchRotation()
     {
-        Vector3 randomVector = new Vector3();
-
-        randomVector.x = Random.Range(minRotations.x, maxRotations.x);
-        randomVector.y = 0f;
-        randomVector.z = Random.Range(minRotations.y, maxRotations.y);
+        Vector3 randomVector = new()
+        {
+            x = Random.Range(minRotations.x, maxRotations.x),
+            y = 0f,
+            z = Random.Range(minRotations.y, maxRotations.y)
+        };
 
         return randomVector;
     }
+
     public Vector3 GetRandomPositionOnLimb()
     {
         return Vector3.Lerp(transform.position, top.position, Random.value);
     }
     public virtual void Grow()
     {
-        if(previousLimb != null) 
-            Energy += previousLimb.TakeEnergy(.25f);
+        if(previousLimb != null)
+        {
+            Energy += previousLimb.TakeEnergy(1);
+        }
 
-        if(Energy <= 0)
+        if (Energy <= 0)
             return;
 
         GrowthHappenedEvent.Invoke();

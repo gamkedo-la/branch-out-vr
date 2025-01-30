@@ -27,7 +27,6 @@ public class TreeTest : MonoBehaviour
             rootNode = GetComponent<EnergyPathNode>();
             rootNode.root = true;
         }
-
     }
 
     void Start()
@@ -39,7 +38,6 @@ public class TreeTest : MonoBehaviour
 
         //currentTotalEnergy = 10000f;
         //trunkTest.Energy = 10000f;
-        currentFreeEnergy = 0;
         UpdateGlobalPath();
 
     }
@@ -81,6 +79,10 @@ public class TreeTest : MonoBehaviour
         if (progress > growthTime)
             Grow();
 
+        if (trunkTest.Energy > trunkTest.energySystemValues.minEnergyForMainBranch && trunkTest.thisTree.currentTotalEnergy > trunkTest.energySystemValues.minTotalEnergyForGrowth)
+        {
+
+        }
 
     }
 
@@ -89,9 +91,9 @@ public class TreeTest : MonoBehaviour
     {
         progress = 0;
 
-        currentTotalEnergy += 1;
+        //currentTotalEnergy += 1;
 
-        if (currentFreeEnergy >= 0)
+        if (currentFreeEnergy > 0 && currentTotalEnergy > 0)
         {
             trunkTest.Energy += 1;
             RemoveEnergy(1f);

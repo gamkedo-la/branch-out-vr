@@ -10,8 +10,12 @@ public class TrunkTest : TreeLimbBase
     public BranchTest branchTestPrefab;
     public TrunkTest trunkPrefab;
 
+    private float minEnergyForSubBranch;
 
-    //add a random rotation to the trunk and subscribe the growth function to the passed in growth event
+    private void Start()
+    {
+        minEnergyForSubBranch = energySystemValues.minEnergyForMainBranch;
+    }
     public void Initialize(UnityEvent growEvent, TrunkTest previousLimb, TreeTest tree)
     {
         //find the trunk reference from the lookup table
@@ -24,26 +28,24 @@ public class TrunkTest : TreeLimbBase
         thisTree = transform.parent.GetComponent<TreeTest>();
         pathNode = GetComponent<EnergyPathNode>();
         thisTree.UpdateGlobalPath();
+        nextChildGrowPosition = GetRandomPositionOnLimb();
+        nextChildGrowRotation = GetRandomBranchRotation();
         base.Initialize(growEvent, 1f);
-        //this.previousLimb = previousLimb;
-/*        if (previousLimb != null)
-        {
-            transform.localEulerAngles = GetRandomRotations();
-        }*/
-
     }
 
     public override void AddChild()
     {
         base.AddChild();
         Debug.Log("Add child to trunk");
-        TreeLimbBase limb = Instantiate(branchTestPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomRotations()), transform);
+        TreeLimbBase limb = Instantiate(branchTestPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
         if (pathNode != null)
         {
             pathNode.AddChild(limb.nodes[0].pathNode);
         }
+        nextChildGrowPosition = GetRandomPositionOnLimb();
+        nextChildGrowRotation = GetRandomBranchRotation();
     }
 
     //When growth happens trigger the growth event
@@ -57,13 +59,6 @@ public class TrunkTest : TreeLimbBase
         }
 /*        if (!IsMature)
             return;
-
-        //If a next limb in sequence doesn't exist make one
-        if (nextLimb == null)
-        {
-            TreeLimbBase limb = Instantiate(trunkPrefab, top.position, top.rotation, transform);
-            nextLimb = (limb);
-            (limb as TrunkTest).Initialize(GrowthHappenedEvent, this);
         }*/
 
     }

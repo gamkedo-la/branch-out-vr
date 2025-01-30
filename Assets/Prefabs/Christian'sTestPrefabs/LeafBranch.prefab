@@ -190,6 +190,7 @@ MonoBehaviour:
   EnergyDepletedEvent:
     m_PersistentCalls:
       m_Calls: []
+  thisTree: {fileID: 0}
   cut: 0
   isMature: 0
   maturityPercent: 0
@@ -198,6 +199,8 @@ MonoBehaviour:
   limbContainer: {fileID: 0}
   minRotations: {x: 0, y: 0}
   maxRotations: {x: 0, y: 0}
+  minNodeRotation: {x: 0, y: 0}
+  maxNodeRotation: {x: 0, y: 0}
   previousLimb: {fileID: 0}
   branchedLimbs: []
   nextLimb: {fileID: 0}
@@ -207,6 +210,10 @@ MonoBehaviour:
   GrowthHappenedEvent:
     m_PersistentCalls:
       m_Calls: []
+  pathNode: {fileID: 0}
+  nextChildGrowPosition: {x: 0, y: 0, z: 0}
+  nextChildGrowRotation: {x: 0, y: 0, z: 0}
+  leafParticles: {fileID: 7274598367637974330}
 --- !u!54 &6723477918682127835
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -321,5 +328,10 @@ PrefabInstance:
 --- !u!4 &5083159052690033719 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5115322816964115088, guid: 3d59e14798ff0264d8ac73aa74549319, type: 3}
+  m_PrefabInstance: {fileID: 33289664194295463}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7274598367637974330 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7242584701193198493, guid: 3d59e14798ff0264d8ac73aa74549319, type: 3}
   m_PrefabInstance: {fileID: 33289664194295463}
   m_PrefabAsset: {fileID: 0}
