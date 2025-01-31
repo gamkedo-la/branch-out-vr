@@ -16,6 +16,8 @@ public class BranchTest : TreeLimbBase
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;
         SetThisTree(tree);
+        thisTree.growingLimbs.Add(this);
+        thisTree.numPotentialGrowthLocations--;
         if (previousTrunk != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
@@ -31,6 +33,8 @@ public class BranchTest : TreeLimbBase
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
         SetThisTree(tree);
+        thisTree.growingLimbs.Add(this);
+        thisTree.numPotentialGrowthLocations--;
         if (previousBranch != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
@@ -43,6 +47,7 @@ public class BranchTest : TreeLimbBase
     {
         branchPrefab = limbContainer.branchTest;
         secondaryBranchPrefab = limbContainer.secondaryBranch;
+
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
 
@@ -57,12 +62,14 @@ public class BranchTest : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
+
         TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
+
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
-        //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
+        //add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }
 
     public override void Grow()
@@ -72,11 +79,9 @@ public class BranchTest : TreeLimbBase
         if (!IsMature)
             return;
 
-        if(LimbTerminated()) 
+        if (LimbTerminated())
             return;
 
-        //TODO: need to adjust so that nextLimb grabs new growth point before it grows; also, newly grown branch must become a child of the BranchNode object it grows off of in order 
-        //to have all branches removed when the parent node is cut
         if (nextLimb == null)
         {
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);

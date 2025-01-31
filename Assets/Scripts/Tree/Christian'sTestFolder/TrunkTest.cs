@@ -4,18 +4,11 @@ using Random = UnityEngine.Random;
 
 public class TrunkTest : TreeLimbBase
 {
-    int branchesCreated;
     public int branchCount;
 
     public BranchTest branchTestPrefab;
     public TrunkTest trunkPrefab;
 
-    private float minEnergyForSubBranch;
-
-    private void Start()
-    {
-        minEnergyForSubBranch = energySystemValues.minEnergyForMainBranch;
-    }
     public void Initialize(UnityEvent growEvent, TrunkTest previousLimb, TreeTest tree)
     {
         //find the trunk reference from the lookup table
@@ -31,6 +24,7 @@ public class TrunkTest : TreeLimbBase
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
         base.Initialize(growEvent, 1f);
+        thisTree.growingLimbs.Add(this);
     }
 
     public override void AddChild()
@@ -52,14 +46,14 @@ public class TrunkTest : TreeLimbBase
     public override void Grow()
     {
         base.Grow();
-
+        
         if (thisTree.currentFreeEnergy > 0)
         {
             Energy += 1;
+            thisTree.UpdateEnergy(1);
+            thisTree.ReleaseAllocatedEnergy(1);
         }
-/*        if (!IsMature)
-            return;
-        }*/
+
 
     }
 }

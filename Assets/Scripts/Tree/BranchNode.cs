@@ -19,6 +19,7 @@ public class BranchNode : Branch
             }
         }
     }
+
     public override void Trim()
     {
         if (canCut)

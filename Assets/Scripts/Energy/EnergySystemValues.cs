@@ -21,22 +21,34 @@ public class EnergySystemValues : ScriptableObject
     [Tooltip("The maximum number of limbs that can grow at any one time. If this limit is reached, energy will not pool for new limb growth.")]
     public int maxLimbsGrowing = 5;
 
+    [Tooltip("If the tree's total energy falls below this value, it is dying (but can still recover).")]
+    public int treeDyingThresholdAmount = 100;
+
+    [Tooltip("If the tree's total energy falls below this value, it is dead and cannot recover.")]
+    public int treeDeadAmount = 50;
+
+    [Tooltip("If the tree looses this percent of its total energy in one action, it is dying (but can still recover).")]
+    public float treeDyingThresholdPercentLoss = 50.0f;
+
+    [Tooltip("If the tree looses this percent of its total energy in one action, it is dead and cannot recover.")]
+    public float treeDeadPercent = 90.0f;
+
     [Tooltip("When the tree becomes stressed due to frequent watering or cutting off parts of the tree, multiply energy gain by this value to reduce the rate.")]
     public float stressedEnergyGainModifier = 0.25f;
 
     [Tooltip("To prevent a tree pooling all or most of its energy, set a minimum total amount - if below this, energy will not pool at growth locations. See comments at top of script for how to handle already pooled energy.")]
-    public float minTotalEnergyForGrowth = 10.0f;
+    public float minTotalEnergyForGrowth = 5000.0f;
 
     //Before the new branch grows, the energy visual system will show the energy particles gathering at the location where the branch will grow. 
     //Once the minimum value is reached, there is a chance the branch will grow every Tick; this chance increases the more pooled energy there is. 
     [Tooltip("Minimum pooled energy requirement that must be reached before a new main branch can grow from the trunk at pre-designated location.")]
-    public float minEnergyForMainBranch = 5.0f;
+    public float minEnergyForMainBranch = 100.0f;
 
     [Tooltip("Minimum pooled energy requirement that must be reached before a new secondary branch can grow from a main branch at pre-designated location.")]
-    public float minEnergyForSecondaryBranch = 5.0f;
+    public float minEnergyForSecondaryBranch = 75.0f;
 
     [Tooltip("Minimum pooled energy requirement that must be reached before a new tertiary branch can grow from a secondary branch at pre-designated location.")]
-    public float minEnergyForTertiaryBranch = 5.0f;
+    public float minEnergyForTertiaryBranch = 50.0f;
 
     [Tooltip("The rate energy is consumed per tick to grow a new branch (influences branch size, or scale)")]
     public float energyConsumptionRateForGrowth = 1;

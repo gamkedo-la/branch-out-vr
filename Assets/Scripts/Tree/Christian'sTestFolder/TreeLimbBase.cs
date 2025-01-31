@@ -6,19 +6,31 @@ using UnityEngine.Events;
 
 public class TreeLimbBase : MonoBehaviour
 {
-    public EnergySystemValues energySystemValues;
     #region Energy
+    [Header("Energy")]
+    public EnergySystemValues energySystemValues;
+
+
     public float Energy 
-    {
+    { 
         get { return energy; } 
-        set {energy = value;}
+        set { energy = value; }
     }
+
+    public float allocatedEnergy = 0f;
+
+    public bool allocateEnergyForGrowth = false;
+
     [SerializeField]
     float energy = 0;
 
     public UnityEvent EnergyDepletedEvent;
+
+    public EnergyPathNode pathNode;
+
     #endregion
 
+    [Header("Growth")]
     public TreeTest thisTree;
     public bool cut = false;
     public bool IsMature {  
@@ -43,13 +55,17 @@ public class TreeLimbBase : MonoBehaviour
     [SerializeField]
     float maturityPercent;
 
+
     public int maxChildLimbCount = 2;
-    float growSubChance = .25f;
     public bool terminated;
-    float terminateChance = .5f;
+    float terminateChance = 0.1f;
+    private float beginGrowthChance = 0.5f;
     public LimbContainer limbContainer;
 
     public Vector2 minRotations, maxRotations, minNodeRotation, maxNodeRotation;
+
+    public Vector3 nextChildGrowPosition, nextChildGrowRotation;
+
 
     public TreeLimbBase previousLimb;
     public List<TreeLimbBase> branchedLimbs;
@@ -58,33 +74,33 @@ public class TreeLimbBase : MonoBehaviour
     public Transform top;
     public List<BranchNode> nodes;
 
-    public Rigidbody rigidbody;
 
     public UnityEvent GrowthHappenedEvent = new UnityEvent();
 
-    public EnergyPathNode pathNode;
+    [Header("Other")]
+    public Rigidbody _rigidbody;
 
-    public Vector3 nextChildGrowPosition, nextChildGrowRotation;
+
+
     public virtual void Initialize(UnityEvent growEvent, float maturity = 0f)
     {
         MaturityPercent = maturity;
         growEvent.AddListener(Grow);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-     
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void AllocateEnergy(float amount)
     {
-        
+        allocatedEnergy += amount;
+        if (allocatedEnergy > Energy)
+        {
+            Debug.LogWarning("Limb is attempting to allocate more energy than is available.");
+        }
+        thisTree.AllocateEnergy(amount);
     }
-
     public virtual void AddChild()
     {
         Energy -= 50;
+        allocateEnergyForGrowth = false;
     }
 
     public virtual void SetThisTree(TreeTest tree)
@@ -100,11 +116,18 @@ public class TreeLimbBase : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// This should use the available allocated/pooled energy from the previous limb for growing new limbs.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <returns></returns>
     public float TakeEnergy(float amount)
     {
         if (Energy > 0)
         {
             Energy -= amount;
+            allocatedEnergy -= amount;
+            thisTree.UpdateEnergy(-amount);
             return amount;
         }
         else
@@ -128,36 +151,71 @@ public class TreeLimbBase : MonoBehaviour
 
         return randomVector;
     }
-
     public Vector3 GetRandomPositionOnLimb()
     {
         return Vector3.Lerp(transform.position, top.position, Random.value);
     }
     public virtual void Grow()
     {
-        if(previousLimb != null)
+        if (previousLimb != null)
         {
-            Energy += previousLimb.TakeEnergy(1);
+            if (previousLimb.Energy > 0)
+            {
+                Energy += previousLimb.TakeEnergy(1);
+            }
         }
 
-        if (Energy <= 0)
-            return;
+        if (Energy <= 0) return;
 
         GrowthHappenedEvent.Invoke();
-        
-        if(MaturityPercent < 1)
+
+        if (MaturityPercent < 1)
         {
-            MaturityPercent += .01f; 
+            MaturityPercent += .01f;
             return;
         }
 
-        if(branchedLimbs.Count < maxChildLimbCount && WillGrowSub())
-            AddChild();
+        if (!allocateEnergyForGrowth)
+        {
+            if (PrepareForGrowth())
+            {
+                allocateEnergyForGrowth = true;
+                thisTree.numPotentialGrowthLocations++;
+            }
+        }
 
+        if (branchedLimbs.Count < maxChildLimbCount && thisTree.growingLimbs.Count < energySystemValues.maxLimbsGrowing && WillGrowSub())
+            AddChild();
     }
     public bool WillGrowSub()
     {
-        return energy>=100;
+        if (energy >= 100)
+        {
+            if (Random.value > beginGrowthChance)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool PrepareForGrowth()
+    {
+        if (energy > 50)
+        {
+            if (thisTree.numPotentialGrowthLocations < 10)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     public bool LimbTerminated()
     {
@@ -188,7 +246,7 @@ public class TreeLimbBase : MonoBehaviour
     public virtual void TurnOnPhysics()
     {
 
-        rigidbody.isKinematic = false;
+        _rigidbody.isKinematic = false;
 
 /*        foreach(TreeLimbBase treeLimbBase in branchedLimbs)
         {

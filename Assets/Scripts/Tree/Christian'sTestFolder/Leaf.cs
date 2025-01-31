@@ -40,7 +40,7 @@ public class Leaf : TreeLimbBase
     {
         if (thisTree != null)
         {
-            thisTree.CreateEnergy(energySystemValues.leafEnergyGainPerTick);
+            thisTree.UpdateEnergy(energySystemValues.leafEnergyGainPerTick, true); //Add to free energy as well since we are creating new energy
         }
         else
         {

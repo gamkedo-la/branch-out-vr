@@ -923,6 +923,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
+      propertyPath: currentFreeEnergy
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
+      propertyPath: currentTotalEnergy
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
       propertyPath: energyParticlesManager
       value: 
       objectReference: {fileID: 1604901843}

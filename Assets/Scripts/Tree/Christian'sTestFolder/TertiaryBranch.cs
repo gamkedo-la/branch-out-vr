@@ -17,6 +17,8 @@ public class TertiaryBranch : TreeLimbBase
         base.Initialize(growEvent);
         this.previousLimb = previousTertiaryBranch;
         SetThisTree(tree);
+        thisTree.growingLimbs.Add(this);
+        thisTree.numPotentialGrowthLocations--;
         if (previousTertiaryBranch != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
@@ -31,6 +33,8 @@ public class TertiaryBranch : TreeLimbBase
         base.Initialize(growEvent);
         this.previousLimb = previousSecondaryBranch;
         SetThisTree(tree);
+        thisTree.growingLimbs.Add(this);
+        thisTree.numPotentialGrowthLocations--;
         if (previousSecondaryBranch != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
@@ -61,7 +65,6 @@ public class TertiaryBranch : TreeLimbBase
     {
         base.AddChild();
         TreeLimbBase limb = Instantiate(leafPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), transform);
-        branchedLimbs.Add(limb);
         (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
         //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }
@@ -74,6 +77,7 @@ public class TertiaryBranch : TreeLimbBase
 
         if (LimbTerminated())
             return;
+
 
         if (nextLimb == null)
         {

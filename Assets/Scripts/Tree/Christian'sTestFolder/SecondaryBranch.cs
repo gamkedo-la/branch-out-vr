@@ -17,6 +17,8 @@ public class SecondaryBranch : TreeLimbBase
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
         SetThisTree(tree);
+        thisTree.growingLimbs.Add(this);
+        thisTree.numPotentialGrowthLocations--;
         if (previousBranch != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
@@ -31,6 +33,8 @@ public class SecondaryBranch : TreeLimbBase
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;
         SetThisTree(tree);
+        thisTree.growingLimbs.Add(this);
+        thisTree.numPotentialGrowthLocations--;
         if (previousTrunk != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
