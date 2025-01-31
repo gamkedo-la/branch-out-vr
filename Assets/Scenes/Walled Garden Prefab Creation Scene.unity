@@ -6488,10 +6488,6 @@ PrefabInstance:
       propertyPath: tree
       value: 
       objectReference: {fileID: 317770423}
-    - target: {fileID: 898769476208607126, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4954883100741697043, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_Name
       value: EnergyParticleSystem
