@@ -8,7 +8,6 @@ public class Leaf : TreeLimbBase
     [SerializeField] ParticleSystem leafParticles;
 
     private bool donePlaying = false;
-    private float timer = 0f;
     private float particlesStopTime;
 
     private void OnEnable()
@@ -55,11 +54,7 @@ public class Leaf : TreeLimbBase
         {
             return;
         }
-        if (timer < particlesStopTime)
-        {
-            timer += 0.01f;
-        }
-        else if (timer >= particlesStopTime && leafParticles.isPlaying)
+        else if (leafParticles.time >= particlesStopTime && leafParticles.isPlaying)
         {
             StopLeafParticlePlay();
             donePlaying = true;

@@ -1,13 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EnergyParticlesFlow : MonoBehaviour
 {
     [SerializeField] private TreeTest tree;
     [SerializeField] private float flowSpeed = 2f;
+
+    [SerializeField] bool energyViewActive = false;
     public ParticleSystem energyParticleSystem;
     public List<Transform> path;
 
@@ -15,13 +15,45 @@ public class EnergyParticlesFlow : MonoBehaviour
     private Transform[] nextPathPoints;
     private bool start = true;
 
+    private InputAction toggleView;
 
     private void Start()
     {
+        toggleView = PlayerInputManager.Instance.inputActions.FindAction("ToggleEnergyView");
+
+        if (toggleView != null)
+        {
+            Debug.Log("toggle not null");
+            toggleView.performed += _ => ToggleEnergy();
+        }
+        transform.position = tree.transform.position;
         particles = new ParticleSystem.Particle[100];
         nextPathPoints = new Transform[particles.Length];
-        energyParticleSystem.Emit(particles.Length);
         start = true;
+    }
+
+    void ToggleEnergy()
+    {
+        Debug.Log("toggle energy");
+        energyViewActive = !energyViewActive;
+
+        if (energyViewActive)
+        {
+            energyParticleSystem.Emit(particles.Length);
+            if (!start)
+            {
+                for (int i = 0; i < particles.Length; i++)
+                {
+                    particles[i].position = transform.InverseTransformPoint(GetCurrentTarget(particles[i], i).position);
+                }
+                energyParticleSystem.SetParticles(particles);
+            }
+        }
+        else
+        {
+            Debug.Log("turn energy off");
+            energyParticleSystem.Clear();
+        }
     }
 
     public void SetPath(List<Transform> pathPoints)
@@ -74,23 +106,31 @@ public class EnergyParticlesFlow : MonoBehaviour
 
     private void Update()
     {
-        int count = energyParticleSystem.GetParticles(particles);
-
-        if (count > 0 && path.Count > 5)
+        if (energyViewActive)
         {
-            for (int i = 0; i < count; i++)
+            int count = energyParticleSystem.GetParticles(particles);
+
+            if (count > 0 && path.Count > 5)
             {
-                Transform target = GetCurrentTarget(particles[i], i);
-                particles[i].position = Vector3.MoveTowards(particles[i].position, transform.InverseTransformPoint(target.position), Time.deltaTime * flowSpeed);
+                for (int i = 0; i < count; i++)
+                {
+                    Transform target = GetCurrentTarget(particles[i], i);
+                    particles[i].position = Vector3.MoveTowards(particles[i].position, transform.InverseTransformPoint(target.position), Time.deltaTime * flowSpeed);
+                }
+                if (start)
+                {
+                    start = false;
+                }
+                energyParticleSystem.SetParticles(particles);
             }
-            if (start)
-            {
-                start = false;
-            }
-            energyParticleSystem.SetParticles(particles);
         }
-
-
     }
 
+    private void OnDisable()
+    {
+        if (toggleView != null)
+        {
+            toggleView.performed -= _ => ToggleEnergy();
+        }
+    }
 }

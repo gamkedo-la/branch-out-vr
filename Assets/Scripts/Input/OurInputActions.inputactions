@@ -254,6 +254,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleEnergyView",
+                    "type": "Button",
+                    "id": "07c5f225-915d-4d71-91f4-c7319b0771c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -331,6 +340,39 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "UseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b9f00f8-15d4-4906-b778-62b1eac7eec3",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ToggleEnergyView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b035638b-963f-49a1-a49e-07374c0006dd",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "ToggleEnergyView",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e5238ca8-e0c8-48dd-a429-03005d1f0a4b",
+                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleEnergyView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

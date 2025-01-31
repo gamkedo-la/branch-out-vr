@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HelperMethods : MonoBehaviour
 {
-    private const float MAX_ANGLE = 45;
+    private const float MAX_ANGLE = 35;
 
     private const int NODES_COUNT = 5;
     public static Vector3[] GetRandomRotationsForBones()

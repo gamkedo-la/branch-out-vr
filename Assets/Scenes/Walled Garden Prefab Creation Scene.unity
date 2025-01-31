@@ -501,6 +501,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Id
+      value: dfe3595e-d9fc-427d-bff8-ac14c546bf0a
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Name
+      value: Vr Input Actions
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Actions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Bindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Actions.Array.data[0].m_Id
+      value: 54c12e6b-1f1b-4c02-abdd-60b40a2680f0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Bindings.Array.data[0].m_Id
+      value: a1a2d426-f5cf-43b4-88a6-ca2fe74fda18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Actions.Array.data[0].m_Name
+      value: New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Actions.Array.data[0].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Bindings.Array.data[0].m_Action
+      value: New action
+      objectReference: {fileID: 0}
+    - target: {fileID: 1361676445893296261, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
+      propertyPath: vrInputActions.m_Actions.Array.data[0].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 3137904531136338936, guid: f3047ad014cb9db45a2fc75f02c554be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -882,14 +922,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
-      propertyPath: currentFreeEnergy
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
-      propertyPath: currentTotalEnergy
-      value: 10000
-      objectReference: {fileID: 0}
     - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
       propertyPath: energyParticlesManager
       value: 
@@ -6448,6 +6480,10 @@ PrefabInstance:
       propertyPath: tree
       value: 
       objectReference: {fileID: 317770423}
+    - target: {fileID: 898769476208607126, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4954883100741697043, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_Name
       value: EnergyParticleSystem
@@ -6462,7 +6498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552245061754302692, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 7.97
       objectReference: {fileID: 0}
     - target: {fileID: 5552245061754302692, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6474,11 +6510,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5552245061754302692, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5552245061754302692, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5552245061754302692, guid: 0515c622823a92546a19d5aec53a7b6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

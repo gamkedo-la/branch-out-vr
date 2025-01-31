@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,17 +12,12 @@ public class PlayerInputManager : MonoBehaviour
 
     public InputActionAsset inputActions;
 
-    private InputActionMap vrInputActions;
+    public List<InputAction> actions;
 
     private void Awake()
     {
         CreateSingleton();
         inputActions.Enable();
-        vrInputActions = inputActions.actionMaps.First((map) => map.name.Contains("VR"));
-        if (vrInputActions == null)
-        {
-            Debug.LogError("No action map associated with VR movement tracking. Make sure the name of the action map contains VR.");
-        }
     }
 
     private void CreateSingleton()
