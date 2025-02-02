@@ -408,6 +408,15 @@
                     "processors": "NormalizeVector2,InvertVector2",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "DepthChange",
+                    "type": "Button",
+                    "id": "f6a4cd6a-68df-4177-ab85-a9c77307564f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -487,6 +496,17 @@
                     "action": "RotateView",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c78e74cf-58bc-40a7-b6a8-cc04391a6bd6",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DepthChange",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

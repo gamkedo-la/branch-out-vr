@@ -17,7 +17,11 @@ public class WebGLPlayerController : MonoBehaviour
     [SerializeField]
     GameObject hand;
 
-    public float depthOffset=0.0f;
+    private float depthOffset = 0.0f;
+    private float depthChangeTuningValue = 0.05f; // multiplied by pixel change for z change, ex. "5%" is 0.05
+    private float depthChangeTrapInputY = 0; // used to hold mouse at same Y when adjusting depth
+    private bool depthChangeMode = false;
+    private float lastInputYForDepthDelta = -1.0f;
 
     private HandPoseController handPoseController;
 
@@ -37,12 +41,27 @@ public class WebGLPlayerController : MonoBehaviour
 
     private InputActionAsset inputActions;
 
+    public InputAction shiftKeyAction;
+
+    private void HandleShiftKeyPress(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            depthChangeMode = true;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            depthChangeMode = false;
+        }
+    }
+
     private void OnEnable()
     {
         inputActions = PlayerInputManager.Instance.inputActions;
         mousePositionAction = inputActions.FindAction("Position");
         switchToolAction = inputActions.FindAction("SwitchTools");
         useToolAction = inputActions.FindAction("UseTool");
+        shiftKeyAction = inputActions.FindAction("DepthChange");
         WebGLCameraController.OnCameraViewRotated += UpdatePlayerRotation;
 
         if (mousePositionAction != null)
@@ -58,6 +77,12 @@ public class WebGLPlayerController : MonoBehaviour
         if (useToolAction != null)
         {
             useToolAction.performed += _ => OnUseTool();
+        }
+
+        if (shiftKeyAction != null)
+        {
+            shiftKeyAction.started += HandleShiftKeyPress;
+            shiftKeyAction.canceled += HandleShiftKeyPress;
         }
     }
 
@@ -78,13 +103,25 @@ public class WebGLPlayerController : MonoBehaviour
     private void UpdatePlayerPosition(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
+
         if (input != null)
         {
-            Vector3 mouseViewportPos = new Vector3(input.x / Screen.width, input.y / Screen.height, 1f);
+            Vector3 mouseViewportPos = new Vector3(input.x / Screen.width,
+                (depthChangeMode ? depthChangeTrapInputY  : input.y) / Screen.height, 1f);
 
             mouseViewportPos.x = (mouseViewportPos.x - 0.5f) * handDistanceFromCamera + 0.5f;
             mouseViewportPos.y = (mouseViewportPos.y - 0.5f) * handDistanceFromCamera + 0.5f;
 
+            if(lastInputYForDepthDelta != - 1.0f) // skip first pass to initialize at relatively 0'ed out
+            {
+                if(depthChangeMode)
+                {
+                    depthOffset += (input.y - lastInputYForDepthDelta) * depthChangeTuningValue;
+                } else {
+                    depthChangeTrapInputY = input.y;
+                }
+            }
+            lastInputYForDepthDelta = input.y;
 
             Vector3 worldPosition = webGLCamera.ViewportToWorldPoint(mouseViewportPos);
 
@@ -164,6 +201,11 @@ public class WebGLPlayerController : MonoBehaviour
         if (useToolAction != null)
         {
             useToolAction.performed -= _ => OnUseTool();
+        }
+        if (useToolAction != null)
+        {
+            shiftKeyAction.Disable();
+            shiftKeyAction.performed -= HandleShiftKeyPress;
         }
         WebGLCameraController.OnCameraViewRotated -= UpdatePlayerRotation;
 
