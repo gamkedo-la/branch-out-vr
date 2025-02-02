@@ -11,6 +11,8 @@ public class Scissors : Tool, IGrabbable
     [SerializeField]
     private float overlapSphereRadius = 5f;
 
+    TreePart lastNearestBranch = null;
+
     private void Start()
     {
         isActive = false;
@@ -37,6 +39,26 @@ public class Scissors : Tool, IGrabbable
         transform.position = defaultTransform.transform.position;
     }
 
+    void Update()
+    {
+        TreePart closestBranch = ClosestBranch();
+        if (closestBranch != null)
+        {
+            if(lastNearestBranch != closestBranch)
+            {
+                Debug.Log("near branch changed: " + closestBranch.name);
+            }
+            lastNearestBranch = closestBranch;
+        } else
+        {
+            if (lastNearestBranch != null)
+            {
+                Debug.Log("no longer near branch");
+            }
+            lastNearestBranch = null;
+        }
+    }
+
     private void OnDrawGizmos()
     {
         //visualize the line for cutting branches
@@ -46,35 +68,43 @@ public class Scissors : Tool, IGrabbable
     /// Cuts the tree at a branch determined by a raycast from the scissors tip in WebGL, or by proximity in VR. - TODO: move functionality for finding nearby branches so that we can
     /// highlight the branch that will be cut for player before they use the tool
     /// </summary>
-    private void TrimTree()
+    private TreePart ClosestBranch()
     {
+        TreePart closestBranch = null;
         //are any branches close enough to cut? 
         Collider[] closestBranches = Physics.OverlapSphere(trimRaycastPoint.transform.position, overlapSphereRadius, branchNodeLayerForTools);
 
         if (closestBranches.Length > 0)
         {
-            GameObject closestBranch = null;
             float closestDistance = overlapSphereRadius;
             //loop through any branches close enough to find the closest one
             for (int i = 0; i < closestBranches.Length; i++)
             {
+                TreePart hasTpScript = closestBranches[i].GetComponent<TreePart>();
+                if(hasTpScript == null)
+                {
+                    continue;
+                }
                 Vector3 closestPointOnCollider = closestBranches[i].ClosestPoint(trimRaycastPoint.transform.position);
                 float distance = Vector3.Distance(trimRaycastPoint.transform.position, closestPointOnCollider);
                 if (distance < closestDistance)
                 {
-                    closestBranch = closestBranches[i].gameObject;
+                    closestBranch = hasTpScript;
                     closestDistance = distance;
                 }
             }
-
-            if (closestBranch != null)
-            {
-                AudioManager.Instance.PlaySFX("SFX_ScissorCut");
-                closestBranch.TryGetComponent<TreePart>(out TreePart part);
-                part.Trim();
-            }
         }
 
+        return closestBranch;
+    }
+    void TrimTree()
+    {
+        TreePart closestBranch = ClosestBranch();
+        if (closestBranch != null)
+        {
+            AudioManager.Instance.PlaySFX("SFX_ScissorCut");
+            closestBranch.Trim();
+        }
         else
         {
             Debug.Log("No branches close enough to trim.");
