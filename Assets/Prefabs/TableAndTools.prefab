@@ -203,9 +203,17 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4448616747908074310, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
+      propertyPath: targetMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 84f56e8989b86413d9f13b8827c2f36c, type: 2}
+    - target: {fileID: 4448616747908074310, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: defaultPosition
       value: 
       objectReference: {fileID: 7069953949127603406}
+    - target: {fileID: 4448616747908074310, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
+      propertyPath: branchDefaultMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
     - target: {fileID: 4448616747908074310, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: defaultTransform
       value: 

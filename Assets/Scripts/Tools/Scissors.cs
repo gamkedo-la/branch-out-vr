@@ -11,6 +11,9 @@ public class Scissors : Tool, IGrabbable
     [SerializeField]
     private float overlapSphereRadius = 5f;
 
+    public Material branchDefaultMat;
+    public Material targetMat;
+
     TreePart lastNearestBranch = null;
 
     private void Start()
@@ -42,20 +45,18 @@ public class Scissors : Tool, IGrabbable
     void Update()
     {
         TreePart closestBranch = ClosestBranch();
-        if (closestBranch != null)
+
+        if (lastNearestBranch != closestBranch)
         {
-            if(lastNearestBranch != closestBranch)
+            if(lastNearestBranch != null)
             {
-                Debug.Log("near branch changed: " + closestBranch.name);
+                lastNearestBranch.GetComponent<BranchNode>().SetMeshRendMat(branchDefaultMat);
+            }
+            if (closestBranch != null)
+            {
+                closestBranch.GetComponent<BranchNode>().SetMeshRendMat(targetMat);
             }
             lastNearestBranch = closestBranch;
-        } else
-        {
-            if (lastNearestBranch != null)
-            {
-                Debug.Log("no longer near branch");
-            }
-            lastNearestBranch = null;
         }
     }
 

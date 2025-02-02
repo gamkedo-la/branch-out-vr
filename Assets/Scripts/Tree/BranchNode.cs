@@ -20,6 +20,11 @@ public class BranchNode : Branch
         }
     }
 
+    public void SetMeshRendMat(Material newMat)
+    {
+        meshRendererObjectForBone.GetComponent<Renderer>().material = newMat;
+    }
+
     public override void Trim()
     {
         if (canCut)
