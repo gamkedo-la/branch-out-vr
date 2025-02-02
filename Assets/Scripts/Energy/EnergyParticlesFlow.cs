@@ -59,7 +59,7 @@ public class EnergyParticlesFlow : MonoBehaviour
     public void SetPath(List<Transform> pathPoints)
     {
         path = pathPoints;
-        Debug.Log(path.Count + " path points");
+        // Debug.Log(path.Count + " path points");
     }
 
     private int GetStartPathIndex(int particleIndex)

@@ -17,6 +17,8 @@ public class WebGLPlayerController : MonoBehaviour
     [SerializeField]
     GameObject hand;
 
+    public float depthOffset=0.0f;
+
     private HandPoseController handPoseController;
 
     private InputAction mousePositionAction;
@@ -96,7 +98,7 @@ public class WebGLPlayerController : MonoBehaviour
             
             playerPosition = cameraOrigin + cameraForward * handDistanceFromCamera + Vector3.Dot(offsetFromCamera, cameraRight) * cameraRight + Vector3.Dot(offsetFromCamera, cameraUp) * cameraUp;
 
-            transform.position = playerPosition; 
+            transform.position = playerPosition + depthOffset * cameraForward;
         }
 
     }
