@@ -2278,6 +2278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WireDefault
       objectReference: {fileID: 0}
+    - target: {fileID: 2507614361248508683, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
+      propertyPath: overlapSphereRadius
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 2710439817786327749, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
       propertyPath: m_Center.y
       value: -0.01
@@ -5855,6 +5859,10 @@ PrefabInstance:
       propertyPath: tools.Array.data[1]
       value: 
       objectReference: {fileID: 1123935512}
+    - target: {fileID: 2584586844526934456, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
+      propertyPath: shiftKeyAction.m_Name
+      value: Shift Key
+      objectReference: {fileID: 0}
     - target: {fileID: 3996986635412128759, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: tree
       value: 

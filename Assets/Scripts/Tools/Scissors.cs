@@ -40,7 +40,7 @@ public class Scissors : Tool, IGrabbable
     private void OnDrawGizmos()
     {
         //visualize the line for cutting branches
-        Gizmos.DrawRay(trimRaycastPoint.transform.position, trimRaycastPoint.transform.forward * 10);
+        Gizmos.DrawSphere(trimRaycastPoint.transform.position, overlapSphereRadius);
     }
     /// <summary>
     /// Cuts the tree at a branch determined by a raycast from the scissors tip in WebGL, or by proximity in VR. - TODO: move functionality for finding nearby branches so that we can
@@ -48,58 +48,36 @@ public class Scissors : Tool, IGrabbable
     /// </summary>
     private void TrimTree()
     {
-        //if we're in WebGL mode, use a raycast to determine branch to cut
-        if (!GamePlatformManager.IsVRMode)
+        //are any branches close enough to cut? 
+        Collider[] closestBranches = Physics.OverlapSphere(trimRaycastPoint.transform.position, overlapSphereRadius, branchNodeLayerForTools);
+
+        if (closestBranches.Length > 0)
         {
-            //does this line up correctly in play mode? 
-            if (Physics.Raycast(trimRaycastPoint.transform.position, transform.forward, out RaycastHit hit, 100f, branchNodeLayerForTools))
+            GameObject closestBranch = null;
+            float closestDistance = overlapSphereRadius;
+            //loop through any branches close enough to find the closest one
+            for (int i = 0; i < closestBranches.Length; i++)
             {
-                GameObject target = hit.collider.gameObject;
-                if (target != null)
+                Vector3 closestPointOnCollider = closestBranches[i].ClosestPoint(trimRaycastPoint.transform.position);
+                float distance = Vector3.Distance(trimRaycastPoint.transform.position, closestPointOnCollider);
+                if (distance < closestDistance)
                 {
-                    Debug.Log(target.name);
-                    if (target.TryGetComponent<TreePart>(out TreePart part))
-                    {
-                        AudioManager.Instance.PlaySFX("SFX_ScissorCut");
-                        part.Trim();
-                    }
+                    closestBranch = closestBranches[i].gameObject;
+                    closestDistance = distance;
                 }
+            }
+
+            if (closestBranch != null)
+            {
+                AudioManager.Instance.PlaySFX("SFX_ScissorCut");
+                closestBranch.TryGetComponent<TreePart>(out TreePart part);
+                part.Trim();
             }
         }
-        //if in VR mode, use proximity to determine branch to cut
-        if (GamePlatformManager.IsVRMode)
+
+        else
         {
-            //are any branches close enough to cut? 
-            Collider[] closestBranches = Physics.OverlapSphere(transform.position, overlapSphereRadius, branchNodeLayerForTools);
-
-            if (closestBranches.Length > 0)
-            {
-                GameObject closestBranch = null;
-                float closestDistance = overlapSphereRadius;
-                //loop through any branches close enough to find the closest one
-                for (int i = 0; i < closestBranches.Length; i++)
-                {
-                    Vector3 closestPointOnCollider = closestBranches[i].ClosestPoint(trimRaycastPoint.transform.position);
-                    float distance = Vector3.Distance(transform.position, closestPointOnCollider);
-                    if (distance < closestDistance)
-                    {
-                        closestBranch = closestBranches[i].gameObject;
-                        closestDistance = distance;
-                    }
-                }
-
-                if (closestBranch != null)
-                {
-                    closestBranch.TryGetComponent<TreePart>(out TreePart part);
-                    part.Trim();
-                }
-            }
-
-            else
-            {
-                Debug.Log("No branches close enough to trim.");
-            }
-
+            Debug.Log("No branches close enough to trim.");
         }
     }
 
