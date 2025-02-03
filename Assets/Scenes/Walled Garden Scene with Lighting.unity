@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 4186a4b0a7c57d24597264c14b5dba96, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: ab8a613a2d5d1aa4980df85731613713, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 981a417923df3924e821268c997b8b57, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -681,11 +681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6cd51b14ee5784bac87623e61853c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 215065630}
-  musicClips:
-  - {fileID: 8300000, guid: 02dbcd9f7c97a124e95b7fb93c6c8845, type: 3}
-  - {fileID: 8300000, guid: b4af9528158c20945a752dfbd8ba3b1c, type: 3}
-  - {fileID: 8300000, guid: 2db50e14670a7034ea6644926fe42e6f, type: 3}
+  sfxAudioSource: {fileID: 0}
+  ambientClips: []
   sfxClips: []
 --- !u!4 &215065632
 Transform:
@@ -784,14 +781,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -831,18 +820,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -973,6 +950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
+  actions: []
 --- !u!4 &358406710
 Transform:
   m_ObjectHideFlags: 0
@@ -1500,11 +1478,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webGLCamera: {fileID: 1096824247}
   activeTool: {fileID: 0}
-  inputActions: {fileID: -944628639613478452, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
   tools:
   - {fileID: 4598446416359236215}
   - {fileID: 2056072839}
   hand: {fileID: 1415195829}
+  shiftKeyAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b0a57769-d7a6-4b71-ae94-a66576a66c5d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1001 &591766303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3442,14 +3428,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -3489,18 +3467,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4098,14 +4064,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -4145,18 +4103,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4875,14 +4821,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -4922,18 +4860,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5076,14 +5002,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -5123,18 +5041,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5431,14 +5337,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -5478,18 +5376,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5686,14 +5572,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16
@@ -5733,18 +5611,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5924,14 +5790,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -5972,18 +5830,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6005,14 +5851,6 @@ PrefabInstance:
     - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_Name
       value: garden window section (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6053,18 +5891,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6588,14 +6414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: garden window section
       objectReference: {fileID: 0}
-    - target: {fileID: 622480167381582739, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2671453579518941875, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16
@@ -6635,18 +6453,6 @@ PrefabInstance:
     - target: {fileID: 5587259086941003837, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6884780457062187775, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7394311017331408559, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 7474946175393226687, guid: 6ed2db832356eca42842cb1a680b3c8c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
