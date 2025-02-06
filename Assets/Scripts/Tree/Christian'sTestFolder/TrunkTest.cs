@@ -50,7 +50,7 @@ public class TrunkTest : TreeLimbBase
         if (thisTree.currentFreeEnergy > 0)
         {
             Energy += 1;
-            thisTree.UpdateEnergy(1);
+            thisTree.UpdateEnergy(-1);
             thisTree.ReleaseAllocatedEnergy(1);
         }
 

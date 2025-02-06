@@ -10,7 +10,8 @@ public class TreeLimbBase : MonoBehaviour
     [Header("Energy")]
     public EnergySystemValues energySystemValues;
 
-
+    [SerializeField]
+    float energy = 0;
     public float Energy 
     { 
         get { return energy; } 
@@ -21,8 +22,6 @@ public class TreeLimbBase : MonoBehaviour
 
     public bool allocateEnergyForGrowth = false;
 
-    [SerializeField]
-    float energy = 0;
 
     public UnityEvent EnergyDepletedEvent;
 
@@ -126,8 +125,12 @@ public class TreeLimbBase : MonoBehaviour
         if (Energy > 0)
         {
             Energy -= amount;
-            allocatedEnergy -= amount;
-            thisTree.UpdateEnergy(-amount);
+
+            //CHRISTIAN NOTE : removing this so that tree limbs will take energy from there parent dynamically
+
+            //allocatedEnergy -= amount;
+
+            //thisTree.UpdateEnergy(-amount);
             return amount;
         }
         else
@@ -184,12 +187,12 @@ public class TreeLimbBase : MonoBehaviour
             }
         }
 
-        if (branchedLimbs.Count < maxChildLimbCount && thisTree.growingLimbs.Count < energySystemValues.maxLimbsGrowing && WillGrowSub())
+        if (branchedLimbs.Count < maxChildLimbCount && WillGrowSub())
             AddChild();
     }
     public bool WillGrowSub()
     {
-        if (energy >= 100)
+        if (energy >= 50)
         {
             if (Random.value > beginGrowthChance)
             {
@@ -208,7 +211,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public bool PrepareForGrowth()
     {
-        if (energy > 50)
+        if (energy > 100)
         {
             if (thisTree.numPotentialGrowthLocations < 10)
             {

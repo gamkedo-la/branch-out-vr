@@ -131,7 +131,7 @@ public class TreeTest : MonoBehaviour
         if (currentFreeEnergy > 0 && currentTotalEnergy > 0)
         {
             trunkTest.Energy += 1;
-            UpdateEnergy(1, true);
+            UpdateEnergy(.25f, true);
         }
 
         GrowthHappenedEvent?.Invoke();
