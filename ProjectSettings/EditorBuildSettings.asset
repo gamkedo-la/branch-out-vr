@@ -6,17 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Menu.unity
+    guid: f499ed68b77be6943ab970ae8a9dea09
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 9f21acc36c5660f4288f63f58a61d95c
-  - enabled: 1
-    path: Assets/Scenes/Walled Garden Prefab Creation Scene.unity
-    guid: eb306857e4f7a2a44b5b273e87dc7a04
-  - enabled: 1
-    path: Assets/Scenes/Walled Garden Scene with Lighting.unity
-    guid: 07c4fed14d7742c46957c2e7ad7d16e2
+    path: Assets/Scenes/Garden.unity
+    guid: 875ac935a39619443b77082553e41232
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 96399f533041eb940981e7da6ec7205f, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 5dd6f0e652f9544408cc997a02cdf645, type: 2}
