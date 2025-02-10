@@ -30,7 +30,7 @@ public class WebGLCameraController : MonoBehaviour
 
         if (rotateCamera != null)
         {
-            rotateCamera.performed += inputContext => OnRotateView(inputContext);
+            rotateCamera.performed += OnRotateView;
         }
     }
     private void Start()
@@ -76,7 +76,7 @@ public class WebGLCameraController : MonoBehaviour
     {
         if (rotateCamera != null)
         {
-            rotateCamera.performed -= inputContext => OnRotateView(inputContext);
+            rotateCamera.performed -= OnRotateView;
         }
     }
 }

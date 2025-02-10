@@ -12,8 +12,6 @@ public class PlayerInputManager : MonoBehaviour
 
     public InputActionAsset inputActions;
 
-    public List<InputAction> actions;
-
     private void Awake()
     {
         CreateSingleton();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,6 +21,10 @@ public class TreeTest : MonoBehaviour
     float progress = 0;
 
     public UnityEvent GrowthHappenedEvent;
+
+    public static event Action OnGameOver;
+
+    private float tempTimer;
 
     private void Awake()
     {
@@ -70,6 +75,11 @@ public class TreeTest : MonoBehaviour
         {
             currentFreeEnergy += amount;
         }
+        
+        if (currentTotalEnergy <= 0)
+        {
+            OnGameOver?.Invoke();
+        }
     }
 
     /// <summary>
@@ -114,6 +124,12 @@ public class TreeTest : MonoBehaviour
 
     void Update()
     {
+        tempTimer += Time.deltaTime;
+
+        if (tempTimer >= 5)
+        {
+            OnGameOver?.Invoke();
+        }
         //timer for when the growth will happen
         progress += Time.deltaTime;
 

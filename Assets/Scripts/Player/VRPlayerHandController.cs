@@ -38,9 +38,9 @@ public class VRPlayerHandController : MonoBehaviour
         grabAction = inputActions.FindAction("Grab");
         useToolAction = inputActions.FindAction("UseTool");
 
-        grabAction.performed += _ => Grab();
-        grabAction.canceled += _ => Release();
-        useToolAction.performed += _ => UseTool();
+        grabAction.performed += Grab;
+        grabAction.canceled += Release;
+        useToolAction.performed += UseTool;
     }
 
     private void Start()
@@ -110,7 +110,7 @@ public class VRPlayerHandController : MonoBehaviour
             }
         }
     }
-    private void Grab()
+    private void Grab(InputAction.CallbackContext context)
     {
         if (grabbableInRange != null)
         {
@@ -136,7 +136,7 @@ public class VRPlayerHandController : MonoBehaviour
         }
     }
 
-    private void Release()
+    private void Release(InputAction.CallbackContext context)
     {
         grabbableInRange?.OnRelease();
 
@@ -154,7 +154,7 @@ public class VRPlayerHandController : MonoBehaviour
         }
     }
 
-    private void UseTool()
+    private void UseTool(InputAction.CallbackContext context)
     {
         if (activeTool != null)
         {
@@ -166,8 +166,8 @@ public class VRPlayerHandController : MonoBehaviour
     {
         GamePlatformManager.OnVRInitialized -= TryGetHapticDevice;
 
-        grabAction.performed -= _ => Grab();
-        grabAction.canceled -= _ => Release();
-        useToolAction.performed -= _ => UseTool();
+        grabAction.performed -= Grab;
+        grabAction.canceled -= Release;
+        useToolAction.performed -= UseTool;
     }
 }

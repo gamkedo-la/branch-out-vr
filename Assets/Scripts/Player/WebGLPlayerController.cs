@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class WebGLPlayerController : MonoBehaviour
 {
@@ -64,16 +65,17 @@ public class WebGLPlayerController : MonoBehaviour
         switchToolAction = inputActions.FindAction("SwitchTools");
         useToolAction = inputActions.FindAction("UseTool");
         shiftKeyAction = inputActions.FindAction("DepthChange");
+
         WebGLCameraController.OnCameraViewRotated += UpdatePlayerRotation;
 
         if (mousePositionAction != null)
         {
-            mousePositionAction.performed += inputContext => UpdatePlayerPosition(inputContext);
+            mousePositionAction.performed += UpdatePlayerPosition;
         }
 
         if (switchToolAction != null)
         {
-            switchToolAction.performed += inputContext => SwitchTools(inputContext);
+            switchToolAction.performed += SwitchTools;
         }
 
         if (useToolAction != null)
@@ -104,6 +106,11 @@ public class WebGLPlayerController : MonoBehaviour
 
     private void UpdatePlayerPosition(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f)
+        {
+            return;
+        }
+
         Vector2 input = context.ReadValue<Vector2>();
 
         if (input != null)
@@ -187,25 +194,23 @@ public class WebGLPlayerController : MonoBehaviour
         handPoseController.HoldTool(activeToolObject.name);
     }
 
-
-
     private void OnDisable()
     {
         if (mousePositionAction != null)
         {
-            mousePositionAction.performed -= inputContext => UpdatePlayerPosition(inputContext);
+            mousePositionAction.performed -= UpdatePlayerPosition;
         }
 
         if (switchToolAction != null)
         {
-            switchToolAction.performed -= inputContext => SwitchTools(inputContext);
+            switchToolAction.performed -= SwitchTools;
         }
 
         if (useToolAction != null)
         {
             useToolAction.performed -= _ => OnUseTool();
         }
-        if (useToolAction != null)
+        if (shiftKeyAction != null)
         {
             shiftKeyAction.Disable();
             shiftKeyAction.performed -= HandleShiftKeyPress;

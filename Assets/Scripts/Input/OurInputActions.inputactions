@@ -263,6 +263,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenPauseMenu",
+                    "type": "Button",
+                    "id": "be6959a3-1773-416d-a34a-6c2b3da486a6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -367,12 +376,23 @@
                 },
                 {
                     "name": "",
-                    "id": "e5238ca8-e0c8-48dd-a429-03005d1f0a4b",
-                    "path": "<XRController>{RightHand}/secondaryButton",
+                    "id": "608281b3-29e2-4305-bb74-277e0d543796",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "ToggleEnergyView",
+                    "groups": "PC",
+                    "action": "OpenPauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff54b689-6573-4905-bcd4-5b44896d2863",
+                    "path": "<XRController>{RightHand}/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "OpenPauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
