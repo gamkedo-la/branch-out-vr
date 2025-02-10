@@ -24,8 +24,6 @@ public class TreeTest : MonoBehaviour
 
     public static event Action OnGameOver;
 
-    private float tempTimer;
-
     private void Awake()
     {
         if (rootNode == null)
@@ -124,12 +122,6 @@ public class TreeTest : MonoBehaviour
 
     void Update()
     {
-        tempTimer += Time.deltaTime;
-
-        if (tempTimer >= 5)
-        {
-            OnGameOver?.Invoke();
-        }
         //timer for when the growth will happen
         progress += Time.deltaTime;
 

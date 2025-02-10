@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class GardenSceneUI : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private GameObject controlsGuideUI;
+    [SerializeField] private GameObject vrControlsUI;
+    [SerializeField] private GameObject webGLControlsUI;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject showControlsButton;
 
@@ -89,9 +90,19 @@ public class GardenSceneUI : MonoBehaviour
 
     public void ToggleShowControls()
     {
-        controlsGuideUI.SetActive(!controlsGuideUI.activeSelf);
+        bool justActivated;
+        if (GamePlatformManager.IsVRMode)
+        {
+            vrControlsUI.SetActive(!vrControlsUI.activeSelf);
+            justActivated = vrControlsUI.activeSelf;
+        }
+        else
+        {
+            webGLControlsUI.SetActive(!webGLControlsUI.activeSelf);
+            justActivated = webGLControlsUI.activeSelf;
+        }
 
-        if (controlsGuideUI.activeSelf)
+        if (justActivated)
         {
             if (pauseMenuUI.activeSelf)
             {

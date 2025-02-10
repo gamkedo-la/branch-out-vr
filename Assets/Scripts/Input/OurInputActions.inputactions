@@ -485,7 +485,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "One Modifier",
+                    "name": "MiddleMouse",
                     "id": "a2de0135-3a08-4342-bd39-785564e69255",
                     "path": "OneModifier",
                     "interactions": "",
@@ -509,6 +509,39 @@
                 {
                     "name": "binding",
                     "id": "9f3d0b4c-0de9-45a2-9fb6-31f2678427d6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RotateView",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Alt Key (When have trackpad)",
+                    "id": "ff36d749-984c-4da4-b967-e5cac43dbe07",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateView",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "70d1f9bc-d829-4b2f-8551-aa7086eb4d58",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RotateView",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "16d3766f-95b2-4fad-9fd3-9ac00a63a8c2",
                     "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
