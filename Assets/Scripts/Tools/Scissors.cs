@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Scissors : Tool, IGrabbable
@@ -48,13 +49,28 @@ public class Scissors : Tool, IGrabbable
 
         if (lastNearestBranch != closestBranch)
         {
+            
             if(lastNearestBranch != null)
             {
-                lastNearestBranch.GetComponent<BranchNode>().SetMeshRendMat(branchDefaultMat);
+                List<BranchNode> lastAffectedNodes = lastNearestBranch.GetComponent<BranchNode>().GetAffectedBranchesForCut();
+                if (lastAffectedNodes.Count > 0)
+                {
+                    foreach (BranchNode node in lastAffectedNodes)
+                    {
+                        node.SetMeshRendMat(branchDefaultMat);
+                    }
+                }
             }
             if (closestBranch != null)
             {
-                closestBranch.GetComponent<BranchNode>().SetMeshRendMat(targetMat);
+                List<BranchNode> affectedNodes = closestBranch.GetComponent<BranchNode>().GetAffectedBranchesForCut();
+                if (affectedNodes.Count > 0)
+                {
+                    foreach (BranchNode node in affectedNodes)
+                    {
+                        node.SetMeshRendMat(targetMat);
+                    }
+                }
             }
             lastNearestBranch = closestBranch;
         }

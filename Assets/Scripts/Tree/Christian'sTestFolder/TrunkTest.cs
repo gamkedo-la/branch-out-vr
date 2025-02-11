@@ -30,7 +30,6 @@ public class TrunkTest : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
-        Debug.Log("Add child to trunk");
         TreeLimbBase limb = Instantiate(branchTestPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);

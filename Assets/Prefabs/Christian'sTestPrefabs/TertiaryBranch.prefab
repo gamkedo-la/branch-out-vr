@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9115383447769472552}
   - component: {fileID: 3148299759137610709}
   - component: {fileID: 5782922591868728748}
-  - component: {fileID: 5187738803841094987}
   m_Layer: 3
   m_Name: TertiaryBranch
   m_TagString: Untagged
@@ -107,33 +106,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5187738803841094987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440457084062111880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba7b5c546858064b9ec41411abce708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClickedOnEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3148299759137610709}
-        m_TargetAssemblyTypeName: TreeLimbBase, Assembly-CSharp
-        m_MethodName: CutLimb
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &7732377523519356454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,6 +114,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9115383447769472552}
     m_Modifications:
+    - target: {fileID: 1728826148601529599, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 3148299759137610709}
+    - target: {fileID: 1764714546539613745, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 3148299759137610709}
+    - target: {fileID: 4044820715575680254, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985553535939188176, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 3148299759137610709}
+    - target: {fileID: 5291123156410446702, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 3148299759137610709}
     - target: {fileID: 5692539480441572996, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -194,6 +186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8505125362873367620, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 3148299759137610709}
     - target: {fileID: 8888440483698187887, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
       propertyPath: m_Name
       value: branch 1

@@ -70,7 +70,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Albedo: {r: 0.18867922, g: 0.15997684, b: 0.15040937, a: 0}
+    - _Albedo: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 0.0471698, g: 0.01809014, b: 0.01001246, a: 0}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _Specular_Color: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 0}

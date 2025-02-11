@@ -83,6 +83,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public virtual void Initialize(UnityEvent growEvent, float maturity = 0f)
     {
+        name += " " + Random.Range(0, 1000);
         MaturityPercent = maturity;
         growEvent.AddListener(Grow);
     }
@@ -265,12 +266,10 @@ public class TreeLimbBase : MonoBehaviour
 
         if (nextLimb)
         {
-            Debug.Log("Destroying next limb");
             Destroy(nextLimb);
         }
         foreach (TreeLimbBase treeLimbBase in branchedLimbs)
         {
-            Debug.Log("Destroying branched limbs");
             Destroy(treeLimbBase.gameObject);
         }
     }

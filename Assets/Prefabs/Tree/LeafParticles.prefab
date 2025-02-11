@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7242584701193198493}
   - component: {fileID: 2209852988273171690}
   m_Layer: 0
-  m_Name: LeafTestParticles
+  m_Name: LeafParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7949957678383430223}
   - component: {fileID: 344552957425278452}
   - component: {fileID: -4765530094563019513}
-  - component: {fileID: 2520163742170484134}
   m_Layer: 3
   m_Name: Branch
   m_TagString: Untagged
@@ -108,33 +107,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2520163742170484134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4976722479052031246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba7b5c546858064b9ec41411abce708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ClickedOnEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 344552957425278452}
-        m_TargetAssemblyTypeName: TreeLimbBase, Assembly-CSharp
-        m_MethodName: CutLimb
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &3017646271402102122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,6 +115,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7949957678383430223}
     m_Modifications:
+    - target: {fileID: 1728826148601529599, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 344552957425278452}
+    - target: {fileID: 1764714546539613745, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 344552957425278452}
+    - target: {fileID: 3862764050934542214, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4044820715575680254, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254813267374680556, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Height
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254813267374680556, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Radius
+      value: 0.0045
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254813267374680556, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254813267374680556, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Center.y
+      value: 0.0035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254813267374680556, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4982652212313834117, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4985553535939188176, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 344552957425278452}
+    - target: {fileID: 5291123156410446702, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 344552957425278452}
     - target: {fileID: 5692539480441572996, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -183,6 +203,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8505125362873367620, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
+      propertyPath: thisBranch
+      value: 
+      objectReference: {fileID: 344552957425278452}
     - target: {fileID: 8888440483698187887, guid: bda1fdbd93922e44ba62c30ff2958ff1, type: 3}
       propertyPath: m_Name
       value: branch 1
