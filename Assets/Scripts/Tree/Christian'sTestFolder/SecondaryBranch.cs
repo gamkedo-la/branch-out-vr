@@ -7,11 +7,8 @@ public class SecondaryBranch : TreeLimbBase
 {
     TertiaryBranch tertiaryBranchPrefab;
     SecondaryBranch secondaryBranchPrefab;
-    float percentageToEndBranch;
-
 
     //Initialize if spawned from a branch
-
     public void Initialize(UnityEvent growEvent, BranchTest previousBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
@@ -48,7 +45,6 @@ public class SecondaryBranch : TreeLimbBase
     {
         tertiaryBranchPrefab = limbContainer.tertiaryBranch;
         secondaryBranchPrefab = limbContainer.secondaryBranch;
-        percentageToEndBranch = Random.value;
     }
 
     public override void AddChild()
@@ -76,7 +72,5 @@ public class SecondaryBranch : TreeLimbBase
             nextLimb = (limb);
             (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         }
-
     }
-
 }

@@ -58,7 +58,7 @@ public class TreeLimbBase : MonoBehaviour
     public int maxChildLimbCount = 2;
     public bool terminated;
     float terminateChance = 0.5f;
-    private float beginGrowthChance = 0.5f;
+    private float beginGrowthThreshold = 0.25f;
     public LimbContainer limbContainer;
 
     public Vector2 minRotations, maxRotations;
@@ -194,7 +194,7 @@ public class TreeLimbBase : MonoBehaviour
     {
         if (energy >= 50)
         {
-            if (Random.value > beginGrowthChance)
+            if (Random.value > beginGrowthThreshold)
             {
                 return false;
             }
