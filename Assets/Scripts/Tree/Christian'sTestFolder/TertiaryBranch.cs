@@ -50,21 +50,11 @@ public class TertiaryBranch : TreeLimbBase
         percentageToEndBranch = Random.value;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public override void AddChild()
     {
         base.AddChild();
         TreeLimbBase limb = Instantiate(leafPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), transform);
+        branchedLimbs.Add(limb);
         (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
         //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }

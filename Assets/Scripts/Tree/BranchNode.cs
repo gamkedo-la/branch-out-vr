@@ -30,8 +30,10 @@ public class BranchNode : Branch
         if (canCut)
         {
             BranchTest proceduralBranch = GetComponentInParent<BranchTest>();
+                proceduralBranch.CutLimb();
+
+
             //TODO: We'll need to either loop through all children or adjust energy tracking in order to remove energy from all child branches when parent is cut
-            thisTree.RemoveEnergy(proceduralBranch.Energy);
             meshRendererObjectForBone.SetActive(false);
             canCut = false;
             gameObject.SetActive(false);

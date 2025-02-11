@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energySystemValues: {fileID: 11400000, guid: 8b86754177dc16040b25ade5b8890740, type: 2}
+  energy: 0
   allocatedEnergy: 0
   allocateEnergyForGrowth: 0
-  energy: 0
   EnergyDepletedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -64,8 +64,6 @@ MonoBehaviour:
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   minRotations: {x: -45, y: -45}
   maxRotations: {x: 45, y: 45}
-  minNodeRotation: {x: 0, y: 0}
-  maxNodeRotation: {x: 0, y: 0}
   nextChildGrowPosition: {x: 0, y: 0, z: 0}
   nextChildGrowRotation: {x: 0, y: 0, z: 0}
   previousLimb: {fileID: 0}
@@ -81,7 +79,7 @@ MonoBehaviour:
   GrowthHappenedEvent:
     m_PersistentCalls:
       m_Calls: []
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 5782922591868728748}
 --- !u!54 &5782922591868728748
 Rigidbody:
   m_ObjectHideFlags: 0

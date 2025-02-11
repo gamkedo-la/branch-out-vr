@@ -44,16 +44,21 @@ public class EnergyPathNode : MonoBehaviour
     /// </summary>
     private void SortChildrenByDistance()
     {
-        if (children.Count > 0)
+        if (children.Count > 1)
         {
             Vector3 parentPosition = transform.position;
 
             children.Sort((a, b) =>
             {
-                float distA = (a.transform.position - parentPosition).sqrMagnitude;
-                float distB = (b.transform.position - parentPosition).sqrMagnitude;
+                if (a != null && b != null)
+                {
+                    float distA = (a.transform.position - parentPosition).sqrMagnitude;
+                    float distB = (b.transform.position - parentPosition).sqrMagnitude;
+                    return distA.CompareTo(distB);
 
-                return distA.CompareTo(distB);
+                }
+                return -1;
+
             });
         }
 
@@ -70,7 +75,10 @@ public class EnergyPathNode : MonoBehaviour
 
         foreach (EnergyPathNode child in children)
         {
-            pathPoints.AddRange(child.GetPathPoints());
+            if (child != null)
+            {
+                pathPoints.AddRange(child.GetPathPoints());
+            }
         }
 
         return pathPoints; 

@@ -51,17 +51,6 @@ public class SecondaryBranch : TreeLimbBase
         percentageToEndBranch = Random.value;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public override void AddChild()
     {
         base.AddChild();

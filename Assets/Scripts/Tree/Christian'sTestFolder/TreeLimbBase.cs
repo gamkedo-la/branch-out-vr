@@ -57,11 +57,11 @@ public class TreeLimbBase : MonoBehaviour
 
     public int maxChildLimbCount = 2;
     public bool terminated;
-    float terminateChance = 0.1f;
+    float terminateChance = 0.5f;
     private float beginGrowthChance = 0.5f;
     public LimbContainer limbContainer;
 
-    public Vector2 minRotations, maxRotations, minNodeRotation, maxNodeRotation;
+    public Vector2 minRotations, maxRotations;
 
     public Vector3 nextChildGrowPosition, nextChildGrowRotation;
 
@@ -235,7 +235,8 @@ public class TreeLimbBase : MonoBehaviour
 
         TurnOnPhysics();
 
-        if(previousLimb.nextLimb == this)
+
+        if (previousLimb.nextLimb == this)
         previousLimb.nextLimb = null;
 
         if (previousLimb.branchedLimbs.Contains(this))
@@ -248,30 +249,36 @@ public class TreeLimbBase : MonoBehaviour
 
     public virtual void TurnOnPhysics()
     {
-
-        _rigidbody.isKinematic = false;
-
-/*        foreach(TreeLimbBase treeLimbBase in branchedLimbs)
+        if (_rigidbody != null && _rigidbody.isKinematic)
         {
-            TurnOnPhysics();
-        }*/
+            _rigidbody.isKinematic = false;
+        }
 
-/*        if(nextLimb)
-            nextLimb.TurnOnPhysics();*/
+
+        if (nextLimb)
+            nextLimb.TurnOnPhysics();
     }
 
     public void OnDestroy()
     {
-/*        foreach(TreeLimbBase treeLimbBase in branchedLimbs)
+        thisTree.UpdateGlobalPath();
+
+        if (nextLimb)
         {
+            Debug.Log("Destroying next limb");
+            Destroy(nextLimb);
+        }
+        foreach (TreeLimbBase treeLimbBase in branchedLimbs)
+        {
+            Debug.Log("Destroying branched limbs");
             Destroy(treeLimbBase.gameObject);
-        }*/
+        }
     }
 
     public IEnumerator ShrinkLimbForDeletion()
     {
         float progress = 0f;
-        while(progress < 1)
+        while (progress <= 1)
         {
             progress += .00001f;
 
@@ -279,7 +286,6 @@ public class TreeLimbBase : MonoBehaviour
 
             yield return new WaitForSeconds(.01f);
         }
-
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

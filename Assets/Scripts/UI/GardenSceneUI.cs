@@ -83,7 +83,6 @@ public class GardenSceneUI : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.UnloadSceneAsync(1);
         SceneManager.LoadSceneAsync(0);
     }
 
@@ -97,7 +96,6 @@ public class GardenSceneUI : MonoBehaviour
     public void StartOver()
     {
         Time.timeScale = 1f;
-        SceneManager.UnloadSceneAsync(1);
         SceneManager.LoadSceneAsync(1);
     }
 

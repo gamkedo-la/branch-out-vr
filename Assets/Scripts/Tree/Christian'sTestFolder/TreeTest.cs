@@ -48,8 +48,12 @@ public class TreeTest : MonoBehaviour
     /// </summary>
     public void UpdateGlobalPath()
     {
-        globalPathPoints = rootNode.GetPathPoints();
-        UpdateParticlesPath(globalPathPoints);
+        if (rootNode != null)
+        {
+            globalPathPoints = rootNode.GetPathPoints();
+            UpdateParticlesPath(globalPathPoints);
+        }
+
     }
 
     /// <summary>
