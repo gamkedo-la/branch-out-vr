@@ -14,6 +14,9 @@ public class GardenSceneUI : MonoBehaviour
 
     private InputAction pause;
     private bool openControlsFromPause;
+    private Vector3 vrWorldScale = new(0.011f, 0.011f, 0.011f);
+    private Vector3 vrWorldRotation = new(0, 180, 0);
+    private Vector3 vrWorldPos = new(15, 5, 9);
 
     private void Awake()
     {
@@ -32,6 +35,16 @@ public class GardenSceneUI : MonoBehaviour
         if (!showControlsButton.activeSelf)
         {
             showControlsButton.SetActive(true);
+        }
+
+        if (GamePlatformManager.IsVRMode)
+        {
+            Canvas _canvas = GetComponent<Canvas>();
+            _canvas.renderMode = RenderMode.WorldSpace;
+            _canvas.worldCamera = Camera.main;
+            transform.position = vrWorldPos;
+            transform.localScale = vrWorldScale;
+            transform.rotation = Quaternion.Euler(vrWorldRotation);
         }
     }
 

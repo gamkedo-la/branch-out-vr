@@ -9,6 +9,9 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button exitButton;
 
+    private Vector3 vrWorldScale = new(0.01f, 0.01f, 0.01f);
+    private Vector3 vrWorldPos = new(-1, 5, 9);
+
     private void Awake()
     {
         playButton.onClick.AddListener(() =>
@@ -27,5 +30,17 @@ public class MainMenuUI : MonoBehaviour
             Application.Quit();
 #endif
         });
+    }
+
+    private void Start()
+    {
+        if (GamePlatformManager.IsVRMode)
+        {
+            Canvas _canvas = GetComponentInParent<Canvas>();
+            _canvas.renderMode = RenderMode.WorldSpace;
+            _canvas.worldCamera = Camera.main;
+            transform.position = vrWorldPos;
+            transform.localScale = vrWorldScale;
+        }
     }
 }

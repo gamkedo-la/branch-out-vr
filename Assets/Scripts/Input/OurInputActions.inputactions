@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=0.1,pressPoint=0.5)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UISelect",
+                    "type": "Button",
+                    "id": "c78588f6-b569-486f-93e6-b7642b617fb0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -221,7 +230,7 @@
                 {
                     "name": "",
                     "id": "8c8c70bd-0b9e-432b-a92f-5c0c3c7386b2",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "path": "<XRController>{LeftHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -232,11 +241,33 @@
                 {
                     "name": "",
                     "id": "9496f706-aeaa-4e2d-bc20-430789e60996",
-                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "path": "<XRController>{RightHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
                     "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "34715c5e-4e80-4147-aa7f-95c578c88249",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UISelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4c980a3-2b13-44da-874d-782f32eaa508",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UISelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
