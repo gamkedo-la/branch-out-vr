@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -59,15 +60,13 @@ public class BranchNode : Branch
     public override void Trim()
     {
         //TODO: Don't remove thisBranch completely; remove all nextLimb (recursive) and branchedLimbs
-/*            int nodeIndex = thisBranch.nodes.IndexOf(this);
 
-        if (nodeIndex != -1)
-        {
-            thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);
-        }*/
+        int nodeIndex = thisBranch.nodes.IndexOf(this);
 
         thisBranch.CutLimb();
-            
+
+        thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);
+
         //deactivate this object and all child nodes; this allows player to cut branches in sections
         meshRendererObjectForBone.SetActive(false);
         gameObject.SetActive(false);

@@ -7,10 +7,9 @@ public class TertiaryBranch : TreeLimbBase
 {
     TertiaryBranch tertiaryBranchPrefab;
     Leaf leafPrefab;
-    float percentageToEndBranch;
 
+    private bool isLimbTerminated = false;
 
-    //Initialize if spawned from a branch
 
     public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, TreeTest tree)
     {
@@ -27,7 +26,6 @@ public class TertiaryBranch : TreeLimbBase
         Initialize();
 
     } 
-    //Initialize if spawned from a trunk
     public void Initialize(UnityEvent growEvent, SecondaryBranch previousSecondaryBranch, TreeTest tree)
     {
         base.Initialize(growEvent);
@@ -47,7 +45,6 @@ public class TertiaryBranch : TreeLimbBase
     {
         tertiaryBranchPrefab = limbContainer.tertiaryBranch;
         leafPrefab = limbContainer.leaf;
-        percentageToEndBranch = Random.value;
     }
 
     public override void AddChild()
@@ -65,7 +62,7 @@ public class TertiaryBranch : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (LimbTerminated())
+        if (isLimbTerminated)
             return;
 
 
@@ -74,6 +71,8 @@ public class TertiaryBranch : TreeLimbBase
             TreeLimbBase limb = Instantiate(leafPrefab, top.position, Quaternion.Euler(GetRandomBranchRotation()), transform);
             nextLimb = (limb);
             (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
+            isLimbTerminated = LimbTerminated();
+            Debug.Log("Is limb " + name + " terminated? " + isLimbTerminated);
         }
 
     }

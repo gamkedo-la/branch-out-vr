@@ -120,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 170615716568703071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.012214105, z: 0}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -146,10 +146,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.003
-  m_Height: 0.012
+  m_Radius: 0.07
+  m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.0022, z: 0}
+  m_Center: {x: 0, y: 0.06, z: 0}
 --- !u!114 &5291123156410446702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
+  thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 7977910790232351863}
   pathNode: {fileID: 5115503021579952828}
 --- !u!54 &6184217163646456369
@@ -245,7 +246,7 @@ Transform:
   m_GameObject: {fileID: 1300663860135364751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.009935174, z: 0}
+  m_LocalPosition: {x: 0, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -271,10 +272,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.003
-  m_Height: 0.012
+  m_Radius: 0.07
+  m_Height: 0.25
   m_Direction: 1
-  m_Center: {x: 0, y: 0.003, z: 0}
+  m_Center: {x: 0, y: 0.04, z: 0}
 --- !u!114 &8505125362873367620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +297,7 @@ MonoBehaviour:
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
+  thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 8315486700730193126}
   pathNode: {fileID: 1805045414765659200}
 --- !u!54 &8397929060408827354
@@ -517,10 +519,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.004
-  m_Height: 0.014
+  m_Radius: 0.08
+  m_Height: 0.22
   m_Direction: 1
-  m_Center: {x: 0, y: 0.004, z: 0}
+  m_Center: {x: -0.02, y: 0.08, z: 0}
 --- !u!114 &1728826148601529599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +544,7 @@ MonoBehaviour:
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
+  thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 116046086768439015}
   pathNode: {fileID: 6268884888970754772}
 --- !u!54 &3137843474694812503
@@ -738,7 +741,7 @@ Transform:
   m_GameObject: {fileID: 5338682675228857281}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.009692079, z: 0}
+  m_LocalPosition: {x: 0, y: 0.174, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -764,10 +767,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.0025
-  m_Height: 0.012
+  m_Radius: 0.065
+  m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.003, z: 0}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!114 &1764714546539613745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +792,7 @@ MonoBehaviour:
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
+  thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 5325920630273513833}
   pathNode: {fileID: 2125945709293092629}
 --- !u!54 &6330081506816265946
@@ -863,7 +867,7 @@ Transform:
   m_GameObject: {fileID: 7579675008845395347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.008384132, z: 0}
+  m_LocalPosition: {x: 0, y: 0.151, z: 0}
   m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -890,10 +894,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.002
-  m_Height: 0.013
+  m_Radius: 0.05
+  m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.006, z: 0}
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!114 &4985553535939188176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,6 +919,7 @@ MonoBehaviour:
   nodes: []
   secondaryBranchPrefab: {fileID: 0}
   test: 0
+  thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 3541164455456078876}
   pathNode: {fileID: 3704830112389009463}
 --- !u!54 &8020336490663612379
@@ -985,7 +990,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 18, y: 18, z: 18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7159593932374846845}

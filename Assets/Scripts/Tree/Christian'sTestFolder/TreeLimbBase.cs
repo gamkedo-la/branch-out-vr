@@ -159,6 +159,31 @@ public class TreeLimbBase : MonoBehaviour
     {
         return Vector3.Lerp(transform.position, top.position, Random.value);
     }
+
+    public BranchNode GetClosestNodeToBranch()
+    {
+        if (nodes.Count > 0)
+        {
+            float closestDistance = 20f;
+            BranchNode closestNode = null;
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                float distance = Vector3.Distance(nextChildGrowPosition, nodes[i].transform.position);
+
+                if (distance <= closestDistance)
+                {
+                    closestDistance = distance;
+                    closestNode = nodes[i];
+                }
+            }
+
+            return closestNode;
+        }
+        else
+        {
+            return null;
+        }
+    }
     public virtual void Grow()
     {
         if (previousLimb != null)
@@ -228,6 +253,7 @@ public class TreeLimbBase : MonoBehaviour
         
         return terminated;
     }
+
     public virtual void CutLimb()
     {
         cut = true;
@@ -255,7 +281,6 @@ public class TreeLimbBase : MonoBehaviour
             _rigidbody.isKinematic = false;
         }
 
-
         if (nextLimb)
             nextLimb.TurnOnPhysics();
     }
@@ -267,10 +292,6 @@ public class TreeLimbBase : MonoBehaviour
         if (nextLimb)
         {
             Destroy(nextLimb);
-        }
-        foreach (TreeLimbBase treeLimbBase in branchedLimbs)
-        {
-            Destroy(treeLimbBase.gameObject);
         }
     }
 

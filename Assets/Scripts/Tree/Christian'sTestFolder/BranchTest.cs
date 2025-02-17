@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Events;
 
 public class BranchTest : TreeLimbBase
@@ -8,7 +9,7 @@ public class BranchTest : TreeLimbBase
     public SecondaryBranch secondaryBranchPrefab;
     BranchTest branchPrefab;
 
-    float percentageToEndBranch;
+    private bool isLimbTerminated = false;
 
     //Initialize if spawned from a trunk
     public void Initialize(UnityEvent growEvent, TrunkTest previousTrunk, TreeTest tree)
@@ -63,7 +64,10 @@ public class BranchTest : TreeLimbBase
     {
         base.AddChild();
 
-        TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
+        BranchNode parentNode = GetClosestNodeToBranch();
+        Debug.Log(parentNode.name);
+
+        TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), parentNode.transform);
         branchedLimbs.Add(limb);
         (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
 
@@ -79,7 +83,7 @@ public class BranchTest : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (LimbTerminated())
+        if (isLimbTerminated)
             return;
 
         if (nextLimb == null)
@@ -87,6 +91,8 @@ public class BranchTest : TreeLimbBase
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
             (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
+            isLimbTerminated = LimbTerminated();
+            Debug.Log("Is limb " + name + " terminated? " + isLimbTerminated);
         }
 
     }

@@ -79,6 +79,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rigidbody: {fileID: 1486547232359954145}
+  parentNode: {fileID: 0}
 --- !u!54 &1486547232359954145
 Rigidbody:
   m_ObjectHideFlags: 0
