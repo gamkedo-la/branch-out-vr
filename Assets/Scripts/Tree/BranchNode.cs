@@ -3,7 +3,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BranchNode : Branch
+public class BranchNode : TreePart
 {
     [SerializeField] TreeLimbBase thisBranch;
 
@@ -52,15 +52,10 @@ public class BranchNode : Branch
         return affectedBranches;
     }
 
-    public void PreviewAffectedBranchesForWire()
-    {
-
-    }
-
     public override void Trim()
     {
         //TODO: Don't remove thisBranch completely; remove all nextLimb (recursive) and branchedLimbs
-
+        Debug.Log("Trim from BranchNode");
         int nodeIndex = thisBranch.nodes.IndexOf(this);
 
         thisBranch.CutLimb();
@@ -70,6 +65,15 @@ public class BranchNode : Branch
         //deactivate this object and all child nodes; this allows player to cut branches in sections
         meshRendererObjectForBone.SetActive(false);
         gameObject.SetActive(false);
-        base.Trim();
+        //base.Trim();
+    }
+
+    public void ApplyRotation(Vector3 playerMotionDelta)
+    {
+        Debug.Log(playerMotionDelta);
+        Vector3 currentRotation = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        Quaternion newRotation = new Quaternion(currentRotation.x + playerMotionDelta.x, currentRotation.y + playerMotionDelta.y, currentRotation.z + playerMotionDelta.z, Quaternion.identity.w);
+
+        transform.rotation = newRotation;
     }
 }

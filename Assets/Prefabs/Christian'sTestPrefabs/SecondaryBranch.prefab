@@ -79,6 +79,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rigidbody: {fileID: 1486547232359954145}
+  tertiaryBranchPrefab: {fileID: 3148299759137610709, guid: 37f1047ac33466f4a976ad0dbd2e92b9, type: 3}
   parentNode: {fileID: 0}
 --- !u!54 &1486547232359954145
 Rigidbody:

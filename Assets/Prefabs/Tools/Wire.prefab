@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &729867547408563959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3236934566660202294}
+  m_Layer: 0
+  m_Name: WireProximityPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3236934566660202294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729867547408563959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 6568313363116855490}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793754831361739774
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1281939344875174536}
   - component: {fileID: 8587372717800400413}
-  - component: {fileID: 7871884030831775236}
   - component: {fileID: 4484223146245169061}
   m_Layer: 0
   m_Name: Wire
@@ -56,33 +86,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.45, y: 0.15, z: 0.45}
   m_Center: {x: 0, y: 0.04, z: 0}
---- !u!54 &7871884030831775236
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1793754831361739774}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &4484223146245169061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,10 +101,13 @@ MonoBehaviour:
   branchNodeLayerForTools:
     serializedVersion: 2
     m_Bits: 128
-  defaultPosition: {fileID: 0}
+  defaultTransform: {fileID: 0}
   toolAttachPoint: {fileID: 8378470744320016930}
   isActive: 0
-  toolRB: {fileID: 7871884030831775236}
+  proximityPoint: {fileID: 729867547408563959}
+  overlapSphereRadius: 0.35
+  branchDefaultMat: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  targetMat: {fileID: 2100000, guid: 84f56e8989b86413d9f13b8827c2f36c, type: 2}
 --- !u!1 &8378470744320016930
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +138,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2555701456048733759}
+  - {fileID: 3236934566660202294}
   m_Father: {fileID: 1281939344875174536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2665310277742287316

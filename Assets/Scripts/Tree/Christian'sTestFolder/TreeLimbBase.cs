@@ -57,7 +57,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public int maxChildLimbCount = 2;
     public bool terminated;
-    float terminateChance = 0.5f;
+    float terminateChance = 0.7f;
     private float beginGrowthThreshold = 0.25f;
     public LimbContainer limbContainer;
 
@@ -164,7 +164,7 @@ public class TreeLimbBase : MonoBehaviour
     {
         if (nodes.Count > 0)
         {
-            float closestDistance = 20f;
+            float closestDistance = 100f;
             BranchNode closestNode = null;
             for (int i = 0; i < nodes.Count; i++)
             {

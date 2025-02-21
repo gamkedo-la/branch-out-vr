@@ -23,7 +23,6 @@ public class EnergyParticlesFlow : MonoBehaviour
 
         if (toggleView != null)
         {
-            Debug.Log("toggle not null");
             toggleView.performed += _ => ToggleEnergy();
         }
         transform.position = tree.transform.position;

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class SecondaryBranch : TreeLimbBase
 {
-    TertiaryBranch tertiaryBranchPrefab;
+    [SerializeField] TertiaryBranch tertiaryBranchPrefab;
     SecondaryBranch secondaryBranchPrefab;
 
     private bool isLimbTerminated = false;
@@ -56,7 +56,6 @@ public class SecondaryBranch : TreeLimbBase
         base.AddChild();
 
         BranchNode parentNode = GetClosestNodeToBranch();
-        Debug.Log(parentNode.name);
 
         TreeLimbBase limb = Instantiate(tertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), parentNode.transform);
         branchedLimbs.Add(limb);
@@ -80,7 +79,6 @@ public class SecondaryBranch : TreeLimbBase
             nextLimb = (limb);
             (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
             isLimbTerminated = LimbTerminated();
-            Debug.Log("Is limb " + name + " terminated? " + isLimbTerminated);
         }
     }
 }

@@ -65,7 +65,6 @@ public class BranchTest : TreeLimbBase
         base.AddChild();
 
         BranchNode parentNode = GetClosestNodeToBranch();
-        Debug.Log(parentNode.name);
 
         TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), parentNode.transform);
         branchedLimbs.Add(limb);
@@ -92,7 +91,6 @@ public class BranchTest : TreeLimbBase
             nextLimb = (limb);
             (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
             isLimbTerminated = LimbTerminated();
-            Debug.Log("Is limb " + name + " terminated? " + isLimbTerminated);
         }
 
     }

@@ -190,7 +190,7 @@ public class WebGLPlayerController : MonoBehaviour
         activeToolObject.transform.position = hand.transform.position;
         activeToolObject.transform.SetParent(transform, true);
         activeToolAttachPoint.transform.position = hand.transform.position;
-        activeTool.WebGLMakeActiveTool();
+        activeTool.WebGLMakeActiveTool(gameObject);
         handPoseController.HoldTool(activeToolObject.name);
     }
 

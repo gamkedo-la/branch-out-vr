@@ -219,10 +219,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7069953949127603406}
     - target: {fileID: 4448616747908074310, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
-      propertyPath: overlapSphereRadius
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4448616747908074310, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: treeLayerForRaycasts.m_Bits
       value: 128
       objectReference: {fileID: 0}

@@ -21,5 +21,6 @@ public abstract class TreePart : MonoBehaviour
         //Destroy(gameObject);
         //rb.isKinematic = false;
         //Destroy(gameObject);
+        Debug.Log("Trim from TreePart");
     }
 }

@@ -122,7 +122,7 @@ public class VRPlayerHandController : MonoBehaviour
                     activeTool = tool;
                     heldObject = activeTool.gameObject;
                     handPoseController.HoldTool(heldObject.name);
-                    grabbableInRange.OnGrab();
+                    grabbableInRange.OnGrab(gameObject);
                 }
             }
             if (heldObject != null)
