@@ -42,10 +42,6 @@ public class Leaf : TreeLimbBase
         {
             thisTree.UpdateEnergy(energySystemValues.leafEnergyGainPerTick, true); //Add to free energy as well since we are creating new energy
         }
-        else
-        {
-            Debug.LogWarning("Error: Leaf has no reference to its tree.");
-        }
     }
 
     public override void Grow()

@@ -58,6 +58,12 @@ public class BranchNode : TreePart
         Debug.Log("Trim from BranchNode");
         int nodeIndex = thisBranch.nodes.IndexOf(this);
 
+        if (thisBranch.nodes.Count >= nodeIndex)
+        {
+            EnergyPathNode energyPath = thisBranch.previousLimb.nodes[nodeIndex].GetComponent<EnergyPathNode>();
+            energyPath.RemoveChild(energyPath.GetComponentsInChildren<EnergyPathNode>()[1]);
+        }
+
         thisBranch.CutLimb();
 
         thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);

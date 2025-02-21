@@ -68,6 +68,8 @@ public class BranchTest : TreeLimbBase
 
         TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), parentNode.transform);
         branchedLimbs.Add(limb);
+        EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
+        energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
         (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
 
         nextChildGrowPosition = GetRandomPositionOnLimb();
@@ -89,6 +91,8 @@ public class BranchTest : TreeLimbBase
         {
             TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
+            EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
+            energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
             (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
             isLimbTerminated = LimbTerminated();
         }

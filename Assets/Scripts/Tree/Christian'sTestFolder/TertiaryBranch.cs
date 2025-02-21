@@ -50,8 +50,16 @@ public class TertiaryBranch : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
-        TreeLimbBase limb = Instantiate(leafPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), transform);
+
+        BranchNode parentNode = GetClosestNodeToBranch();
+
+        TreeLimbBase limb = Instantiate(leafPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), parentNode.transform);
         branchedLimbs.Add(limb);
+        EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
+        if (limb.nodes[0] != null)
+        {
+            energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
+        }
         (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
         //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }
@@ -72,7 +80,6 @@ public class TertiaryBranch : TreeLimbBase
             nextLimb = (limb);
             (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
             isLimbTerminated = LimbTerminated();
-            Debug.Log("Is limb " + name + " terminated? " + isLimbTerminated);
         }
 
     }

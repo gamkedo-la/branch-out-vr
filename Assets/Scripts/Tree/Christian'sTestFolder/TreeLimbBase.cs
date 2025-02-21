@@ -196,7 +196,7 @@ public class TreeLimbBase : MonoBehaviour
 
         if (Energy <= 0) return;
 
-        GrowthHappenedEvent.Invoke();
+        GrowthHappenedEvent?.Invoke();
 
         if (MaturityPercent < 1)
         {
@@ -287,8 +287,6 @@ public class TreeLimbBase : MonoBehaviour
 
     public void OnDestroy()
     {
-        thisTree.UpdateGlobalPath();
-
         if (nextLimb)
         {
             Destroy(nextLimb);

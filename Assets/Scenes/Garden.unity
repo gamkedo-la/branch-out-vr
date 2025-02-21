@@ -2098,7 +2098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
       propertyPath: currentTotalEnergy
-      value: 2500
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
       propertyPath: energyParticlesManager

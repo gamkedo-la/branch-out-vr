@@ -59,6 +59,8 @@ public class SecondaryBranch : TreeLimbBase
 
         TreeLimbBase limb = Instantiate(tertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), parentNode.transform);
         branchedLimbs.Add(limb);
+        EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
+        energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
         (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }
