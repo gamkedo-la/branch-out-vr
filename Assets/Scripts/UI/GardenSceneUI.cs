@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 public class GardenSceneUI : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class GardenSceneUI : MonoBehaviour
     {
         GamePlatformManager.OnWebGLInitialized +=  SubscribePlayerInput;
         GamePlatformManager.OnVRInitialized += SubscribePlayerInput;
+        GamePlatformManager.OnVRInitialized += SetVRUI;
 
         TreeTest.OnGameOver += GameOver;
     }
@@ -36,7 +39,10 @@ public class GardenSceneUI : MonoBehaviour
         {
             showControlsButton.SetActive(true);
         }
+    }
 
+    private void SetVRUI()
+    {
         if (GamePlatformManager.IsVRMode)
         {
             Canvas _canvas = GetComponent<Canvas>();
@@ -99,6 +105,26 @@ public class GardenSceneUI : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 
+    public void ScaleOnHover()
+    {
+        Debug.Log("Scale on hover");
+    }
+
+    public void NormalScaleOnExitHover()
+    {
+        Debug.Log("Exit hover");
+    }
+
+    public void TestSelect()
+    {
+        Debug.Log("Select");
+    }
+
+    public void TestActivate()
+    {
+        Debug.Log("Activate");
+    }
+
     public void ToggleShowControls()
     {
         bool justActivated;
@@ -137,6 +163,8 @@ public class GardenSceneUI : MonoBehaviour
     {
         GamePlatformManager.OnWebGLInitialized -= SubscribePlayerInput;
         GamePlatformManager.OnVRInitialized -= SubscribePlayerInput;
+        GamePlatformManager.OnVRInitialized -= SetVRUI;
+
 
         if (pause != null)
         {

@@ -52,7 +52,5 @@ public class TrunkTest : TreeLimbBase
             thisTree.UpdateEnergy(-1);
             thisTree.ReleaseAllocatedEnergy(1);
         }
-
-
     }
 }

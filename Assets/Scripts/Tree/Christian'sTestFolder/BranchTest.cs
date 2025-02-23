@@ -96,6 +96,5 @@ public class BranchTest : TreeLimbBase
             (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
             isLimbTerminated = LimbTerminated();
         }
-
     }
 }

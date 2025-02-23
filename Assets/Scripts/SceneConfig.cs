@@ -10,14 +10,20 @@ public class SceneConfig : MonoBehaviour
     [SerializeField] private GameObject xrOrigin;
     [SerializeField] private GameObject webGL;
 
-    private void Start()
+    private void OnEnable()
+    {
+        GamePlatformManager.OnPlatformDetermined += ConfigureSceneForPlatform;
+
+    }
+
+    private void ConfigureSceneForPlatform()
     {
         if (GamePlatformManager.Instance == null)
         {
             Debug.LogWarning("GamePlatformManager not found in the scene.");
             return;
         }
-
+        Debug.Log("Activating objects");
         GamePlatformManager.Instance.ConfigureScene(xrOrigin, webGL);
     }
 }

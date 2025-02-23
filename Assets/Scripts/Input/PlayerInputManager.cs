@@ -17,7 +17,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private InputSystemUIInputModule uiInputWebGL;
     [SerializeField] private XRUIInputModule uiInputVR;
 
-    private void Awake()
+    private void OnEnable()
     {
         CreateSingleton();
         inputActions.Enable();

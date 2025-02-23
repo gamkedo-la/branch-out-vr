@@ -14,6 +14,7 @@ public class GamePlatformManager : MonoBehaviour
     public static GamePlatformManager Instance;
     public static bool IsVRMode { get; private set; }
 
+    public static event Action OnPlatformDetermined;
     public static event Action OnVRInitialized;
     public static event Action OnWebGLInitialized;
 
@@ -47,20 +48,25 @@ public class GamePlatformManager : MonoBehaviour
 
         if (XRGeneralSettings.Instance.Manager.activeLoader == null)
         {
+            Debug.Log(XRGeneralSettings.Instance.Manager.activeLoaders.Count + " active XR loaders");
             Debug.Log("Attempting to initialize XR Loader...");
             yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
+
+            if (XRGeneralSettings.Instance.Manager.activeLoader == null)
+            {
+                Debug.Log("Failed to initialize XR loader.");
+                SetVRMode(false);
+                yield break;
+            }
         }
 
-        if (XRGeneralSettings.Instance.Manager.activeLoader == null)
-        {
-            Debug.Log("Failed to initialize XR loader.");
-            SetVRMode(false);
-            yield break;
-        }
+        
+        Debug.Log($"XR Loader initialized: {XRGeneralSettings.Instance.Manager.activeLoader.name}");
+
 
         XRGeneralSettings.Instance.Manager.StartSubsystems();
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         if (XRSettings.isDeviceActive)
         {
@@ -87,6 +93,7 @@ public class GamePlatformManager : MonoBehaviour
             Debug.Log("VR mode and device detected, enabling VR.");
 
             if (xr != null) xr.SetActive(true);
+            Debug.Log(Camera.main.name);
             if (webGL != null) webGL.SetActive(false);
             OnVRInitialized?.Invoke();
         }
@@ -110,6 +117,7 @@ public class GamePlatformManager : MonoBehaviour
     {
         Debug.Log("Set VR Mode");
         IsVRMode = enableVR;
+        OnPlatformDetermined?.Invoke();
     }
 
     private void OnDisable()

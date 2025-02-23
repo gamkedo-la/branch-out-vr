@@ -87,7 +87,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Grab",
+                    "name": "LeftHandGrab",
                     "type": "Button",
                     "id": "8141bb5f-0389-4703-9b27-a86e51797a16",
                     "expectedControlType": "Button",
@@ -96,9 +96,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UISelect",
+                    "name": "RightHandGrab",
+                    "type": "Button",
+                    "id": "2b1b0b61-caa3-4179-a13a-0983a1025ad1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.1,pressPoint=0.5)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftHandUISelect",
                     "type": "Button",
                     "id": "c78588f6-b569-486f-93e6-b7642b617fb0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightHandUISelect",
+                    "type": "Button",
+                    "id": "d4d39a6f-7803-45db-820a-07914995c7fe",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -234,18 +252,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
-                    "action": "Grab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9496f706-aeaa-4e2d-bc20-430789e60996",
-                    "path": "<XRController>{RightHand}/gripPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "Grab",
+                    "action": "LeftHandGrab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -256,18 +263,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UISelect",
+                    "action": "LeftHandUISelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a4c980a3-2b13-44da-874d-782f32eaa508",
+                    "id": "eef5a96d-8b8a-44e4-8400-beec69ad5287",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "RightHandGrab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5cc5ab8e-876a-4cb2-8814-93ca067b4a27",
                     "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UISelect",
+                    "action": "RightHandUISelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -278,9 +296,27 @@
             "id": "5b30e0f7-9c12-43b3-92da-b63fcb8f889b",
             "actions": [
                 {
-                    "name": "UseTool",
+                    "name": "WebGLUseTool",
                     "type": "Button",
                     "id": "847065ee-fe19-4a30-9b03-e508d6fd88b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftHandUseTool",
+                    "type": "Button",
+                    "id": "454f7dd0-2f12-448e-9023-53624e67b17e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightHandUseTool",
+                    "type": "Button",
+                    "id": "f2b5fc87-0fe3-4b95-9d0a-13e01dc4cd1c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -307,79 +343,13 @@
             ],
             "bindings": [
                 {
-                    "name": "LeftHandUseTool",
-                    "id": "c92d8775-f17e-4ac7-a469-a7cd8a48e13f",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UseTool",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "92c3e3ec-29cd-4f8d-b8ce-322674b8f49e",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "UseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "6c0fc13b-6b34-4f7c-b3a3-f937467f3c15",
-                    "path": "<XRController>{LeftHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "UseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "RightHandUseTool",
-                    "id": "3f41c471-9559-4a62-b497-24c943ded774",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UseTool",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "ea9dd0a5-cff8-4838-af20-01a60ec3454b",
-                    "path": "<XRController>{RightHand}/triggerPressed",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "UseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "f3c3509a-d9d8-48cf-9290-aa6479e12311",
-                    "path": "<XRController>{RightHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "UseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "71f52dcf-51eb-4e1f-b0d7-1081c1f52a58",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
-                    "action": "UseTool",
+                    "action": "WebGLUseTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -426,6 +396,72 @@
                     "action": "OpenPauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "LeftHandUseTool",
+                    "id": "ad339ed9-19c3-4298-81e0-1003c7bc886e",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHandUseTool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "a99c17fa-b310-4539-9014-18605e1e07e1",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "LeftHandUseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "8d24dd81-23b1-457b-9e10-b873d58599a1",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "LeftHandUseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "RightHandUseTool",
+                    "id": "0e4dfbe5-e06c-483d-ad62-c366664978c6",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHandUseTool",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "f4792803-c265-41b3-8227-f1758e80fe09",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "RightHandUseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "37f4b853-c563-47c6-891e-660d48e0b4cf",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "RightHandUseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

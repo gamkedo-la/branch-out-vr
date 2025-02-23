@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class VRPlayerHandController : MonoBehaviour
 {
@@ -30,32 +33,31 @@ public class VRPlayerHandController : MonoBehaviour
 
     private UnityEngine.XR.InputDevice hapticDevice;
 
-    private void OnEnable()
+    private void Start()
     {
         inputActions = PlayerInputManager.Instance.inputActions;
         GamePlatformManager.OnVRInitialized += TryGetHapticDevice;
 
-        grabAction = inputActions.FindAction("Grab");
-        useToolAction = inputActions.FindAction("UseTool");
-
-        grabAction.performed += Grab;
-        grabAction.canceled += Release;
-        useToolAction.performed += UseTool;
-    }
-
-    private void Start()
-    {
         if (!isLeftHand)
         {
             Debug.Log("looking for haptic.");
+            grabAction = inputActions.FindAction("RightHandGrab");
+            useToolAction = inputActions.FindAction("RightHandUseTool");
             hapticDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
         }
         else
         {
+            grabAction = inputActions.FindAction("LeftHandGrab");
+            useToolAction = inputActions.FindAction("LeftHandUseTool");
             hapticDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         }
         Debug.Log("haptic device: " + hapticDevice.name);
+
         handPoseController = GetComponentInChildren<HandPoseController>();
+
+        grabAction.performed += Grab;
+        grabAction.canceled += Release;
+        useToolAction.performed += UseTool;
     }
 
     private void TryGetHapticDevice()
@@ -83,9 +85,26 @@ public class VRPlayerHandController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+/*        if (!isLeftHand)
+        {
+            PointerEventData eventData = new(EventSystem.current);
+            eventData.position = new Vector2(Screen.width / 2, Screen.height / 2);
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventData, results);
+            foreach (var result in results)
+            {
+                Debug.Log("UI HIT: " + result.gameObject.name);
+            }
+        }*/
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         other.TryGetComponent<IGrabbable>(out IGrabbable grabbable);
+        Debug.Log("Here");
         if (grabbable != null)
         {
             Debug.Log("Found grabbable object in range on trigger enter.");
@@ -166,8 +185,15 @@ public class VRPlayerHandController : MonoBehaviour
     {
         GamePlatformManager.OnVRInitialized -= TryGetHapticDevice;
 
-        grabAction.performed -= Grab;
-        grabAction.canceled -= Release;
-        useToolAction.performed -= UseTool;
+        if (grabAction != null)
+        {
+            grabAction.performed -= Grab;
+            grabAction.canceled -= Release;
+        }
+
+        if (useToolAction != null)
+        {
+            useToolAction.performed -= UseTool;
+        }
     }
 }

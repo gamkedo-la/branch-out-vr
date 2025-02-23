@@ -63,7 +63,7 @@ public class WebGLPlayerController : MonoBehaviour
         inputActions = PlayerInputManager.Instance.inputActions;
         mousePositionAction = inputActions.FindAction("Position");
         switchToolAction = inputActions.FindAction("SwitchTools");
-        useToolAction = inputActions.FindAction("UseTool");
+        useToolAction = inputActions.FindAction("WebGLUseTool");
         shiftKeyAction = inputActions.FindAction("DepthChange");
 
         WebGLCameraController.OnCameraViewRotated += UpdatePlayerRotation;
