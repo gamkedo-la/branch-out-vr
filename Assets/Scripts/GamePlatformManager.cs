@@ -83,6 +83,7 @@ public class GamePlatformManager : MonoBehaviour
     private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
         Debug.Log($"Scene changed to: {nextScene.name}");
+        OnPlatformDetermined?.Invoke();
     }
 
     public void ConfigureScene(GameObject xr, GameObject webGL)

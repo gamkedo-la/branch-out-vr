@@ -17,9 +17,12 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] private InputSystemUIInputModule uiInputWebGL;
     [SerializeField] private XRUIInputModule uiInputVR;
 
-    private void OnEnable()
+    private void Awake()
     {
         CreateSingleton();
+    }
+    private void OnEnable()
+    {
         inputActions.Enable();
         uiInputWebGL = GetComponent<InputSystemUIInputModule>();
         uiInputVR = GetComponent<XRUIInputModule>();
@@ -31,12 +34,30 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (GamePlatformManager.IsVRMode)
         {
+            if (uiInputVR == null)
+            {
+                uiInputVR = GetComponent<XRUIInputModule>();
+            }
             uiInputVR.enabled = true;
+
+            if (uiInputWebGL == null)
+            {
+                uiInputWebGL = GetComponent<InputSystemUIInputModule>();
+            }
             uiInputWebGL.enabled = false;
         }
         else
         {
+            if (uiInputVR == null)
+            {
+                uiInputVR = GetComponent<XRUIInputModule>();
+            }
             uiInputVR.enabled = false;
+
+            if (uiInputWebGL == null)
+            {
+                uiInputWebGL = GetComponent<InputSystemUIInputModule>();
+            }
             uiInputWebGL.enabled = true;
         }
     }

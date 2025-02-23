@@ -23,6 +23,9 @@ public class VRPlayerHandController : MonoBehaviour
     private IGrabbable grabbableInRange;
 
     [SerializeField]
+    private XRRayInteractor rayInteractor;
+
+    [SerializeField]
     private HandPoseController handPoseController;
 
     private InputActionAsset inputActions;
@@ -37,6 +40,11 @@ public class VRPlayerHandController : MonoBehaviour
     {
         inputActions = PlayerInputManager.Instance.inputActions;
         GamePlatformManager.OnVRInitialized += TryGetHapticDevice;
+        rayInteractor = GetComponent<XRRayInteractor>();
+        if (rayInteractor.interactionManager == null)
+        {
+            rayInteractor.interactionManager = GameObject.FindObjectOfType<XRInteractionManager>();
+        }
 
         if (!isLeftHand)
         {
@@ -83,22 +91,6 @@ public class VRPlayerHandController : MonoBehaviour
         {
             Debug.LogWarning("Failed to find haptic device.");
         }
-    }
-
-    private void Update()
-    {
-/*        if (!isLeftHand)
-        {
-            PointerEventData eventData = new(EventSystem.current);
-            eventData.position = new Vector2(Screen.width / 2, Screen.height / 2);
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(eventData, results);
-            foreach (var result in results)
-            {
-                Debug.Log("UI HIT: " + result.gameObject.name);
-            }
-        }*/
-
     }
 
     private void OnTriggerEnter(Collider other)
