@@ -60,8 +60,11 @@ public class BranchNode : TreePart
 
         if (thisBranch.nodes.Count >= nodeIndex)
         {
-            EnergyPathNode energyPath = thisBranch.previousLimb.nodes[nodeIndex].GetComponent<EnergyPathNode>();
-            energyPath.RemoveChild(energyPath.GetComponentsInChildren<EnergyPathNode>()[1]);
+            if (thisBranch.previousLimb.nodes.Count > 1)
+            {
+                EnergyPathNode energyPath = thisBranch.previousLimb.nodes[nodeIndex].GetComponent<EnergyPathNode>();
+                energyPath.RemoveChild(energyPath.GetComponentsInChildren<EnergyPathNode>()[1]);
+            }
         }
 
         thisBranch.CutLimb();
