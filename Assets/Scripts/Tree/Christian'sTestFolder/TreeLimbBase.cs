@@ -57,8 +57,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public int maxChildLimbCount = 2;
     public bool terminated;
-    float terminateChance = 0.7f;
-    private float beginGrowthThreshold = 0.25f;
+    float terminateChance = 0.2f;
     public LimbContainer limbContainer;
 
     public Vector2 minRotations, maxRotations;
@@ -204,47 +203,12 @@ public class TreeLimbBase : MonoBehaviour
             return;
         }
 
-        if (!allocateEnergyForGrowth)
-        {
-            if (PrepareForGrowth())
-            {
-                allocateEnergyForGrowth = true;
-                thisTree.numPotentialGrowthLocations++;
-            }
-        }
-
         if (branchedLimbs.Count < maxChildLimbCount && WillGrowSub())
             AddChild();
     }
     public bool WillGrowSub()
     {
-        if (energy >= 50)
-        {
-            if (Random.value > beginGrowthThreshold)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool PrepareForGrowth()
-    {
-        if (energy > 100)
-        {
-            if (thisTree.numPotentialGrowthLocations < 10)
-            {
-                return true;
-            }
-        }
-        return false;
+        return energy >= 50;
     }
     public bool LimbTerminated()
     {

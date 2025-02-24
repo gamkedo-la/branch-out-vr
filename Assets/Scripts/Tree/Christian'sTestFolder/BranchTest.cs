@@ -9,8 +9,6 @@ public class BranchTest : TreeLimbBase
     public SecondaryBranch secondaryBranchPrefab;
     BranchTest branchPrefab;
 
-    private bool isLimbTerminated = false;
-
     //Initialize if spawned from a trunk
     public void Initialize(UnityEvent growEvent, TrunkTest previousTrunk, TreeTest tree)
     {
@@ -84,7 +82,7 @@ public class BranchTest : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (isLimbTerminated)
+        if (LimbTerminated())
             return;
 
         if (nextLimb == null)
@@ -94,7 +92,6 @@ public class BranchTest : TreeLimbBase
             EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
             energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
             (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
-            isLimbTerminated = LimbTerminated();
         }
     }
 }

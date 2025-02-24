@@ -9,7 +9,6 @@ public class SecondaryBranch : TreeLimbBase
     [SerializeField] TertiaryBranch tertiaryBranchPrefab;
     SecondaryBranch secondaryBranchPrefab;
 
-    private bool isLimbTerminated = false;
     public BranchNode parentNode;
 
     //Initialize if spawned from a branch
@@ -72,7 +71,7 @@ public class SecondaryBranch : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (isLimbTerminated)
+        if (LimbTerminated())
             return;
 
         if (nextLimb == null)
@@ -80,7 +79,6 @@ public class SecondaryBranch : TreeLimbBase
             TreeLimbBase limb = Instantiate(secondaryBranchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
             (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
-            isLimbTerminated = LimbTerminated();
         }
     }
 }

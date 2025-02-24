@@ -83,7 +83,7 @@ public class GamePlatformManager : MonoBehaviour
     private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
         Debug.Log($"Scene changed to: {nextScene.name}");
-        OnPlatformDetermined?.Invoke();
+        StartCoroutine(CheckInitializeVR());
     }
 
     public void ConfigureScene(GameObject xr, GameObject webGL)
@@ -92,9 +92,9 @@ public class GamePlatformManager : MonoBehaviour
         if (IsVRMode)
         {
             Debug.Log("VR mode and device detected, enabling VR.");
-
+            Debug.Log(xr == null);
             if (xr != null) xr.SetActive(true);
-            Debug.Log(Camera.main.name);
+            Debug.Log(webGL == null);
             if (webGL != null) webGL.SetActive(false);
             OnVRInitialized?.Invoke();
         }

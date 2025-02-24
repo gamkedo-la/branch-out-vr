@@ -23,7 +23,6 @@ public class SceneConfig : MonoBehaviour
             Debug.LogWarning("GamePlatformManager not found in the scene.");
             return;
         }
-        Debug.Log("Activating objects");
         if (xrOrigin == null)
         {
             xrOrigin = GameObject.FindObjectOfType<XROrigin>(true).gameObject;
@@ -35,7 +34,6 @@ public class SceneConfig : MonoBehaviour
             {
                 if (cameras[i].gameObject.layer == 8)
                 {
-                    Debug.Log("WebGL layer found on camera");
                     webGL = cameras[i].gameObject.transform.parent.gameObject;
                 }
             }

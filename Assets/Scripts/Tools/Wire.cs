@@ -32,7 +32,6 @@ public class Wire : Tool, IGrabbable
 
     private void GrabActionReferences()
     {
-        Debug.Log("Get actions");
         if (GamePlatformManager.IsVRMode)
         {
             rightHandPositionActionVR = PlayerInputManager.Instance.inputActions.FindAction("RightHandPosition");
@@ -40,7 +39,6 @@ public class Wire : Tool, IGrabbable
         }
         else
         {
-            Debug.Log("Get WebGLActions");
             playerPositionWebGL = PlayerInputManager.Instance.inputActions.FindAction("Position");
         }
     }
@@ -114,18 +112,20 @@ public class Wire : Tool, IGrabbable
     /// <param name="context"></param>
     private void TrackPlayerMotion(InputAction.CallbackContext context)
     {
-        Vector3 currentPosition = playerHoldingToolObject.transform.localPosition;
-        Debug.Log(currentPosition + " current position, " + previousPlayerPosition + " previous position");
-
-        if (currentPosition != previousPlayerPosition)
+        if (playerHoldingToolObject != null)
         {
-            if (rotateBranchActive)
-            {
-                RotateNode();
-            }
-            previousPlayerPosition = currentPosition;
-        }
+            Vector3 currentPosition = playerHoldingToolObject.transform.localPosition;
+            Debug.Log(currentPosition + " current position, " + previousPlayerPosition + " previous position");
 
+            if (currentPosition != previousPlayerPosition)
+            {
+                if (rotateBranchActive)
+                {
+                    RotateNode();
+                }
+                previousPlayerPosition = currentPosition;
+            }
+        }
     }
 
     /// <summary>
@@ -201,7 +201,7 @@ public class Wire : Tool, IGrabbable
 
         if (leftHandPositionActionVR != null)
         {
-            leftHandPositionActionVR.performed += TrackPlayerMotion;
+            leftHandPositionActionVR.performed -= TrackPlayerMotion;
         }
 
         if (playerPositionWebGL != null)
