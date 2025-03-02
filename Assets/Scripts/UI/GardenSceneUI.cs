@@ -18,7 +18,7 @@ public class GardenSceneUI : MonoBehaviour
     private bool openControlsFromPause;
     private Vector3 vrWorldScale = new(0.011f, 0.011f, 0.011f);
     private Vector3 vrWorldRotation = new(0, 180, 0);
-    private Vector3 vrWorldPos = new(15, 5, 9);
+    private Vector3 vrWorldPos = new(15.26f, 4.3f, 9.3f);
 
     private void Awake()
     {
