@@ -323,15 +323,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggleEnergyView",
-                    "type": "Button",
-                    "id": "07c5f225-915d-4d71-91f4-c7319b0771c6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "OpenPauseMenu",
                     "type": "Button",
                     "id": "be6959a3-1773-416d-a34a-6c2b3da486a6",
@@ -350,28 +341,6 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "WebGLUseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1b9f00f8-15d4-4906-b778-62b1eac7eec3",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "ToggleEnergyView",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b035638b-963f-49a1-a49e-07374c0006dd",
-                    "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "VR",
-                    "action": "ToggleEnergyView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

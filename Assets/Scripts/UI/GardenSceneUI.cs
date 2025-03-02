@@ -28,7 +28,8 @@ public class GardenSceneUI : MonoBehaviour
     {
         GamePlatformManager.OnWebGLInitialized +=  SubscribePlayerInput;
         GamePlatformManager.OnVRInitialized += SubscribePlayerInput;
-        GamePlatformManager.OnVRInitialized += SetVRUI;
+        GamePlatformManager.OnVRInitialized += SetPlatformUI;
+        GamePlatformManager.OnWebGLInitialized += SetPlatformUI;
 
         TreeTest.OnGameOver += GameOver;
     }
@@ -41,7 +42,7 @@ public class GardenSceneUI : MonoBehaviour
         }
     }
 
-    private void SetVRUI()
+    private void SetPlatformUI()
     {
         if (GamePlatformManager.IsVRMode)
         {
@@ -51,7 +52,13 @@ public class GardenSceneUI : MonoBehaviour
             transform.position = vrWorldPos;
             transform.localScale = vrWorldScale;
             transform.rotation = Quaternion.Euler(vrWorldRotation);
+            vrControlsUI.SetActive(true);
         }
+        else
+        {
+            webGLControlsUI.SetActive(true);
+        }
+        Time.timeScale = 0f;
     }
 
     private void SubscribePlayerInput()
@@ -83,11 +90,13 @@ public class GardenSceneUI : MonoBehaviour
 
     public void ResumeGame()
     {
+        AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
         TogglePauseMenu();
     }
 
     public void ReturnToMainMenu()
     {
+        AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(0);
     }
@@ -101,33 +110,15 @@ public class GardenSceneUI : MonoBehaviour
 
     public void StartOver()
     {
+        AudioManager.Instance.PlaySFX("SFX_UI_ButtonClick");
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(1);
-    }
-
-    public void ScaleOnHover()
-    {
-        Debug.Log("Scale on hover");
-    }
-
-    public void NormalScaleOnExitHover()
-    {
-        Debug.Log("Exit hover");
-    }
-
-    public void TestSelect()
-    {
-        Debug.Log("Select");
-    }
-
-    public void TestActivate()
-    {
-        Debug.Log("Activate");
     }
 
     public void ToggleShowControls()
     {
         bool justActivated;
+        AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
         if (GamePlatformManager.IsVRMode)
         {
             vrControlsUI.SetActive(!vrControlsUI.activeSelf);
@@ -155,6 +146,10 @@ public class GardenSceneUI : MonoBehaviour
                 openControlsFromPause = false;
                 pauseMenuUI.SetActive(true);
             }
+            else
+            {
+                Time.timeScale = 1f;
+            }
         }
 
     }
@@ -163,7 +158,8 @@ public class GardenSceneUI : MonoBehaviour
     {
         GamePlatformManager.OnWebGLInitialized -= SubscribePlayerInput;
         GamePlatformManager.OnVRInitialized -= SubscribePlayerInput;
-        GamePlatformManager.OnVRInitialized -= SetVRUI;
+        GamePlatformManager.OnVRInitialized -= SetPlatformUI;
+        GamePlatformManager.OnWebGLInitialized -= SetPlatformUI;
 
 
         if (pause != null)

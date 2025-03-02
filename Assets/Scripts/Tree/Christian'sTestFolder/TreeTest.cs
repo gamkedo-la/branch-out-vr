@@ -11,7 +11,7 @@ public class TreeTest : MonoBehaviour
     public float growthTime = 2f;
     public float currentTotalEnergy = 10000f;
     public float currentFreeEnergy = 10000f;
-    public HashSet<TreeLimbBase> growingLimbs = new HashSet<TreeLimbBase>();
+    public HashSet<TreeLimbBase> growingLimbs = new();
     public int numPotentialGrowthLocations = 0;
 
     public EnergyPathNode rootNode; //Root of the tree, for the energy particles path

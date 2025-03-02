@@ -20,6 +20,7 @@ public class MainMenuUI : MonoBehaviour
     {
         playButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlaySFX("SFX_UI_ButtonClick");
             LoadScene();
         });
         optionsButton.onClick.AddListener(() =>
@@ -28,6 +29,7 @@ public class MainMenuUI : MonoBehaviour
         });
         exitButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #else
