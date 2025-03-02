@@ -14,7 +14,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI loadingText;
 
     private Vector3 vrWorldScale = new(0.01f, 0.01f, 0.01f);
-    private Vector3 vrWorldPos = new(-1, 5, 9);
+    private Vector3 vrWorldPos = new(-1, 4.09f, 9);
 
     private void Awake()
     {

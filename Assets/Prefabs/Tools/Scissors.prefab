@@ -87,7 +87,7 @@ MonoBehaviour:
   toolAttachPoint: {fileID: 862354164525821360}
   isActive: 0
   proximityPoint: {fileID: 4657888550501825389}
-  overlapSphereRadius: 0.35
+  overlapSphereRadius: 0.2
   branchDefaultMat: {fileID: 0}
   targetMat: {fileID: 0}
 --- !u!65 &4246074222988894856
@@ -105,12 +105,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.1, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 0.3, z: 0.7}
+  m_Center: {x: 0, y: -0.01, z: 0.17}
 --- !u!54 &5613772507062788254
 Rigidbody:
   m_ObjectHideFlags: 0
