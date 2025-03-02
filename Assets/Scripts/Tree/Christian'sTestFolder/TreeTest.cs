@@ -80,6 +80,7 @@ public class TreeTest : MonoBehaviour
         
         if (currentTotalEnergy <= 0)
         {
+            AudioManager.Instance.PlaySFX("SFX_Tree_Dying");
             OnGameOver?.Invoke();
         }
     }

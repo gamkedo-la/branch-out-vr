@@ -20,6 +20,16 @@ public class GamePlatformManager : MonoBehaviour
 
     private bool hasCheckedPlatform = false;
 
+    /// <summary>
+    /// When true, this will set all platform-specific rules and objects for a build rather than determine them at startup. 
+    /// </summary>
+    public bool setPlatformForBuild = false;
+
+    /// <summary>
+    /// If setPlatformForBuild is true, set this bool to true to use VR platform-specific rules and objects, and false to use WebGL. 
+    /// </summary>
+    public bool isVR = false;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,9 +46,17 @@ public class GamePlatformManager : MonoBehaviour
 
     private void Start()
     {
-        if (!hasCheckedPlatform)
+        if (setPlatformForBuild)
         {
-            StartCoroutine(CheckInitializeVR());
+            SetVRMode(isVR);
+            OnPlatformDetermined?.Invoke();
+        }
+        else
+        {
+            if (!hasCheckedPlatform)
+            {
+                StartCoroutine(CheckInitializeVR());
+            }
         }
     }
 
@@ -48,7 +66,6 @@ public class GamePlatformManager : MonoBehaviour
 
         if (XRGeneralSettings.Instance.Manager.activeLoader == null)
         {
-            Debug.Log(XRGeneralSettings.Instance.Manager.activeLoaders.Count + " active XR loaders");
             Debug.Log("Attempting to initialize XR Loader...");
             yield return XRGeneralSettings.Instance.Manager.InitializeLoader();
 
@@ -60,30 +77,29 @@ public class GamePlatformManager : MonoBehaviour
             }
         }
 
-        
         Debug.Log($"XR Loader initialized: {XRGeneralSettings.Instance.Manager.activeLoader.name}");
-
 
         XRGeneralSettings.Instance.Manager.StartSubsystems();
 
-        //yield return new WaitForSeconds(1f);
-
         if (XRSettings.isDeviceActive)
         {
+            Debug.Log("VR device found. Enabling VR mode.");
             SetVRMode(true);
         }
 
         else
         {
-            Debug.Log("No VR device detected.");
+            Debug.Log("No VR device detected. Running in flat mode.");
             SetVRMode(false);
         }
     }
 
     private void OnSceneChanged(Scene currentScene, Scene nextScene)
     {
-        Debug.Log($"Scene changed to: {nextScene.name}");
-        StartCoroutine(CheckInitializeVR());
+        if (!setPlatformForBuild)
+        {
+            StartCoroutine(CheckInitializeVR());
+        }
     }
 
     public void ConfigureScene(GameObject xr, GameObject webGL)
@@ -91,16 +107,12 @@ public class GamePlatformManager : MonoBehaviour
 
         if (IsVRMode)
         {
-            Debug.Log("VR mode and device detected, enabling VR.");
-            Debug.Log(xr == null);
             if (xr != null) xr.SetActive(true);
-            Debug.Log(webGL == null);
             if (webGL != null) webGL.SetActive(false);
             OnVRInitialized?.Invoke();
         }
         else
         {
-            Debug.Log("No VR Device. Running in \"flat\" mode.");
             if (xr != null) xr.SetActive(false);
             if (webGL != null) webGL.SetActive(true);
             OnWebGLInitialized?.Invoke();
@@ -123,11 +135,6 @@ public class GamePlatformManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (XRGeneralSettings.Instance.Manager.activeLoader != null)
-        {
-            XRGeneralSettings.Instance.Manager.StopSubsystems();
-            XRGeneralSettings.Instance.Manager.DeinitializeLoader();
-        }
         SceneManager.activeSceneChanged -= OnSceneChanged;
     }
 }

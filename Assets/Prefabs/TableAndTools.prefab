@@ -46,7 +46,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.483
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -58,23 +58,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.98836154
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.15212336
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 319615860066615475, guid: c1325841ac9bafa48847cfddd90daa1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -228,7 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6849959301422131508, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.483
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 6849959301422131508, guid: 9cb2f73e336ffd74295343796958abad, type: 3}
       propertyPath: m_LocalPosition.y

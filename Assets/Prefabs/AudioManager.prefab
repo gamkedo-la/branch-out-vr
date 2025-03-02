@@ -166,3 +166,6 @@ MonoBehaviour:
   - name: SFX_UI_ButtonHover
     volume: 0.6
     clip: {fileID: 8300000, guid: 22c1c7b902c05fb4b88a399c7ed3f152, type: 3}
+  - name: SFX_Tree_Dying
+    volume: 0.6
+    clip: {fileID: 8300000, guid: 237fc1294734cdf4994ab648faba8eb0, type: 3}

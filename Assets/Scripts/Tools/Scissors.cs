@@ -26,7 +26,7 @@ public class Scissors : Tool, IGrabbable
             return;
         }
         isActive = false;
-        transform.position = defaultTransform.transform.position;
+        transform.SetPositionAndRotation(defaultTransform.transform.position, defaultTransform.transform.rotation);
     }
 
     private void Update()
