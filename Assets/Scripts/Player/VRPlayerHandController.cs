@@ -96,7 +96,6 @@ public class VRPlayerHandController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         other.TryGetComponent<IGrabbable>(out IGrabbable grabbable);
-        Debug.Log("Here");
         if (grabbable != null)
         {
             Debug.Log("Found grabbable object in range on trigger enter.");
@@ -169,6 +168,7 @@ public class VRPlayerHandController : MonoBehaviour
     {
         if (activeTool != null)
         {
+            Debug.Log("VR Use tool");
             activeTool.UseTool();
         }
     }

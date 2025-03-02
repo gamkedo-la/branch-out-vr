@@ -411,7 +411,7 @@
                 {
                     "name": "modifier",
                     "id": "a99c17fa-b310-4539-9014-18605e1e07e1",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "path": "<XRController>{LeftHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -444,7 +444,7 @@
                 {
                     "name": "modifier",
                     "id": "f4792803-c265-41b3-8227-f1758e80fe09",
-                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "path": "<XRController>{RightHand}/gripPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",

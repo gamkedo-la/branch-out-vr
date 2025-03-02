@@ -112,7 +112,6 @@ public class TreeLimbBase : MonoBehaviour
                 nodes[i].thisTree = tree;
             }
         }
-
     }
 
     /// <summary>

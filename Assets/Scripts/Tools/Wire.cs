@@ -116,7 +116,6 @@ public class Wire : Tool, IGrabbable
         {
             Vector3 currentPosition = playerHoldingToolObject.transform.localPosition;
             Debug.Log(currentPosition + " current position, " + previousPlayerPosition + " previous position");
-
             if (currentPosition != previousPlayerPosition)
             {
                 if (rotateBranchActive)
@@ -133,6 +132,7 @@ public class Wire : Tool, IGrabbable
     /// </summary>
     private void RotateNode()
     {
+        Debug.Log("Rotate node");
         if (playerHoldingToolObject != null)
         {
             if (closestBranch != null)
@@ -176,7 +176,17 @@ public class Wire : Tool, IGrabbable
     {
         isActive = true;
         playerHoldingToolObject = leftOrRightHand;
-        previousPlayerPosition = leftOrRightHand.transform.position;
+        Debug.Log(playerHoldingToolObject.name);
+        previousPlayerPosition = leftOrRightHand.transform.localPosition;
+
+        if (playerHoldingToolObject.name.Contains("Right"))
+        {
+            rightHandPositionActionVR.performed += TrackPlayerMotion;
+        }
+        else if (playerHoldingToolObject.name.Contains("Left"))
+        {
+            leftHandPositionActionVR.performed += TrackPlayerMotion;
+        }
     }
 
     void IGrabbable.OnRelease()
@@ -190,6 +200,8 @@ public class Wire : Tool, IGrabbable
         transform.position = defaultTransform.transform.position;
         playerHoldingToolObject = null;
         previousPlayerPosition = Vector3.zero;
+        rightHandPositionActionVR.performed -= TrackPlayerMotion;
+        leftHandPositionActionVR.performed -= TrackPlayerMotion;
     }
 
     private void OnDisable()
