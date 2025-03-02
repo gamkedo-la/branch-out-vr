@@ -16,11 +16,13 @@ public class WebGLCameraController : MonoBehaviour
     [SerializeField]
     float maxVerticalAngle = 80f;
 
+    [SerializeField] float rotationSmoothing = 5f;
     public static event Action OnCameraViewRotated;
 
     private Vector3 offset;
 
     private float currentVerticalAngle = 45f; 
+    private Vector3 smoothedOffset;
 
     private InputAction rotateCamera;
 
@@ -40,6 +42,7 @@ public class WebGLCameraController : MonoBehaviour
     {
         //NOTE/TODO: May want to implement zoom functionality
         offset = transform.position - tree.transform.position;
+        smoothedOffset = offset;
     }
 
     //NOTE/TODO: May want to implement zoom functionality
@@ -69,8 +72,12 @@ public class WebGLCameraController : MonoBehaviour
         {
             offset = newOffset;
         }
+    }
+    private void LateUpdate()
+    {
+        smoothedOffset = Vector3.Lerp(smoothedOffset, offset, rotationSmoothing * Time.deltaTime);
 
-        transform.position = tree.transform.position + offset;
+        transform.position = tree.transform.position + smoothedOffset;
         transform.LookAt(tree.transform.position);
         OnCameraViewRotated?.Invoke();
     }
