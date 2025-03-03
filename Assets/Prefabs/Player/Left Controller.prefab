@@ -333,7 +333,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 6939205218965650362, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
   m_SelectAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Select
       m_Type: 1
@@ -343,7 +343,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -2205394950925959878, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
+    m_Reference: {fileID: 0}
   m_SelectActionValue:
     m_UseReference: 0
     m_Action:
@@ -357,7 +357,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ActivateAction:
-    m_UseReference: 1
+    m_UseReference: 0
     m_Action:
       m_Name: Activate
       m_Type: 1
@@ -367,7 +367,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: -2205394950925959878, guid: a93f25a987459f3418391fc8e34f311a, type: 3}
+    m_Reference: {fileID: 0}
   m_ActivateActionValue:
     m_UseReference: 0
     m_Action:

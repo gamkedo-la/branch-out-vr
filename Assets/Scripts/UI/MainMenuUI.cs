@@ -27,15 +27,6 @@ public class MainMenuUI : MonoBehaviour
         {
             Debug.Log("Need to add options menu");
         });
-        exitButton.onClick.AddListener(() =>
-        {
-            AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        });
     }
 
     private void OnEnable()
@@ -59,12 +50,19 @@ public class MainMenuUI : MonoBehaviour
     {
         loadingText.gameObject.SetActive(true);
         playButton.gameObject.SetActive(false);
-        optionsButton.gameObject.SetActive(false);
-        exitButton.gameObject.SetActive(false);
+        //optionsButton.gameObject.SetActive(false);
 
         if (GamePlatformManager.IsVRMode)
         {
-            StartCoroutine(LoadVRScene());
+            //This means we're in a build, and should NOT do LoadVRScene, as this breaks it
+            if (GamePlatformManager.Instance.isBuildVR)
+            {
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                StartCoroutine(LoadEditorVRScene());
+            }
         }
         else
         {
@@ -72,7 +70,7 @@ public class MainMenuUI : MonoBehaviour
         }
     }
 
-    IEnumerator LoadVRScene()
+    IEnumerator LoadEditorVRScene()
     {
         Debug.Log("Stopping XR before scene switch...");
         XRGeneralSettings.Instance.Manager.DeinitializeLoader();

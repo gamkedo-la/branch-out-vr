@@ -121,13 +121,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HeadIsTracked",
+                    "type": "Button",
+                    "id": "d2ac4443-5602-4eb5-8d0f-b007e89a9e06",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "84a6d71c-dc87-4e7f-9bc4-eec611c27bf8",
-                    "path": "<XRHMD>/devicePosition",
+                    "id": "c974535f-d9d8-4e41-881f-e0211ce630b1",
+                    "path": "<XRHMD>/centerEyePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -137,8 +146,8 @@
                 },
                 {
                     "name": "",
-                    "id": "c974535f-d9d8-4e41-881f-e0211ce630b1",
-                    "path": "<XRHMD>/centerEyePosition",
+                    "id": "84a6d71c-dc87-4e7f-9bc4-eec611c27bf8",
+                    "path": "<OculusHMD>/devicePosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -160,7 +169,7 @@
                 {
                     "name": "",
                     "id": "5093b58d-4afc-4039-8213-e42e75ba35c5",
-                    "path": "<XRHMD>/deviceRotation",
+                    "path": "<OculusHMD>/deviceRotation",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -171,7 +180,7 @@
                 {
                     "name": "",
                     "id": "4d7cce77-3415-42b1-92eb-eca58738c6a9",
-                    "path": "<OculusHMD>/trackingState",
+                    "path": "<XRHMD>/trackingState",
                     "interactions": "",
                     "processors": "",
                     "groups": "VR",
@@ -191,15 +200,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "765d1436-2618-4cf5-abcd-2be40cb2de12",
+                    "name": "Quaternion Fallback",
+                    "id": "f48d49a4-1920-41b2-9653-9d6d813132d1",
+                    "path": "QuaternionFallback",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHandRotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "first",
+                    "id": "c81cca26-6658-49cc-a31a-0496414a92de",
+                    "path": "<XRController>{LeftHand}/pointerRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHandRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "second",
+                    "id": "50e91930-1353-484e-bf4c-5d8f86a9645b",
                     "path": "<XRController>{LeftHand}/deviceRotation",
                     "interactions": "",
                     "processors": "",
-                    "groups": "VR",
+                    "groups": "",
                     "action": "LeftHandRotation",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -224,15 +255,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "7de392a9-fc56-4d04-9c09-8ebe268f0cf0",
+                    "name": "Quaternion Fallback",
+                    "id": "70d1bd59-b463-4347-91bd-94c4cbc23eeb",
+                    "path": "QuaternionFallback",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHandRotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "first",
+                    "id": "e69081f8-3fd1-40fb-bdb4-753a6238c2c7",
+                    "path": "<XRController>{RightHand}/pointerRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHandRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "second",
+                    "id": "02c53990-da70-4839-91b9-abebc32f5e54",
                     "path": "<XRController>{RightHand}/deviceRotation",
                     "interactions": "",
                     "processors": "",
-                    "groups": "VR",
+                    "groups": "",
                     "action": "RightHandRotation",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -253,6 +306,17 @@
                     "processors": "",
                     "groups": "VR",
                     "action": "LeftHandGrab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8768eddb-1352-4cdf-9cf7-ea331fbbe20e",
+                    "path": "<XRController>{LeftHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftHandUISelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -280,12 +344,34 @@
                 },
                 {
                     "name": "",
+                    "id": "6ceb44da-60b8-44a1-a94b-4d7790cb86f8",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightHandUISelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5cc5ab8e-876a-4cb2-8814-93ca067b4a27",
                     "path": "<XRController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "RightHandUISelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bb95692e-1778-4d17-8494-173b0a1427c9",
+                    "path": "<XRHMD>/{IsTracked}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "VR",
+                    "action": "HeadIsTracked",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

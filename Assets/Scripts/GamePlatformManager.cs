@@ -28,7 +28,9 @@ public class GamePlatformManager : MonoBehaviour
     /// <summary>
     /// If setPlatformForBuild is true, set this bool to true to use VR platform-specific rules and objects, and false to use WebGL. 
     /// </summary>
-    public bool isVR = false;
+    public bool isBuildVR = false;
+
+    public bool controlsGuideShownAtStart = false;
 
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class GamePlatformManager : MonoBehaviour
     {
         if (setPlatformForBuild)
         {
-            SetVRMode(isVR);
+            SetVRMode(isBuildVR);
             OnPlatformDetermined?.Invoke();
         }
         else
@@ -100,6 +102,11 @@ public class GamePlatformManager : MonoBehaviour
         {
             StartCoroutine(CheckInitializeVR());
         }
+        else
+        {
+            SetVRMode(isBuildVR);
+            OnPlatformDetermined?.Invoke();
+        }
     }
 
     public void ConfigureScene(GameObject xr, GameObject webGL)
@@ -107,6 +114,7 @@ public class GamePlatformManager : MonoBehaviour
 
         if (IsVRMode)
         {
+            Debug.Log("Configure scene for VR.");
             if (xr != null) xr.SetActive(true);
             if (webGL != null) webGL.SetActive(false);
             OnVRInitialized?.Invoke();

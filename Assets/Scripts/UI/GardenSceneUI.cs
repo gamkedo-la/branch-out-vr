@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 
@@ -16,9 +17,10 @@ public class GardenSceneUI : MonoBehaviour
 
     private InputAction pause;
     private bool openControlsFromPause;
-    private Vector3 vrWorldScale = new(0.011f, 0.011f, 0.011f);
+    private Vector3 vrWorldScale = new(0.0022f, 0.0022f, 0.0022f);
     private Vector3 vrWorldRotation = new(0, 180, 0);
-    private Vector3 vrWorldPos = new(15.26f, 4.3f, 9.3f);
+    private Vector3 vrWorldPos = new(15.074f, 4.3f, 9.021f);
+    private Vector2 widthHeight = new(800, 555);
 
     private void Awake()
     {
@@ -52,13 +54,24 @@ public class GardenSceneUI : MonoBehaviour
             transform.position = vrWorldPos;
             transform.localScale = vrWorldScale;
             transform.rotation = Quaternion.Euler(vrWorldRotation);
-            vrControlsUI.SetActive(true);
+            RectTransform rect = GetComponent<RectTransform>();
+            rect.sizeDelta = widthHeight;
+            if (!GamePlatformManager.Instance.controlsGuideShownAtStart)
+            {
+                vrControlsUI.SetActive(true);
+                Time.timeScale = 0f;
+                GamePlatformManager.Instance.controlsGuideShownAtStart = true;
+            }
         }
         else
         {
-            webGLControlsUI.SetActive(true);
+            if (!GamePlatformManager.Instance.controlsGuideShownAtStart)
+            {
+                webGLControlsUI.SetActive(true);
+                Time.timeScale = 0f;
+                GamePlatformManager.Instance.controlsGuideShownAtStart = true;
+            }
         }
-        Time.timeScale = 0f;
     }
 
     private void SubscribePlayerInput()
@@ -151,7 +164,15 @@ public class GardenSceneUI : MonoBehaviour
                 Time.timeScale = 1f;
             }
         }
+    }
 
+    public void EasyCloseControlsGuide()
+    {
+        if (webGLControlsUI.activeSelf)
+        {
+            webGLControlsUI.SetActive(false);
+            Time.timeScale = 1f;
+        }
     }
 
     private void OnDisable()
