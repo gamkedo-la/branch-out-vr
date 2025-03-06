@@ -19,11 +19,19 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Awake()
     {
-        CreateSingleton();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        inputActions.Enable();
     }
     private void OnEnable()
     {
-        inputActions.Enable();
         uiInputWebGL = GetComponent<InputSystemUIInputModule>();
         uiInputVR = GetComponent<XRUIInputModule>();
         GamePlatformManager.OnVRInitialized += SetActiveUIEvents;
@@ -59,19 +67,6 @@ public class PlayerInputManager : MonoBehaviour
                 uiInputWebGL = GetComponent<InputSystemUIInputModule>();
             }
             uiInputWebGL.enabled = true;
-        }
-    }
-
-    private void CreateSingleton()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 }

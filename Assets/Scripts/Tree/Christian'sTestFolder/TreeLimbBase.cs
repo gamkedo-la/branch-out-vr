@@ -57,7 +57,7 @@ public class TreeLimbBase : MonoBehaviour
 
     public int maxChildLimbCount = 2;
     public bool terminated;
-    float terminateChance = 0.2f;
+    float terminateChance = 0.45f;
     public LimbContainer limbContainer;
 
     public Vector2 minRotations, maxRotations;

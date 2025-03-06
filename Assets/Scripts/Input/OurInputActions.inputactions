@@ -559,6 +559,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "95b1188e-2267-4b6c-ab3e-0f1007aa5f12",
+                    "expectedControlType": "",
+                    "processors": "Normalize(min=-1,max=1)",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -678,10 +687,43 @@
                     "path": "<Keyboard>/shift",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "DepthChange",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "b2b70c71-a318-40e2-a5f3-bcec69061bc0",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "Normalize(min=-1,max=1)",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c292099f-a847-4bf3-bfd3-feb610127421",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "Normalize(min=-1,max=1),Clamp(min=-1,max=1)",
+                    "groups": "PC",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "a83cf15c-0954-41ae-b897-3207a40956d2",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "Normalize(min=-1,max=1),Clamp(min=-1,max=1)",
+                    "groups": "PC",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

@@ -1893,10 +1893,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
-      propertyPath: currentTotalEnergy
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 5146566542319557607, guid: a8efd1c1800e6c247bf3366465a9fdc4, type: 3}
       propertyPath: energyParticlesManager
       value: 
       objectReference: {fileID: 1604901843}
@@ -15092,6 +15088,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415843112009968789, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1595912558725553473, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
@@ -15112,6 +15112,10 @@ PrefabInstance:
       propertyPath: tools.Array.data[1]
       value: 
       objectReference: {fileID: 1123935512}
+    - target: {fileID: 2584586844526934456, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
+      propertyPath: depthChangeTuningValue
+      value: 0.007
+      objectReference: {fileID: 0}
     - target: {fileID: 2943760650215942054, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_Layer
       value: 0

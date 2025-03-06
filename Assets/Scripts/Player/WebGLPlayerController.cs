@@ -21,7 +21,7 @@ public class WebGLPlayerController : MonoBehaviour
     private float depthOffset = 0.0f;
     private float maxDepth = 4.5f;
     private float minDepth = -0.5f;
-    private float depthChangeTuningValue = 0.05f; // multiplied by pixel change for z change, ex. "5%" is 0.05
+    private float depthChangeTuningValue = 0.007f; // multiplied by pixel change for z change, ex. "5%" is 0.05
     private float depthChangeTrapInputY = 0; // used to hold mouse at same Y when adjusting depth
     private bool depthChangeMode = false;
     private float lastInputYForDepthDelta = -1.0f;
@@ -212,8 +212,8 @@ public class WebGLPlayerController : MonoBehaviour
         }
         if (shiftKeyAction != null)
         {
-            shiftKeyAction.Disable();
             shiftKeyAction.performed -= HandleShiftKeyPress;
+            shiftKeyAction.canceled -= HandleShiftKeyPress;
         }
         WebGLCameraController.OnCameraViewRotated -= UpdatePlayerRotation;
 

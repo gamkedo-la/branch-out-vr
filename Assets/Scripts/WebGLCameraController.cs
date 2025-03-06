@@ -16,6 +16,15 @@ public class WebGLCameraController : MonoBehaviour
     [SerializeField]
     float maxVerticalAngle = 80f;
 
+    [SerializeField]
+    float minZPosition = 10.5f;
+
+    [SerializeField]
+    float maxZPosition = 13;
+
+    [SerializeField]
+    float movementSmoothModifier = 0.25f;
+
     [SerializeField] float rotationSmoothing = 5f;
     public static event Action OnCameraViewRotated;
 
@@ -23,19 +32,25 @@ public class WebGLCameraController : MonoBehaviour
 
     private float currentVerticalAngle = 45f; 
     private Vector3 smoothedOffset;
-
     private InputAction rotateCamera;
+    private InputAction zoomCamera;
 
     private void OnEnable()
     {
         if (PlayerInputManager.Instance != null)
         {
             rotateCamera = PlayerInputManager.Instance.inputActions.FindAction("RotateView");
+            zoomCamera = PlayerInputManager.Instance.inputActions.FindAction("Zoom");
         }
 
         if (rotateCamera != null)
         {
             rotateCamera.performed += OnRotateView;
+        }
+
+        if (zoomCamera != null)
+        {
+            zoomCamera.performed += OnZoom;
         }
     }
     private void Start()
@@ -73,10 +88,14 @@ public class WebGLCameraController : MonoBehaviour
             offset = newOffset;
         }
     }
+
+    private void OnZoom(InputAction.CallbackContext context)
+    {
+        float input = context.ReadValue<float>();
+    }
     private void LateUpdate()
     {
         smoothedOffset = Vector3.Lerp(smoothedOffset, offset, rotationSmoothing * Time.deltaTime);
-
         transform.position = tree.transform.position + smoothedOffset;
         transform.LookAt(tree.transform.position);
         OnCameraViewRotated?.Invoke();
@@ -87,6 +106,11 @@ public class WebGLCameraController : MonoBehaviour
         if (rotateCamera != null)
         {
             rotateCamera.performed -= OnRotateView;
+        }
+
+        if (zoomCamera != null)
+        {
+            zoomCamera.performed -= OnZoom;
         }
     }
 }

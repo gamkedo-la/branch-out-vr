@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52e9be5b101f4241a33d4abbee763c0, type: 3}
   m_Name: Test Energy System
   m_EditorClassIdentifier: 
-  tick: 1
-  leafEnergyGainPerTick: 1
-  rootEnergyGainPerTick: 1
+  leafEnergyGainPerTick: 1.3
+  maxLimbsGrowing: 5
+  treeDyingThresholdAmount: 100
+  treeDeadAmount: 50
+  treeDyingThresholdPercentLoss: 50
+  treeDeadPercent: 90
   stressedEnergyGainModifier: 0.25
   minTotalEnergyForGrowth: 10
   minEnergyForMainBranch: 5
