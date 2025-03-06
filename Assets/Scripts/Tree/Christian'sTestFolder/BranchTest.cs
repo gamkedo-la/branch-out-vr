@@ -40,7 +40,6 @@ public class BranchTest : TreeLimbBase
         }
         thisTree.UpdateGlobalPath();
         Initialize();
-
     }
     void Initialize()
     {
@@ -87,7 +86,7 @@ public class BranchTest : TreeLimbBase
 
         if (nextLimb == null)
         {
-            TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, transform);
+            TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, nodes[^1].transform);
             nextLimb = (limb);
             EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
             energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
