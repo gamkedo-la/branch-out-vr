@@ -264,11 +264,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 0}
-  rotationSpeed: 250
+  rotationSpeed: 125
   minVerticalAngle: 10
   maxVerticalAngle: 100
-  maxZoomIn: 10.5
-  maxZoomOut: 13
+  minZPosition: 10.5
+  maxZPosition: 13
   movementSmoothModifier: 0.25
   rotationSmoothing: 5
 --- !u!1001 &4546729908440830471
