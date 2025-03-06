@@ -9,6 +9,10 @@ using UnityEngine.XR.Management;
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Button playButton;
+    [SerializeField] private Button creditsButton;
+    [SerializeField] private Button backButton;
+    [SerializeField] private GameObject creditsGUI;
+    [SerializeField] private GameObject menuGUI;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private TextMeshProUGUI loadingText;
@@ -23,10 +27,27 @@ public class MainMenuUI : MonoBehaviour
             AudioManager.Instance.PlaySFX("SFX_UI_ButtonClick");
             LoadScene();
         });
-        optionsButton.onClick.AddListener(() =>
+        
+		creditsButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.PlaySFX("SFX_UI_ButtonClick");
+			menuGUI.SetActive(false);
+			creditsGUI.SetActive(true);
+            
+        });
+
+		backButton.onClick.AddListener(() =>
+        {
+            AudioManager.Instance.PlaySFX("SFX_UI_ButtonClick");
+			creditsGUI.SetActive(false);
+			menuGUI.SetActive(true);
+        });
+        
+		optionsButton.onClick.AddListener(() =>
         {
             Debug.Log("Need to add options menu");
         });
+		
     }
 
     private void OnEnable()
