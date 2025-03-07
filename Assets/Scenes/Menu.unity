@@ -5136,10 +5136,10 @@ RectTransform:
   - {fileID: 955999801}
   m_Father: {fileID: 1285217040}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 128}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228904971
 MonoBehaviour:
@@ -5646,6 +5646,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 228904970}
     m_Modifications:
+    - target: {fileID: 853392301227613963, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1924288347915806612, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_text
       value: < Back
@@ -5676,11 +5680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5346299360605144738, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 345.9973
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 5346299360605144738, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 108.07
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5346299360605144738, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5712,11 +5716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5346299360605144738, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 960.7793
       objectReference: {fileID: 0}
     - target: {fileID: 5346299360605144738, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -596.035
+      value: -926.7501
       objectReference: {fileID: 0}
     - target: {fileID: 5346299360605144738, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5737,6 +5741,38 @@ PrefabInstance:
     - target: {fileID: 6529757746670856879, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 610637604}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5996,6 +6032,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 610637604}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667604958328328287, guid: 66ba24fec58faac4abeb44d60d845c9a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6208,7 +6272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -256}
+  m_AnchoredPosition: {x: 960.7793, y: -371.75003}
   m_SizeDelta: {x: 800, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550508062
@@ -6231,29 +6295,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Made at HomeTeam GameDev by:
-
-
-    Name - Contributions
-
-
-    Name - Contributions
-
-
-    Name
-    - Contributions
-
-
-    Name - Contributions
-
-
-    Name - Contributions
-
-
-    Name
-    - Contributions
-
-'
+  m_text: "Kelly Mark (tinyzigzag): Project lead, core gameplay, VR implementation,
+    tool grabbing, maple leaf, bonsai pot, web interaction, branch model/material
+    (with dead variant), soil texture, wire tool functionality, energy system, menus,
+    assorted fixes, controls guide, usability improvements\nChristian Gabbianelli:
+    Procedural tree system (trunks, branches, leaves, related visuals and collision
+    physics), limb cut and falling effect, energy hierarchy flow, skybox improvements\nChrister
+    \"McFunkypants\" Kaitila: Textures (walls, floor), raked sand, walled/doorways
+    environment, birds, terracotta tiles, sky, rocks, menu leaves, light baking\nNeil
+    Urwin: Glove and scissors (model, texture, animations), input action tracking
+    improvements\nChris \"BOLT\" Bolte: Ambient tune, menu song, sounds (leaves,
+    UI, watering, bird variations, branch snapping, happy tree notification)\nAdeel
+    Bashir: Watering can model, scissor sound with variations and audio manager implementation,
+    main menu, post processing, rotation smoothing, couple of bug fixes\nIan Cherabier:
+    Small table model, wire tool model and integration\nDarius \"TheOscillatingTortoise\"
+    Gourdine: Tree lost audio\nChris DeLeon: Particles (water, energy sparkle swirl),
+    mouse depth control, web/flat mode nearest branch detection improvement\nOriphiel
+    Blanco: Narrative prototyping (unused)\nPlaytesting: Klaim (A. Jo\xEBl Lamotte),
+    Elizabeth McMahill, \u201CMichael Avrie"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6280,14 +6339,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 35.45
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6316,7 +6375,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -438.5303, y: -91.60959, z: -485.34778, w: -211.3219}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
