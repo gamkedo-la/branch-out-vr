@@ -11,7 +11,7 @@ public class Branch : TreeLimbBase
 
 
     //Initialize if spawned from a trunk
-    public void Initialize(UnityEvent growEvent, Trunk previousTrunk, Tree tree)
+    public void Initialize(UnityEvent growEvent, Trunk previousTrunk, ProceduralTree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;
@@ -27,7 +27,7 @@ public class Branch : TreeLimbBase
     }
 
     //Initialize if spawned from a branch
-    public void Initialize(UnityEvent growEvent, Branch previousBranch, Tree tree, bool isLastLimb)
+    public void Initialize(UnityEvent growEvent, Branch previousBranch, ProceduralTree tree, bool isLastLimb)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
@@ -43,7 +43,7 @@ public class Branch : TreeLimbBase
     }
     void Initialize()
     {
-        taperedBranchPrefab = limbContainer.branchTest;
+        taperedBranchPrefab = limbContainer.branch;
         secondaryBranchPrefab = limbContainer.secondaryBranch;
 
         nextChildGrowPosition = GetRandomPositionOnLimb();

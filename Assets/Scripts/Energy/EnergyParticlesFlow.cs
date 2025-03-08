@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class EnergyParticlesFlow : MonoBehaviour
 {
-    [SerializeField] private Tree tree;
+    [SerializeField] private ProceduralTree tree;
     [SerializeField] private float flowSpeed = 2f;
 
     [SerializeField] bool energyViewActive = false;

@@ -11,7 +11,7 @@ public abstract class TreePart : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
-    public Tree thisTree;
+    public ProceduralTree thisTree;
 
     public bool canCut = true;
 

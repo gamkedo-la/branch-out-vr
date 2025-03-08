@@ -30,7 +30,7 @@ public class TreeLimbBase : MonoBehaviour
     #endregion
 
     [Header("Growth")]
-    public Tree thisTree;
+    public ProceduralTree thisTree;
     public bool cut = false;
     public bool IsMature {  
         get {return isMature; }
@@ -102,7 +102,7 @@ public class TreeLimbBase : MonoBehaviour
         allocateEnergyForGrowth = false;
     }
 
-    public virtual void SetThisTree(Tree tree)
+    public virtual void SetThisTree(ProceduralTree tree)
     {
         thisTree = tree;
         if (nodes.Count > 0)

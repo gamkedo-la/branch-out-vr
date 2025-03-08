@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Tree : MonoBehaviour
+public class ProceduralTree : MonoBehaviour
 {
     [SerializeField] EnergyParticlesFlow energyParticlesManager;
     public LimbContainer limbContainer;
@@ -36,7 +36,7 @@ public class Tree : MonoBehaviour
     void Start()
     {
         //create the first node of the trunk and initialize it
-        trunkTest = Instantiate(limbContainer.trunkTest, transform, false);
+        trunkTest = Instantiate(limbContainer.trunk, transform, false);
         trunkTest.Initialize(GrowthHappenedEvent, null, this);
         rootNode.AddChild(trunkTest.pathNode); //Set this object as the root of the path that the energy particles follow, and update list of global path points
         UpdateGlobalPath();

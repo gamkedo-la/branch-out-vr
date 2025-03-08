@@ -33,7 +33,7 @@ public class GardenSceneUI : MonoBehaviour
         GamePlatformManager.OnVRInitialized += SetPlatformUI;
         GamePlatformManager.OnWebGLInitialized += SetPlatformUI;
 
-        Tree.OnGameOver += GameOver;
+        ProceduralTree.OnGameOver += GameOver;
     }
 
     private void Start()
@@ -187,6 +187,6 @@ public class GardenSceneUI : MonoBehaviour
         {
             pause.performed -= HandleTogglePauseMenu;
         }
-        Tree.OnGameOver -= GameOver;
+        ProceduralTree.OnGameOver -= GameOver;
     }
 }

@@ -12,7 +12,7 @@ public class SecondaryBranch : TreeLimbBase
     public BranchNode parentNode;
 
     //Initialize if spawned from a branch
-    public void Initialize(UnityEvent growEvent, Branch previousBranch, Tree tree)
+    public void Initialize(UnityEvent growEvent, Branch previousBranch, ProceduralTree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
@@ -28,7 +28,7 @@ public class SecondaryBranch : TreeLimbBase
 
     } 
     //Initialize if spawned from a trunk
-    public void Initialize(UnityEvent growEvent, SecondaryBranch previousTrunk, Tree tree)
+    public void Initialize(UnityEvent growEvent, SecondaryBranch previousTrunk, ProceduralTree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;

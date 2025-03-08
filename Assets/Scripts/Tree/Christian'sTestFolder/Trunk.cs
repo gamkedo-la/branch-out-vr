@@ -10,16 +10,16 @@ public class Trunk : TreeLimbBase
     public Branch taperedBranchPrefab;
     public Trunk trunkPrefab;
 
-    public void Initialize(UnityEvent growEvent, Trunk previousLimb, Tree tree)
+    public void Initialize(UnityEvent growEvent, Trunk previousLimb, ProceduralTree tree)
     {
         //find the trunk reference from the lookup table
         //needed for reusing prefab
-        trunkPrefab = limbContainer.trunkTest;
-        taperedBranchPrefab = limbContainer.branchTest;
+        trunkPrefab = limbContainer.trunk;
+        taperedBranchPrefab = limbContainer.branch;
         transform.localScale = Vector3.one;
         //randomize number of branches on this node
         branchCount = Random.Range(0, 4);
-        thisTree = transform.parent.GetComponent<Tree>();
+        thisTree = transform.parent.GetComponent<ProceduralTree>();
         pathNode = GetComponent<EnergyPathNode>();
         thisTree.UpdateGlobalPath();
         nextChildGrowPosition = GetRandomPositionOnLimb();
@@ -31,7 +31,7 @@ public class Trunk : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
-        TreeLimbBase limb = Instantiate(noTaperBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
+        TreeLimbBase limb = Instantiate(taperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree);
         if (pathNode != null)
