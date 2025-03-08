@@ -8,7 +8,7 @@ public class TertiaryBranch : TreeLimbBase
     TertiaryBranch tertiaryBranchPrefab;
     Leaf leafPrefab;
 
-    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, TreeTest tree)
+    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, Tree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTertiaryBranch;
@@ -23,7 +23,7 @@ public class TertiaryBranch : TreeLimbBase
         Initialize();
 
     } 
-    public void Initialize(UnityEvent growEvent, SecondaryBranch previousSecondaryBranch, TreeTest tree)
+    public void Initialize(UnityEvent growEvent, SecondaryBranch previousSecondaryBranch, Tree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousSecondaryBranch;

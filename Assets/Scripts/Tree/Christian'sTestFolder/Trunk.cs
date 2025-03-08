@@ -2,23 +2,24 @@ using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-public class TrunkTest : TreeLimbBase
+public class Trunk : TreeLimbBase
 {
     public int branchCount;
 
-    public BranchTest branchTestPrefab;
-    public TrunkTest trunkPrefab;
+    public Branch noTaperBranchPrefab;
+    public Branch taperedBranchPrefab;
+    public Trunk trunkPrefab;
 
-    public void Initialize(UnityEvent growEvent, TrunkTest previousLimb, TreeTest tree)
+    public void Initialize(UnityEvent growEvent, Trunk previousLimb, Tree tree)
     {
         //find the trunk reference from the lookup table
         //needed for reusing prefab
         trunkPrefab = limbContainer.trunkTest;
-        branchTestPrefab = limbContainer.branchTest;
+        taperedBranchPrefab = limbContainer.branchTest;
         transform.localScale = Vector3.one;
         //randomize number of branches on this node
         branchCount = Random.Range(0, 4);
-        thisTree = transform.parent.GetComponent<TreeTest>();
+        thisTree = transform.parent.GetComponent<Tree>();
         pathNode = GetComponent<EnergyPathNode>();
         thisTree.UpdateGlobalPath();
         nextChildGrowPosition = GetRandomPositionOnLimb();
@@ -30,9 +31,9 @@ public class TrunkTest : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
-        TreeLimbBase limb = Instantiate(branchTestPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
+        TreeLimbBase limb = Instantiate(noTaperBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
-        (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
+        (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree);
         if (pathNode != null)
         {
             pathNode.AddChild(limb.nodes[0].pathNode);

@@ -1,49 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Events;
 
-public class BranchTest : TreeLimbBase
+public class Branch : TreeLimbBase
 {
     public SecondaryBranch secondaryBranchPrefab;
-    BranchTest branchPrefab;
+    Branch taperedBranchPrefab; // This is used at the end of a branch that has multiple limbs
+    [SerializeField] Branch noTaperBranchPrefab; 
+
+    private bool isLimbTerminated; // We keep track of whether this limb is done growing in length to determine which prefab to use.
+
 
     //Initialize if spawned from a trunk
-    public void Initialize(UnityEvent growEvent, TrunkTest previousTrunk, TreeTest tree)
+    public void Initialize(UnityEvent growEvent, Trunk previousTrunk, Tree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTrunk;
         SetThisTree(tree);
         thisTree.growingLimbs.Add(this);
-        thisTree.numPotentialGrowthLocations--;
         if (previousTrunk != null)
         {
-            transform.localEulerAngles = GetRandomBranchRotation();
+            transform.localEulerAngles = GetRandomBranchRotation(); // Get the rotation this branch grows out of the previous branch
         }
-        thisTree.UpdateGlobalPath();
+        thisTree.UpdateGlobalPath(); // Update energy path points with our new branch nodes
         Initialize();
 
     }
-    //Initialize if spawned from a branch
 
-    public void Initialize(UnityEvent growEvent, BranchTest previousBranch, TreeTest tree)
+    //Initialize if spawned from a branch
+    public void Initialize(UnityEvent growEvent, Branch previousBranch, Tree tree, bool isLastLimb)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
         SetThisTree(tree);
         thisTree.growingLimbs.Add(this);
-        thisTree.numPotentialGrowthLocations--;
         if (previousBranch != null)
         {
-            transform.localEulerAngles = GetRandomBranchRotation();
+            transform.localEulerAngles = GetRandomBranchRotation(); // Get the rotation this branch grows out of the previous branch
         }
-        thisTree.UpdateGlobalPath();
+        isLimbTerminated = isLastLimb;
+        thisTree.UpdateGlobalPath(); // Update energy path points with our new branch nodes
         Initialize();
     }
     void Initialize()
     {
-        branchPrefab = limbContainer.branchTest;
+        taperedBranchPrefab = limbContainer.branchTest;
         secondaryBranchPrefab = limbContainer.secondaryBranch;
 
         nextChildGrowPosition = GetRandomPositionOnLimb();
@@ -71,7 +71,6 @@ public class BranchTest : TreeLimbBase
 
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
-        //add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
     }
 
     public override void Grow()
@@ -81,16 +80,23 @@ public class BranchTest : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (LimbTerminated())
-            return;
+        if (isLimbTerminated) return;
+
+        isLimbTerminated = LimbTerminated();
 
         if (nextLimb == null)
         {
-            TreeLimbBase limb = Instantiate(branchPrefab, top.position, top.rotation, nodes[^1].transform);
+            // if this is the last limb, use the tapered branch. Otherwise, use the non-tapered branch.
+            //TreeLimbBase prefabToUse = isLimbTerminated ? taperedBranchPrefab : noTaperBranchPrefab;
+
+            // for now, we just use the tapered branch, but TODO: uncomment line above and fine-tune using non-tapered branch models as well
+            TreeLimbBase prefabToUse = taperedBranchPrefab;
+
+            TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, nodes[^1].transform);
             nextLimb = (limb);
             EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
             energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
-            (limb as BranchTest).Initialize(GrowthHappenedEvent, this, thisTree);
+            (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree, isLimbTerminated);
         }
     }
 }

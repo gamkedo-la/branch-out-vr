@@ -17,15 +17,16 @@ public class WebGLCameraController : MonoBehaviour
     float maxVerticalAngle = 80f;
 
     [SerializeField]
-    float minZPosition = 10.5f;
+    float zoomSpeed = 2f;
 
     [SerializeField]
-    float maxZPosition = 13;
+    float minDistanceFromTree = 1.0f;
 
     [SerializeField]
-    float movementSmoothModifier = 0.25f;
+    float maxDistanceFromTree = 3.0f;
 
     [SerializeField] float rotationSmoothing = 5f;
+
     public static event Action OnCameraViewRotated;
 
     private Vector3 offset;
@@ -55,7 +56,6 @@ public class WebGLCameraController : MonoBehaviour
     }
     private void Start()
     {
-        //NOTE/TODO: May want to implement zoom functionality
         offset = transform.position - tree.transform.position;
         smoothedOffset = offset;
     }
@@ -92,6 +92,13 @@ public class WebGLCameraController : MonoBehaviour
     private void OnZoom(InputAction.CallbackContext context)
     {
         float input = context.ReadValue<float>();
+
+        Vector3 zoomDirection = offset.normalized;
+
+        float distance = offset.magnitude - input * zoomSpeed * Time.deltaTime;
+        distance = Mathf.Clamp(distance, minDistanceFromTree, maxDistanceFromTree);
+
+        offset = zoomDirection * distance;
     }
     private void LateUpdate()
     {

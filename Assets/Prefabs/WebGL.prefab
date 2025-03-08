@@ -267,9 +267,9 @@ MonoBehaviour:
   rotationSpeed: 125
   minVerticalAngle: 10
   maxVerticalAngle: 100
-  minZPosition: 10.5
-  maxZPosition: 13
-  movementSmoothModifier: 0.25
+  zoomSpeed: 100
+  minDistanceFromTree: 1
+  maxDistanceFromTree: 3
   rotationSmoothing: 5
 --- !u!1001 &4546729908440830471
 PrefabInstance:

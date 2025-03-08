@@ -16,7 +16,7 @@ public class Leaf : TreeLimbBase
     }
 
     //Initialize if spawned from a branch
-    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, TreeTest tree)
+    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, Tree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTertiaryBranch;

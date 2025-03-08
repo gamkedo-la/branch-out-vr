@@ -53,7 +53,7 @@ MonoBehaviour:
   currentTotalEnergy: 1800
   currentFreeEnergy: 1000
   numPotentialGrowthLocations: 0
-  rootNode: {fileID: 0}
+  rootNode: {fileID: 3030516717998259864}
   progress: 0
   GrowthHappenedEvent:
     m_PersistentCalls:

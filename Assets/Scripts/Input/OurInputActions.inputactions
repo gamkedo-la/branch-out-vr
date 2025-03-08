@@ -572,7 +572,7 @@
             ],
             "bindings": [
                 {
-                    "name": "1D Axis",
+                    "name": "1D Axis Left and Right Arrows",
                     "id": "50e39b2b-21bb-4380-a169-3e834c9ac2b6",
                     "path": "1DAxis",
                     "interactions": "",
@@ -600,6 +600,39 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "SwitchTools",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis A and S",
+                    "id": "8806def2-5b15-4081-b780-73ea9f9136a2",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTools",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "9a91e7de-d247-4341-9da5-e17c634c2a4c",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchTools",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "847862ce-2f02-44b0-88bf-cb04b5fcb7d9",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "SwitchTools",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -706,7 +739,7 @@
                 {
                     "name": "negative",
                     "id": "c292099f-a847-4bf3-bfd3-feb610127421",
-                    "path": "<Mouse>/scroll/up",
+                    "path": "<Mouse>/scroll/down",
                     "interactions": "",
                     "processors": "Normalize(min=-1,max=1),Clamp(min=-1,max=1)",
                     "groups": "PC",
@@ -717,7 +750,7 @@
                 {
                     "name": "positive",
                     "id": "a83cf15c-0954-41ae-b897-3207a40956d2",
-                    "path": "<Mouse>/scroll/down",
+                    "path": "<Mouse>/scroll/up",
                     "interactions": "",
                     "processors": "Normalize(min=-1,max=1),Clamp(min=-1,max=1)",
                     "groups": "PC",

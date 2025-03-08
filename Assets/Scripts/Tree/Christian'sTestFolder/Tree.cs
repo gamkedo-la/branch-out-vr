@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TreeTest : MonoBehaviour
+public class Tree : MonoBehaviour
 {
     [SerializeField] EnergyParticlesFlow energyParticlesManager;
     public LimbContainer limbContainer;
-    public TrunkTest trunkTest;
+    public Trunk trunkTest;
     public float growthTime = 2f;
     public float currentTotalEnergy = 10000f;
     public float currentFreeEnergy = 10000f;

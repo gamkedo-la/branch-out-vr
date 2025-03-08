@@ -106,10 +106,10 @@ MonoBehaviour:
   GrowthHappenedEvent:
     m_PersistentCalls:
       m_Calls: []
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: -513423824207498195}
   branchCount: 0
-  branchTestPrefab: {fileID: 344552957425278452, guid: bbe139d529137df4ba37ba3203774e8e, type: 3}
-  trunkPrefab: {fileID: 0}
+  noTaperBranchPrefab: {fileID: 0}
+  trunkPrefab: {fileID: 7570404441295541022}
 --- !u!54 &-513423824207498195
 Rigidbody:
   m_ObjectHideFlags: 0
