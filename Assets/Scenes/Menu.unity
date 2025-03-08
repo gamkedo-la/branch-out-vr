@@ -6273,7 +6273,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960.7793, y: -371.75003}
-  m_SizeDelta: {x: 800, y: 512}
+  m_SizeDelta: {x: 650, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550508062
 MonoBehaviour:
@@ -6312,7 +6312,7 @@ MonoBehaviour:
     Gourdine: Tree lost audio\nChris DeLeon: Particles (water, energy sparkle swirl),
     mouse depth control, web/flat mode nearest branch detection improvement\nOriphiel
     Blanco: Narrative prototyping (unused)\nPlaytesting: Klaim (A. Jo\xEBl Lamotte),
-    Elizabeth McMahill, \u201CMichael Avrie"
+    Elizabeth McMahill, Michael Avrie"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
