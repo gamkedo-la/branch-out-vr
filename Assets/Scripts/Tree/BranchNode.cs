@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BranchNode : TreePart
@@ -54,27 +55,53 @@ public class BranchNode : TreePart
 
     public override void Trim()
     {
-        //TODO: Don't remove thisBranch completely; remove all nextLimb (recursive) and branchedLimbs
         Debug.Log("Trim from BranchNode");
         int nodeIndex = thisBranch.nodes.IndexOf(this);
 
-        if (thisBranch.nodes.Count >= nodeIndex)
-        {
-            if (thisBranch.previousLimb.nodes.Count > 1)
-            {
-                EnergyPathNode energyPath = thisBranch.previousLimb.nodes[nodeIndex].GetComponent<EnergyPathNode>();
-                energyPath.RemoveChild(energyPath.GetComponentsInChildren<EnergyPathNode>()[1]);
+        if (nodeIndex >= 0) {
+            // destroy branchedLimbs and nextLimbs from cut node
+            while (thisBranch.branchedLimbs.Count > 0) {
+                var limb = thisBranch.branchedLimbs[thisBranch.branchedLimbs.Count - 1];
+                limb.CutLimb();
+            }
+            thisBranch.branchedLimbs.Clear();
+            if (thisBranch.nextLimb) {
+                thisBranch.nextLimb.CutLimb();
+                Destroy(thisBranch.nextLimb);
+            }
+
+            // destroy branchedLimbs and nextLimbs from cut node's children
+            BranchNode cutNodeBrandNodeComponents = GetComponent<BranchNode>();
+            BranchNode[] cutNodeChildren = 
+                cutNodeBrandNodeComponents.GetComponentsInChildren<BranchNode>();
+            foreach (var child in cutNodeChildren) {
+                while (child.thisBranch.branchedLimbs.Count > 0) {
+                    var limb = child.thisBranch.branchedLimbs[thisBranch.branchedLimbs.Count - 1];
+                    limb.CutLimb();
+                }
+                child.thisBranch.branchedLimbs.Clear();
+                if (child.thisBranch.nextLimb) {
+                    child.thisBranch.nextLimb.CutLimb();
+                    Destroy(child.thisBranch.nextLimb);
+                }
+            }
+
+            // deactivate the rendering and gameObject of the cut node 
+            // and the following nodes on the cut branch
+            foreach (var node in thisBranch.nodes) {
+                if (thisBranch.nodes.IndexOf(node) <= nodeIndex) {
+                    continue;
+                }
+                node.meshRendererObjectForBone.SetActive(false);
+                node.gameObject.SetActive(false);
             }
         }
-
-        thisBranch.CutLimb();
 
         thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);
 
         //deactivate this object and all child nodes; this allows player to cut branches in sections
         meshRendererObjectForBone.SetActive(false);
         gameObject.SetActive(false);
-        //base.Trim();
     }
 
     public void ApplyRotation(Vector3 playerMotionDelta)
