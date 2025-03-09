@@ -67,6 +67,7 @@ public class Branch : TreeLimbBase
         branchedLimbs.Add(limb);
         EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
         energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
+        limb.nodes[0].pathNode.parent = energyPath;
         (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
 
         nextChildGrowPosition = GetRandomPositionOnLimb();

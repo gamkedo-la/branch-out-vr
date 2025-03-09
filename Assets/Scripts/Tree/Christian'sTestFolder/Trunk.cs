@@ -24,7 +24,6 @@ public class Trunk : TreeLimbBase
         //randomize number of branches on this node
         branchCount = Random.Range(0, 6);
         thisTree = transform.parent.GetComponent<ProceduralTree>();
-        thisTree.UpdateGlobalPath();
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
         base.Initialize(growEvent, 1f);
@@ -36,6 +35,9 @@ public class Trunk : TreeLimbBase
         base.AddChild();
         TreeLimbBase limb = Instantiate(taperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
+        EnergyPathNode lastTrunkNode = nodes[^1].GetComponent<EnergyPathNode>();
+        lastTrunkNode.AddChild(limb.nodes[0].pathNode);
+        limb.nodes[0].pathNode.parent = lastTrunkNode;
         (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree);
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
@@ -48,9 +50,9 @@ public class Trunk : TreeLimbBase
         
         if (thisTree.currentFreeEnergy > 0)
         {
-            Energy += 1; 
-            thisTree.UpdateEnergy(-1);
-            thisTree.ReleaseAllocatedEnergy(1);
+            //thisTree.ReleaseAllocatedEnergy(1);
+            Energy += 1;
+            thisTree.UpdateEnergy(-1 + Time.deltaTime);
         }
     }
 }

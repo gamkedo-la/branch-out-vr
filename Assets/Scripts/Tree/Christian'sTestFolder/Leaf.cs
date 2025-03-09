@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -62,4 +60,8 @@ public class Leaf : TreeLimbBase
         EnergyTickTimer.Tick -= Photosynthesis;
     }
 
+    private void OnDestroy()
+    {
+        EnergyTickTimer.Tick -= Photosynthesis;
+    }
 }

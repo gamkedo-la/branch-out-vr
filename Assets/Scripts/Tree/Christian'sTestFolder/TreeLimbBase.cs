@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -235,6 +234,10 @@ public class TreeLimbBase : MonoBehaviour
         {
             var childLimb = branchedLimbs[i];
             branchedLimbs.RemoveAt(i);
+            if (childLimb is Leaf || childLimb is SecondaryBranch || childLimb is TertiaryBranch)
+            {
+                AudioManager.Instance.PlaySFX("SFX_Leaves_Rustle_Short");
+            }
             childLimb.CutLimb();
         }
 
@@ -252,7 +255,7 @@ public class TreeLimbBase : MonoBehaviour
             nextLimb.TurnOnPhysics();
     }
 
-    public void OnDestroy()
+    private void OnDestroy()
     {
         if (nextLimb)
         {

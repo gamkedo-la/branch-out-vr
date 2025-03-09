@@ -24,9 +24,19 @@ public class ProceduralTree : MonoBehaviour
     public UnityEvent GrowthHappenedEvent;
 
     public static event Action OnGameOver;
+    public static event Action OnGameWin;
+
+    public bool win = false;
+
+    public float userCutBranchCount = 0;
+
+    private bool pauseTreeSystem = false;
 
     private void Awake()
     {
+        GardenSceneUI.OnPauseGame += SetTreePaused;
+        GardenSceneUI.OnResumeGame += ResumeTreeSystem;
+
         if (rootNode == null)
         {
             rootNode = GetComponent<EnergyPathNode>();
@@ -37,13 +47,24 @@ public class ProceduralTree : MonoBehaviour
     void Start()
     {
         currentTotalEnergy = startingEnergy;
+        win = false;
         //create the first node of the trunk and initialize it
         trunkTest = Instantiate(limbContainer.trunk, transform, false);
         trunkTest.Initialize(GrowthHappenedEvent);
         rootNode.AddChild(trunkTest.nodes[0].pathNode); //Set this object as the root of the path that the energy particles follow, and update list of global path points
+        trunkTest.nodes[0].pathNode.parent = rootNode;
         UpdateGlobalPath();
     }
 
+    private void SetTreePaused()
+    {
+        pauseTreeSystem = true;
+    }
+
+    private void ResumeTreeSystem()
+    {
+        pauseTreeSystem = false;
+    }
     /// <summary>
     /// Called when new path points are added or removed, this method updates the global list of path points (EnergyPathNode) for the energy system particles.
     /// </summary>
@@ -66,40 +87,38 @@ public class ProceduralTree : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when energy is generated (currently only when leaves grow/photosynthesize), or when a value is added to or subtracted from a limb's Energy property, and updates the tree's energy accordingly.
-    /// </summary>
-    /// <param name="amount">Use positive numbers to add to energy, negative to remove.</param>
+    /// Called when energy is generated (currently only when leaves grow/photosynthesize) or consumed and updates the tree's total energy.
     /// <param name="adjustFreeEnergyToo">Adjust the value of currentFreeEnergy by the same amount.</param>
     public void UpdateEnergy(float amount, bool adjustFreeEnergyToo = false)
     {
-        currentTotalEnergy += amount;
-        if (adjustFreeEnergyToo)
+        if (!pauseTreeSystem)
         {
-            Debug.Log("Adjust free energy too.");
-            currentFreeEnergy += amount;
-        }
-        
-        if (currentTotalEnergy <= 0)
-        {
-            AudioManager.Instance.PlaySFX("SFX_Tree_Dying");
-            GrowthHappenedEvent.RemoveAllListeners();
-            Debug.Log("Invoking OnGameOver in ProceduralTree.cs");
-            OnGameOver?.Invoke();
-        }
-    }
+            currentTotalEnergy += amount;
+            if (adjustFreeEnergyToo)
+            {
+                Debug.Log("Adjust free energy too.");
+                currentFreeEnergy += amount;
+            }
 
-    /// <summary>
-    /// Used to remove energy from the total energy in the system; used when branches are cut. Use AllocateEnergy() if meant to allocate from free energy but not remove energy from the system.
-    /// </summary>
-    /// <param name="amount"></param>
-    public void RemoveEnergy(float amount)
-    {
-        if (currentTotalEnergy <= 0)
-        {
-            Debug.LogWarning("Attempted to set total energy to a negative number; please check logic and ensure limbs cannot use energy that doesn't exist!");
-        }
 
-        currentTotalEnergy -= amount;
+            if (!win)
+            {
+                if (currentTotalEnergy <= 0)
+                {
+                    AudioManager.Instance.PlaySFX("SFX_Tree_Dying");
+                    GrowthHappenedEvent.RemoveAllListeners();
+                    OnGameOver?.Invoke();
+                }
+
+                if (currentTotalEnergy >= Mathf.Floor(startingEnergy + startingEnergy / 5))
+                {
+                    win = true;
+                    SetTreePaused();
+                    OnGameWin?.Invoke();
+                }
+            }
+
+        }
     }
 
     /// <summary>
@@ -131,10 +150,14 @@ public class ProceduralTree : MonoBehaviour
     void Update()
     {
         //timer for when the growth will happen
-        progress += Time.deltaTime;
+        if (!pauseTreeSystem)
+        {
+            progress += Time.deltaTime;
 
-        if (progress > growthTime)
-            Grow();
+
+            if (progress > growthTime)
+                Grow();
+        }
     }
 
     //Reset timer and raise event for all nodes in the tree to update
@@ -142,14 +165,24 @@ public class ProceduralTree : MonoBehaviour
     {
         progress = 0;
 
-        //currentTotalEnergy += 1;
-
         if (currentFreeEnergy > 0 && currentTotalEnergy > 0)
         {
-            trunkTest.Energy += 1;
-            UpdateEnergy(0.25f);
+            float energy = 1 * (userCutBranchCount / 3f);
+            trunkTest.Energy += energy > 2 ? energy : 2;
         }
 
         GrowthHappenedEvent?.Invoke();
+    }
+
+    private void OnDisable()
+    {
+        GardenSceneUI.OnPauseGame -= SetTreePaused;
+        GardenSceneUI.OnResumeGame -= ResumeTreeSystem;
+    }
+
+    private void OnDestroy()
+    {
+        GardenSceneUI.OnPauseGame -= SetTreePaused;
+        GardenSceneUI.OnResumeGame -= ResumeTreeSystem;
     }
 }

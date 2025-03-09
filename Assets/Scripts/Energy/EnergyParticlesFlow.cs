@@ -30,6 +30,8 @@ public class EnergyParticlesFlow : MonoBehaviour
 
     private InputAction toggleView; // Input action that toggles the energy particles on/off
 
+    private bool win = false;
+
     private void Start()
     {
         toggleView = PlayerInputManager.Instance.inputActions.FindAction("ToggleEnergyView");
@@ -37,7 +39,7 @@ public class EnergyParticlesFlow : MonoBehaviour
         // Subscribe to the input action if it's not null
         if (toggleView != null)
         {
-            toggleView.performed += ToggleEnergy;
+            toggleView.performed += ToggleEnergyPlayerInput;
         }
         transform.position = tree.transform.position; // Zero the particle systems position to the tree's position
 
@@ -46,12 +48,31 @@ public class EnergyParticlesFlow : MonoBehaviour
         particles = new ParticleSystem.Particle[1000]; 
         pathUpdate = true;
         particlesOnPath = new ParticleOnPath[particles.Length];
+        ProceduralTree.OnGameWin += OnWinGame;
+        GardenSceneUI.OnResumeGame += OnContinuePlayingAfterWin;
+    }
+    private void OnWinGame()
+    {
+        win = true;
+        ToggleEnergy(true);
+        ProceduralTree.OnGameWin -= OnWinGame;
     }
 
-    void ToggleEnergy(InputAction.CallbackContext context)
+    private void OnContinuePlayingAfterWin()
+    {
+        ToggleEnergy(false);
+    }
+    private void ToggleEnergy(bool? explicitlySetState = null)
     {
         Debug.Log("toggle energy");
-        energyViewActive = !energyViewActive; // Toggle the state of energy particles dynamically
+        if (explicitlySetState != null)
+        {
+            energyViewActive = explicitlySetState.Value;
+        }
+        else
+        {
+            energyViewActive = !energyViewActive; // Toggle the state of energy particles dynamically
+        }
 
         if (energyViewActive)
         {
@@ -70,6 +91,10 @@ public class EnergyParticlesFlow : MonoBehaviour
             Debug.Log("turn energy off");
             energyParticleSystem.Clear(); // Clear the list of particles when it's inactive
         }
+    }
+    void ToggleEnergyPlayerInput(InputAction.CallbackContext context)
+    {
+        ToggleEnergy();
     }
     /// <summary>
     /// Update the list of path points for the energy particle system.
@@ -152,7 +177,9 @@ public class EnergyParticlesFlow : MonoBehaviour
     {
         if (toggleView != null)
         {
-            toggleView.performed -= ToggleEnergy;
+            toggleView.performed -= ToggleEnergyPlayerInput;
         }
+        ProceduralTree.OnGameWin -= OnWinGame;
+        GardenSceneUI.OnResumeGame -= OnContinuePlayingAfterWin;
     }
 }

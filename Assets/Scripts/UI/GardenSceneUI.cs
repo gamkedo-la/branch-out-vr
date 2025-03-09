@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.UI;
 
 public class GardenSceneUI : MonoBehaviour
 {
+    public static event Action OnPauseGame;
+    public static event Action OnResumeGame;
+    public bool isGamePaused;
+
     [SerializeField] private GameObject pauseMenuUI;
     [SerializeField] private GameObject vrControlsUI;
     [SerializeField] private GameObject webGLControlsUI;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject winGameUI;
     [SerializeField] private GameObject showControlsButton;
 
     private InputAction pause;
@@ -36,10 +38,12 @@ public class GardenSceneUI : MonoBehaviour
         GamePlatformManager.OnWebGLInitialized += SetPlatformUI;
 
         ProceduralTree.OnGameOver += GameOver;
+        ProceduralTree.OnGameWin += GameWin;
     }
 
     private void Start()
     {
+        isGamePaused = false;
         if (!showControlsButton.activeSelf)
         {
             showControlsButton.SetActive(true);
@@ -96,15 +100,21 @@ public class GardenSceneUI : MonoBehaviour
         if (pauseMenuUI.activeSelf)
         {
             Time.timeScale = 0f;
+            isGamePaused = true;
+            OnPauseGame?.Invoke();
         }
         else
         {
             Time.timeScale = 1f;
+            isGamePaused = false;
+            OnResumeGame?.Invoke();
         }
     }
 
     public void ResumeGame()
     {
+        OnResumeGame?.Invoke();
+        Time.timeScale = 1f;
         AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
         TogglePauseMenu();
     }
@@ -116,6 +126,21 @@ public class GardenSceneUI : MonoBehaviour
         SceneManager.LoadSceneAsync(0);
     }
 
+    public void GameWin()
+    {
+        isGamePaused = true;
+        AudioManager.Instance.PlaySFX("SFX_Tree_Gleaming");
+        winGameUI.SetActive(true);
+    }
+
+    public void ContinuePlaying()
+    {
+        AudioManager.Instance.PlaySFX("SFX_UI_ButtonHover");
+        Time.timeScale = 1f;
+        winGameUI.SetActive(false);
+        OnResumeGame?.Invoke();
+    }
+
     public void GameOver()
     {
         StartCoroutine(DelayGameOver());
@@ -124,7 +149,7 @@ public class GardenSceneUI : MonoBehaviour
     private IEnumerator DelayGameOver()
     {
         yield return new WaitForSeconds(delayGameOverAmount);
-
+        isGamePaused = true;
         Time.timeScale = 0f;
         gameOverUI.SetActive(true);
         showControlsButton.SetActive(false);
@@ -132,6 +157,7 @@ public class GardenSceneUI : MonoBehaviour
 
     public void StartOver()
     {
+        isGamePaused = false;
         AudioManager.Instance.PlaySFX("SFX_UI_ButtonClick");
         Time.timeScale = 1f;
         SceneManager.LoadSceneAsync(1);
@@ -197,5 +223,6 @@ public class GardenSceneUI : MonoBehaviour
             pause.performed -= HandleTogglePauseMenu;
         }
         ProceduralTree.OnGameOver -= GameOver;
+        ProceduralTree.OnGameWin -= GameWin;
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
@@ -136,7 +135,7 @@ public class GamePlatformManager : MonoBehaviour
 
     private void SetVRMode(bool enableVR)
     {
-        Debug.Log("Set VR Mode");
+        Debug.Log("Set VR Mode to " + enableVR);
         IsVRMode = enableVR;
         OnPlatformDetermined?.Invoke();
     }

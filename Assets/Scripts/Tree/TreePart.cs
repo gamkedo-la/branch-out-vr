@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Deprecated and should likely be refactored out
 public abstract class TreePart : MonoBehaviour
 {
     [SerializeField]
@@ -17,10 +18,7 @@ public abstract class TreePart : MonoBehaviour
 
     public virtual void Trim()
     {
-        //cut branch off - for now, just cut entire branch, later on implement cutting off at closest node.
-        //Destroy(gameObject);
-        //rb.isKinematic = false;
-        //Destroy(gameObject);
+        
         Debug.Log("Trim from TreePart");
     }
 }

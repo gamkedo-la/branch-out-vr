@@ -169,3 +169,9 @@ MonoBehaviour:
   - name: SFX_Tree_Dying
     volume: 0.6
     clip: {fileID: 8300000, guid: 237fc1294734cdf4994ab648faba8eb0, type: 3}
+  - name: SFX_Tree_Gleaming
+    volume: 0.6
+    clip: {fileID: 8300000, guid: 35812b871c5b8ba4480976464b2d65ce, type: 3}
+  - name: SFX_Leaves_Rustle_Short
+    volume: 0.6
+    clip: {fileID: 8300000, guid: 2d780981e3e633244a7ca737f317bc7e, type: 3}

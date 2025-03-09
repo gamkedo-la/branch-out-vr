@@ -10,7 +10,7 @@ public class BranchNode : TreePart
 
     [SerializeField] Material deadTreeMaterial;
 
-    float hideNodeDelay = 0.3f;
+    float hideNodeDelay = 0.2f;
 
     public bool isTrunk = false;
     /// <summary>
@@ -70,6 +70,9 @@ public class BranchNode : TreePart
     public override void Trim()
     {
         if (isTrunk) return;
+
+        thisTree.userCutBranchCount++;
+
         int nodeIndex = thisBranch.nodes.IndexOf(this);
 
         if (nodeIndex > 0) 
@@ -118,6 +121,10 @@ public class BranchNode : TreePart
 
         else if (nodeIndex == 0)
         {
+            if (thisBranch is TertiaryBranch)
+            {
+                AudioManager.Instance.PlaySFX("SFX_Leaves_Rustle_Short");
+            }
             thisBranch.previousLimb.nodes[^1].pathNode.RemoveChild(pathNode);
             thisBranch.CutLimb();
         }

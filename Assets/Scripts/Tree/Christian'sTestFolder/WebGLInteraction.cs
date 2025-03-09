@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,16 +9,11 @@ public class WebGLInteraction : MonoBehaviour
     void Start()
     {
         useToolAction.Enable();
-            useToolAction.performed += _ => Raycast();
+        useToolAction.performed += _ => Raycast();
         screenPos.Enable();
         screenPos.performed += context => { CurrentPosition = context.ReadValue<Vector2>(); };
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void Raycast()
     {
         RaycastHit hit;
