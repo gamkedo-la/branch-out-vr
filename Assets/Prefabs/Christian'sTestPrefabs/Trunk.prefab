@@ -86,7 +86,7 @@ MonoBehaviour:
   EnergyDepletedEvent:
     m_PersistentCalls:
       m_Calls: []
-  pathNode: {fileID: 0}
+  pathNode: {fileID: 8434673559443307681}
   thisTree: {fileID: 0}
   cut: 0
   isMature: 0
@@ -108,7 +108,8 @@ MonoBehaviour:
       m_Calls: []
   _rigidbody: {fileID: -513423824207498195}
   branchCount: 0
-  noTaperBranchPrefab: {fileID: 0}
+  noTaperBranchPrefab: {fileID: 8577751382407731348, guid: 8bc682150cc7da6469d78fe39b9b0b2a, type: 3}
+  taperedBranchPrefab: {fileID: 344552957425278452, guid: bbe139d529137df4ba37ba3203774e8e, type: 3}
   trunkPrefab: {fileID: 7570404441295541022}
 --- !u!54 &-513423824207498195
 Rigidbody:

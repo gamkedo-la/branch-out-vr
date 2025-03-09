@@ -20,6 +20,10 @@ public class EnergyPathNode : MonoBehaviour
 
     public void RemoveChild(EnergyPathNode childNode)
     {
+        if (!children.Contains(childNode))
+        {
+            Debug.LogWarning("The EnergyPathNode is not in the list of children for this Node, but you are trying to remove it.");
+        }
         children.Remove(childNode);
         childNode.parent = null;
     }
