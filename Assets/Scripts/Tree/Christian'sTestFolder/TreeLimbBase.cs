@@ -25,8 +25,6 @@ public class TreeLimbBase : MonoBehaviour
 
     public UnityEvent EnergyDepletedEvent;
 
-    public EnergyPathNode pathNode;
-
     #endregion
 
     [Header("Growth")]
@@ -73,7 +71,7 @@ public class TreeLimbBase : MonoBehaviour
     public List<BranchNode> nodes;
 
 
-    public UnityEvent GrowthHappenedEvent = new UnityEvent();
+    public UnityEvent GrowthHappenedEvent = new();
 
     [Header("Other")]
     public Rigidbody _rigidbody;
@@ -158,7 +156,7 @@ public class TreeLimbBase : MonoBehaviour
         return Vector3.Lerp(transform.position, top.position, Random.value);
     }
 
-    public BranchNode GetClosestNodeToBranch()
+    public BranchNode GetClosestNodeToBranch(Vector3 growPosition)
     {
         if (nodes.Count > 0)
         {
@@ -166,7 +164,7 @@ public class TreeLimbBase : MonoBehaviour
             BranchNode closestNode = null;
             for (int i = 0; i < nodes.Count; i++)
             {
-                float distance = Vector3.Distance(nextChildGrowPosition, nodes[i].transform.position);
+                float distance = Vector3.Distance(growPosition, nodes[i].transform.position);
 
                 if (distance <= closestDistance)
                 {
@@ -219,13 +217,12 @@ public class TreeLimbBase : MonoBehaviour
 
     public virtual void CutLimb()
     {
-        cut = true;
+        if (cut) return;
 
-        transform.parent = null;
-
+        transform.parent = null; // Detach it from the parent so that it falls
         TurnOnPhysics();
 
-
+        // Remove references to this limb from the previous limb
         if (previousLimb.nextLimb == this)
         previousLimb.nextLimb = null;
 
@@ -233,6 +230,13 @@ public class TreeLimbBase : MonoBehaviour
             previousLimb.branchedLimbs.Remove(this);
 
         previousLimb.GrowthHappenedEvent.RemoveListener(Grow);
+
+        for (int i = branchedLimbs.Count - 1; i >= 0; i--)
+        {
+            var childLimb = branchedLimbs[i];
+            branchedLimbs.RemoveAt(i);
+            childLimb.CutLimb();
+        }
 
         StartCoroutine(ShrinkLimbForDeletion());
     }
@@ -252,7 +256,7 @@ public class TreeLimbBase : MonoBehaviour
     {
         if (nextLimb)
         {
-            Destroy(nextLimb);
+            Destroy(nextLimb.gameObject);
         }
     }
 
@@ -261,8 +265,8 @@ public class TreeLimbBase : MonoBehaviour
         float progress = 0f;
         while (progress <= 1)
         {
-            progress += .00001f;
-
+            progress += .01f;
+            
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, progress);
 
             yield return new WaitForSeconds(.01f);

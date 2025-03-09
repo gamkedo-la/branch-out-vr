@@ -6,21 +6,24 @@ public class Trunk : TreeLimbBase
 {
     public int branchCount;
 
-    public Branch noTaperBranchPrefab;
-    public Branch taperedBranchPrefab;
-    public Trunk trunkPrefab;
+    private Branch taperedBranchPrefab;
 
-    public void Initialize(UnityEvent growEvent, Trunk previousLimb, ProceduralTree tree)
+    private Trunk trunkPrefab;
+    private Branch nonTaperedBranchPrefab;
+
+
+    public void Initialize(UnityEvent growEvent)
     {
         //find the trunk reference from the lookup table
         //needed for reusing prefab
+
         trunkPrefab = limbContainer.trunk;
-        taperedBranchPrefab = limbContainer.branch;
+        taperedBranchPrefab = limbContainer.taperedPrimaryBranch;
+        nonTaperedBranchPrefab = limbContainer.nonTaperedPrimaryBranch;
         transform.localScale = Vector3.one;
         //randomize number of branches on this node
-        branchCount = Random.Range(0, 4);
+        branchCount = Random.Range(0, 6);
         thisTree = transform.parent.GetComponent<ProceduralTree>();
-        pathNode = GetComponent<EnergyPathNode>();
         thisTree.UpdateGlobalPath();
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
@@ -34,10 +37,6 @@ public class Trunk : TreeLimbBase
         TreeLimbBase limb = Instantiate(taperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree);
-        if (pathNode != null)
-        {
-            pathNode.AddChild(limb.nodes[0].pathNode);
-        }
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
     }
@@ -49,7 +48,7 @@ public class Trunk : TreeLimbBase
         
         if (thisTree.currentFreeEnergy > 0)
         {
-            Energy += 1;
+            Energy += 1; 
             thisTree.UpdateEnergy(-1);
             thisTree.ReleaseAllocatedEnergy(1);
         }

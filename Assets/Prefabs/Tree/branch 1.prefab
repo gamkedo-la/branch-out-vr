@@ -167,12 +167,10 @@ MonoBehaviour:
   rb: {fileID: 6184217163646456369}
   thisTree: {fileID: 0}
   canCut: 1
-  isMain: 0
-  nodes: []
-  secondaryBranchPrefab: {fileID: 0}
-  test: 0
   thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 7977910790232351863}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 5115503021579952828}
 --- !u!54 &6184217163646456369
 Rigidbody:
@@ -293,12 +291,10 @@ MonoBehaviour:
   rb: {fileID: 8397929060408827354}
   thisTree: {fileID: 0}
   canCut: 1
-  isMain: 0
-  nodes: []
-  secondaryBranchPrefab: {fileID: 0}
-  test: 0
   thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 8315486700730193126}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 1805045414765659200}
 --- !u!54 &8397929060408827354
 Rigidbody:
@@ -540,12 +536,10 @@ MonoBehaviour:
   rb: {fileID: 3137843474694812503}
   thisTree: {fileID: 0}
   canCut: 1
-  isMain: 0
-  nodes: []
-  secondaryBranchPrefab: {fileID: 0}
-  test: 0
   thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 116046086768439015}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 6268884888970754772}
 --- !u!54 &3137843474694812503
 Rigidbody:
@@ -788,12 +782,10 @@ MonoBehaviour:
   rb: {fileID: 6330081506816265946}
   thisTree: {fileID: 0}
   canCut: 1
-  isMain: 0
-  nodes: []
-  secondaryBranchPrefab: {fileID: 0}
-  test: 0
   thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 5325920630273513833}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 2125945709293092629}
 --- !u!54 &6330081506816265946
 Rigidbody:
@@ -915,12 +907,10 @@ MonoBehaviour:
   rb: {fileID: 8020336490663612379}
   thisTree: {fileID: 0}
   canCut: 1
-  isMain: 0
-  nodes: []
-  secondaryBranchPrefab: {fileID: 0}
-  test: 0
   thisBranch: {fileID: 0}
   meshRendererObjectForBone: {fileID: 3541164455456078876}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 3704830112389009463}
 --- !u!54 &8020336490663612379
 Rigidbody:

@@ -22,6 +22,8 @@ public class GardenSceneUI : MonoBehaviour
     private Vector3 vrWorldPos = new(15.074f, 4.3f, 9.021f);
     private Vector2 widthHeight = new(800, 555);
 
+    private float delayGameOverAmount = 0.5f;
+
     private void Awake()
     {
         Time.timeScale = 1f;
@@ -116,6 +118,13 @@ public class GardenSceneUI : MonoBehaviour
 
     public void GameOver()
     {
+        StartCoroutine(DelayGameOver());
+    }
+
+    private IEnumerator DelayGameOver()
+    {
+        yield return new WaitForSeconds(delayGameOverAmount);
+
         Time.timeScale = 0f;
         gameOverUI.SetActive(true);
         showControlsButton.SetActive(false);

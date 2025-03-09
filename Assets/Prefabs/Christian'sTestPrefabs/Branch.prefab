@@ -79,8 +79,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rigidbody: {fileID: -4765530094563019513}
-  secondaryBranchPrefab: {fileID: 4359772727681169963, guid: f0d1e95487b723c45af3231fb79480bf, type: 3}
-  noTaperBranchPrefab: {fileID: 0}
 --- !u!54 &-4765530094563019513
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8577751382407731348}
   - component: {fileID: 154766185640765190}
   m_Layer: 0
-  m_Name: BranchNoTaper
+  m_Name: NonTaperedBranch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,8 +203,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rigidbody: {fileID: 154766185640765190}
-  secondaryBranchPrefab: {fileID: 4359772727681169963, guid: f0d1e95487b723c45af3231fb79480bf, type: 3}
-  noTaperBranchPrefab: {fileID: 8577751382407731348}
 --- !u!54 &154766185640765190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -353,6 +351,8 @@ MonoBehaviour:
   canCut: 1
   thisBranch: {fileID: 8577751382407731348}
   meshRendererObjectForBone: {fileID: 2046078617244842836}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 5247720417972405790}
 --- !u!1 &2046078617244842836
 GameObject:
@@ -566,6 +566,8 @@ MonoBehaviour:
   canCut: 1
   thisBranch: {fileID: 8577751382407731348}
   meshRendererObjectForBone: {fileID: 6496902313206859643}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 3548850650246658337}
 --- !u!1 &3299599222180575472
 GameObject:
@@ -779,6 +781,8 @@ MonoBehaviour:
   canCut: 1
   thisBranch: {fileID: 8577751382407731348}
   meshRendererObjectForBone: {fileID: 3951943294599904454}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 9159894149552029049}
 --- !u!1 &3652546381649738598
 GameObject:
@@ -1022,6 +1026,8 @@ MonoBehaviour:
   canCut: 1
   thisBranch: {fileID: 8577751382407731348}
   meshRendererObjectForBone: {fileID: 364201800720113115}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 8465644050261178235}
 --- !u!1 &5795163540672342516
 GameObject:
@@ -1101,6 +1107,8 @@ MonoBehaviour:
   canCut: 1
   thisBranch: {fileID: 8577751382407731348}
   meshRendererObjectForBone: {fileID: 3299599222180575472}
+  defaultMaterial: {fileID: 2100000, guid: 8112d25f283be5340b487c7c99bf9885, type: 2}
+  deadTreeMaterial: {fileID: 2100000, guid: 0667be249dda2f54a82e2f659d4b6b4a, type: 2}
   pathNode: {fileID: 1664220772092768194}
 --- !u!114 &1664220772092768194
 MonoBehaviour:

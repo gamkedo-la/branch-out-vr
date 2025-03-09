@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,45 +7,55 @@ public class EnergyParticlesFlow : MonoBehaviour
     [SerializeField] private ProceduralTree tree;
     [SerializeField] private float flowSpeed = 2f;
 
-    [SerializeField] bool energyViewActive = false;
-    public ParticleSystem energyParticleSystem;
-    public List<Transform> path;
+    public bool energyViewActive = false; // Is the energy particle system active and visible? 
+    public ParticleSystem energyParticleSystem; // The particle system for the energy
+    public List<Transform> path; // The list of path points the energy particles follow around the tree
 
-    private ParticleSystem.Particle[] particles;
-    private bool pathUpdate = true;
+    private ParticleSystem.Particle[] particles; // The particles of our particle system
+    /// <summary>
+    /// This tracks whether the list of path points has been updated. When the path changes, the particles need to update their target path points to include the added points, or exclude removed ones.
+    /// </summary>
+    private bool pathUpdate = true; 
 
+    /// <summary>
+    /// A struct for a single particle that's following a path that holds a reference to the particle and the current index of the path point it's moving towards.
+    /// </summary>
     private struct ParticleOnPath
     {
         public ParticleSystem.Particle particle;
         public int currentPathIndex;
     };
 
-    private ParticleOnPath[] particlesOnPath;
+    private ParticleOnPath[] particlesOnPath; // An array of all of the particles in our particle system and the index they are on in the list of path points.
 
-    private InputAction toggleView;
+    private InputAction toggleView; // Input action that toggles the energy particles on/off
 
     private void Start()
     {
         toggleView = PlayerInputManager.Instance.inputActions.FindAction("ToggleEnergyView");
 
+        // Subscribe to the input action if it's not null
         if (toggleView != null)
         {
-            toggleView.performed += _ => ToggleEnergy();
+            toggleView.performed += ToggleEnergy;
         }
-        transform.position = tree.transform.position;
-        particles = new ParticleSystem.Particle[1000];
+        transform.position = tree.transform.position; // Zero the particle systems position to the tree's position
+
+        // Default particle count is 1000, but TODO: update the count so that it reflects how the tree is doing; low particle count if it's dying,
+        // high count if it's doing well
+        particles = new ParticleSystem.Particle[1000]; 
         pathUpdate = true;
         particlesOnPath = new ParticleOnPath[particles.Length];
     }
 
-    void ToggleEnergy()
+    void ToggleEnergy(InputAction.CallbackContext context)
     {
         Debug.Log("toggle energy");
-        energyViewActive = !energyViewActive;
+        energyViewActive = !energyViewActive; // Toggle the state of energy particles dynamically
 
         if (energyViewActive)
         {
-            energyParticleSystem.Emit(particles.Length);
+            energyParticleSystem.Emit(particles.Length); // Need to call Emit() to actually create the visible particles
             if (!pathUpdate)
             {
                 for (int i = 0; i < particles.Length; i++)
@@ -59,17 +68,24 @@ public class EnergyParticlesFlow : MonoBehaviour
         else
         {
             Debug.Log("turn energy off");
-            energyParticleSystem.Clear();
+            energyParticleSystem.Clear(); // Clear the list of particles when it's inactive
         }
     }
-
+    /// <summary>
+    /// Update the list of path points for the energy particle system.
+    /// </summary>
+    /// <param name="pathPoints"></param>
     public void SetPath(List<Transform> pathPoints)
     {
         path = pathPoints;
-        pathUpdate = true;
+        pathUpdate = true; // Since the path has just been updated, set pathUpdate to true so the particles can be assigned to the new points.
         // Debug.Log(path.Count + " path points");
     }
-
+    /// <summary>
+    /// When there is a change to the path points, we update all the particles current target path point index to include new ones or exclude removed ones.
+    /// </summary>
+    /// <param name="particleIndex"></param>
+    /// <returns></returns>
     private int GetStartPathIndex(int particleIndex)
     {
         int pathIndex = particleIndex % path.Count;
@@ -78,7 +94,11 @@ public class EnergyParticlesFlow : MonoBehaviour
         return pathIndex;
 
     }
-
+    /// <summary>
+    /// Gets the current target path point for a particle given the particles index.
+    /// </summary>
+    /// <param name="currentParticleIndex"></param>
+    /// <returns></returns>
     private Transform GetCurrentTarget(int currentParticleIndex)
     {
         Transform target;
@@ -106,9 +126,9 @@ public class EnergyParticlesFlow : MonoBehaviour
         return target;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (energyViewActive)
+        if (energyViewActive) // Only update the particles movement if our energy view is active
         {
             int count = energyParticleSystem.GetParticles(particles);
 
@@ -128,11 +148,11 @@ public class EnergyParticlesFlow : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (toggleView != null)
         {
-            toggleView.performed -= _ => ToggleEnergy();
+            toggleView.performed -= ToggleEnergy;
         }
     }
 }

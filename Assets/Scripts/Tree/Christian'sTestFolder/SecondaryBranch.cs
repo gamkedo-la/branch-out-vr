@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.Events;
 
 public class SecondaryBranch : TreeLimbBase
 {
-    [SerializeField] TertiaryBranch tertiaryBranchPrefab;
-    SecondaryBranch secondaryBranchPrefab;
-
-    public BranchNode parentNode;
+    private TertiaryBranch taperedTertiaryBranchPrefab;
+    private SecondaryBranch taperedSecondaryBranchPrefab;
 
     //Initialize if spawned from a branch
     public void Initialize(UnityEvent growEvent, Branch previousBranch, ProceduralTree tree)
@@ -46,17 +41,17 @@ public class SecondaryBranch : TreeLimbBase
     }
     void Initialize()
     {
-        tertiaryBranchPrefab = limbContainer.tertiaryBranch;
-        secondaryBranchPrefab = limbContainer.secondaryBranch;
+        taperedTertiaryBranchPrefab = limbContainer.taperedTertiaryBranch;
+        taperedSecondaryBranchPrefab = limbContainer.taperedSecondaryBranch;
     }
 
     public override void AddChild()
     {
         base.AddChild();
 
-        BranchNode parentNode = GetClosestNodeToBranch();
+        BranchNode parentNode = GetClosestNodeToBranch(nextChildGrowPosition);
 
-        TreeLimbBase limb = Instantiate(tertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), parentNode.transform);
+        TreeLimbBase limb = Instantiate(taperedTertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), parentNode.transform);
         branchedLimbs.Add(limb);
         EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
         energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
@@ -76,7 +71,7 @@ public class SecondaryBranch : TreeLimbBase
 
         if (nextLimb == null)
         {
-            TreeLimbBase limb = Instantiate(secondaryBranchPrefab, top.position, top.rotation, transform);
+            TreeLimbBase limb = Instantiate(taperedSecondaryBranchPrefab, top.position, top.rotation, transform);
             nextLimb = (limb);
             (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         }

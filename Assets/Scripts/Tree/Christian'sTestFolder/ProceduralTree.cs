@@ -9,8 +9,9 @@ public class ProceduralTree : MonoBehaviour
     public LimbContainer limbContainer;
     public Trunk trunkTest;
     public float growthTime = 2f;
-    public float currentTotalEnergy = 10000f;
-    public float currentFreeEnergy = 10000f;
+    public float startingEnergy = 500f;
+    public float currentTotalEnergy = 1800f;
+    public float currentFreeEnergy = 1800f;
     public HashSet<TreeLimbBase> growingLimbs = new();
     public int numPotentialGrowthLocations = 0;
 
@@ -35,12 +36,12 @@ public class ProceduralTree : MonoBehaviour
 
     void Start()
     {
+        currentTotalEnergy = startingEnergy;
         //create the first node of the trunk and initialize it
         trunkTest = Instantiate(limbContainer.trunk, transform, false);
-        trunkTest.Initialize(GrowthHappenedEvent, null, this);
-        rootNode.AddChild(trunkTest.pathNode); //Set this object as the root of the path that the energy particles follow, and update list of global path points
+        trunkTest.Initialize(GrowthHappenedEvent);
+        rootNode.AddChild(trunkTest.nodes[0].pathNode); //Set this object as the root of the path that the energy particles follow, and update list of global path points
         UpdateGlobalPath();
-
     }
 
     /// <summary>
@@ -53,7 +54,6 @@ public class ProceduralTree : MonoBehaviour
             globalPathPoints = rootNode.GetPathPoints();
             UpdateParticlesPath(globalPathPoints);
         }
-
     }
 
     /// <summary>
@@ -82,6 +82,8 @@ public class ProceduralTree : MonoBehaviour
         if (currentTotalEnergy <= 0)
         {
             AudioManager.Instance.PlaySFX("SFX_Tree_Dying");
+            GrowthHappenedEvent.RemoveAllListeners();
+            Debug.Log("Invoking OnGameOver in ProceduralTree.cs");
             OnGameOver?.Invoke();
         }
     }

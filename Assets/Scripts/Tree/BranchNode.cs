@@ -1,7 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class BranchNode : TreePart
@@ -10,7 +8,15 @@ public class BranchNode : TreePart
 
     [SerializeField] GameObject meshRendererObjectForBone;
 
-    public EnergyPathNode pathNode;
+    [SerializeField] Material deadTreeMaterial;
+
+    float hideNodeDelay = 0.3f;
+
+    public bool isTrunk = false;
+    /// <summary>
+    /// The EnergyPathNode that's attached to this BranchNode game object.
+    /// </summary>
+    public EnergyPathNode pathNode; 
 
     private void Start()
     {
@@ -23,6 +29,15 @@ public class BranchNode : TreePart
                 pathNode = gameObject.AddComponent<EnergyPathNode>(); 
             }
         }
+        ProceduralTree.OnGameOver += TreeDied;
+    }
+
+    /// <summary>
+    /// Sets the material to the dead tree material when the tree's energy reaches 0. Going forward, this should be modified to lerp the material over time as the tree is dying. 
+    /// </summary>
+    private void TreeDied()
+    {
+        SetMeshRendMat(deadTreeMaterial);
     }
 
     public void SetMeshRendMat(Material newMat)
@@ -32,84 +47,115 @@ public class BranchNode : TreePart
 
     public List<BranchNode> GetAffectedBranchesForCut()
     {
-        List<BranchNode> affectedBranches = new();
-
-        BranchNode[] childNodes = GetComponentsInChildren<BranchNode>();
-        for (int i = 0; i < childNodes.Length; i++)
+        if (!isTrunk)
         {
-            affectedBranches.Add(childNodes[i]);
+            List<BranchNode> affectedBranches = new();
+
+            BranchNode[] childNodes = GetComponentsInChildren<BranchNode>();
+            for (int i = 0; i < childNodes.Length; i++)
+            {
+                affectedBranches.Add(childNodes[i]);
+            }
+
+            return affectedBranches;
+        }
+        else
+        {
+            Debug.Log("Cutting the trunk is not implemented yet.");
+            return null;
         }
 
-        if (thisBranch.nextLimb != null)
-        {
-            //TODO: add all next limbs 
-        }
-
-        if (thisBranch.branchedLimbs.Count > 0)
-        {
-            //TODO: add all branched limbs and their next limbs
-        }
-
-        return affectedBranches;
     }
 
     public override void Trim()
     {
-        Debug.Log("Trim from BranchNode");
+        if (isTrunk) return;
         int nodeIndex = thisBranch.nodes.IndexOf(this);
 
-        if (nodeIndex >= 0) {
+        if (nodeIndex > 0) 
+        {
             // destroy branchedLimbs and nextLimbs from cut node
-            while (thisBranch.branchedLimbs.Count > 0) {
-                var limb = thisBranch.branchedLimbs[thisBranch.branchedLimbs.Count - 1];
-                limb.CutLimb();
-            }
-            thisBranch.branchedLimbs.Clear();
-            if (thisBranch.nextLimb) {
-                thisBranch.nextLimb.CutLimb();
-                Destroy(thisBranch.nextLimb);
+            List<BranchNode> nodesToDeactivate = new(); // Get a list of the nodes in this branch that will be deactivated by this cut
+
+            foreach (var node in thisBranch.nodes)
+            {
+                if (thisBranch.nodes.IndexOf(node) >= nodeIndex) // We want to deactivate this node and any of its children
+                {
+                    nodesToDeactivate.Add(node);
+                }
             }
 
-            // destroy branchedLimbs and nextLimbs from cut node's children
-            BranchNode cutNodeBrandNodeComponents = GetComponent<BranchNode>();
-            BranchNode[] cutNodeChildren = 
-                cutNodeBrandNodeComponents.GetComponentsInChildren<BranchNode>();
-            foreach (var child in cutNodeChildren) {
-                while (child.thisBranch.branchedLimbs.Count > 0) {
-                    var limb = child.thisBranch.branchedLimbs[thisBranch.branchedLimbs.Count - 1];
+            for (int i = thisBranch.branchedLimbs.Count - 1; i >= 0; i--) 
+            {
+                var limb = thisBranch.branchedLimbs[i];
+                var closestNode = limb.GetClosestNodeToBranch(limb.transform.position);
+
+                if (nodesToDeactivate.Contains(closestNode)) 
+                {
+                    thisBranch.branchedLimbs.RemoveAt(i);
                     limb.CutLimb();
                 }
-                child.thisBranch.branchedLimbs.Clear();
-                if (child.thisBranch.nextLimb) {
-                    child.thisBranch.nextLimb.CutLimb();
-                    Destroy(child.thisBranch.nextLimb);
-                }
             }
 
-            // deactivate the rendering and gameObject of the cut node 
-            // and the following nodes on the cut branch
-            foreach (var node in thisBranch.nodes) {
-                if (thisBranch.nodes.IndexOf(node) <= nodeIndex) {
-                    continue;
-                }
+            if (thisBranch.nextLimb != null)
+            {
+                thisBranch.nextLimb.CutLimb();
+            }
+
+            thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);
+
+
+
+            if (nodeIndex >= 1)
+            {
+                // For a partial cut of the branch, remove this objects path node from the previous node
+                thisBranch.nodes[nodeIndex - 1].pathNode.RemoveChild(pathNode);
+            }
+
+            StartCoroutine(HideandRemoveNodes(nodesToDeactivate));
+
+        }
+
+        else if (nodeIndex == 0)
+        {
+            thisBranch.previousLimb.nodes[^1].pathNode.RemoveChild(pathNode);
+            thisBranch.CutLimb();
+        }
+    }
+
+    private IEnumerator HideandRemoveNodes(List<BranchNode> nodes)
+    {
+        yield return new WaitForSeconds(hideNodeDelay);
+
+        foreach (var node in nodes)
+        {
+            if (node != null)
+            {
                 node.meshRendererObjectForBone.SetActive(false);
                 node.gameObject.SetActive(false);
             }
         }
-
-        thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);
-
-        //deactivate this object and all child nodes; this allows player to cut branches in sections
-        meshRendererObjectForBone.SetActive(false);
-        gameObject.SetActive(false);
     }
-
+    /// <summary>
+    /// Applies rotation to the node based on the players movement when the Wire tool is active and in use.
+    /// </summary>
+    /// <param name="playerMotionDelta"></param>
     public void ApplyRotation(Vector3 playerMotionDelta)
     {
-        Debug.Log(playerMotionDelta);
-        Vector3 currentRotation = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
-        Quaternion newRotation = new Quaternion(currentRotation.x + playerMotionDelta.x, currentRotation.y + playerMotionDelta.y, currentRotation.z + playerMotionDelta.z, Quaternion.identity.w);
+        Vector3 currentRotation = new(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        Quaternion newRotation = new(currentRotation.x + playerMotionDelta.x, currentRotation.y + playerMotionDelta.y, currentRotation.z + playerMotionDelta.z, Quaternion.identity.w);
 
         transform.rotation = newRotation;
+    }
+    /// <summary>
+    /// Make sure to remove this node's path point from the global list when the game object is destroyed.
+    /// </summary>
+    private void OnDestroy()
+    {
+        if (pathNode.parent != null)
+        {
+            pathNode.parent.RemoveChild(pathNode);
+        }
+        ProceduralTree.OnGameOver -= TreeDied;
     }
 }

@@ -3,12 +3,11 @@ using UnityEngine.Events;
 
 public class Branch : TreeLimbBase
 {
-    public SecondaryBranch secondaryBranchPrefab;
-    Branch taperedBranchPrefab; // This is used at the end of a branch that has multiple limbs
-    [SerializeField] Branch noTaperBranchPrefab; 
+    private SecondaryBranch secondaryBranchPrefab;
+    private Branch taperedBranchPrefab; // This is used at the end of a branch that has multiple limbs
+    private Branch nonTaperedBranchPrefab; 
 
     private bool isLimbTerminated; // We keep track of whether this limb is done growing in length to determine which prefab to use.
-
 
     //Initialize if spawned from a trunk
     public void Initialize(UnityEvent growEvent, Trunk previousTrunk, ProceduralTree tree)
@@ -43,8 +42,9 @@ public class Branch : TreeLimbBase
     }
     void Initialize()
     {
-        taperedBranchPrefab = limbContainer.branch;
-        secondaryBranchPrefab = limbContainer.secondaryBranch;
+        taperedBranchPrefab = limbContainer.taperedPrimaryBranch;
+        nonTaperedBranchPrefab = limbContainer.nonTaperedPrimaryBranch;
+        secondaryBranchPrefab = limbContainer.taperedSecondaryBranch;
 
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
@@ -61,7 +61,7 @@ public class Branch : TreeLimbBase
     {
         base.AddChild();
 
-        BranchNode parentNode = GetClosestNodeToBranch();
+        BranchNode parentNode = GetClosestNodeToBranch(nextChildGrowPosition);
 
         TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), parentNode.transform);
         branchedLimbs.Add(limb);

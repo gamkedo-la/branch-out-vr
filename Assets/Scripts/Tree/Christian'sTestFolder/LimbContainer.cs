@@ -5,8 +5,11 @@ using UnityEngine;
 public class LimbContainer : ScriptableObject
 {
     public Trunk trunk;
-    public Branch branch;
-    public SecondaryBranch secondaryBranch;
-    public TertiaryBranch tertiaryBranch;
+    public Branch taperedPrimaryBranch;
+    public Branch nonTaperedPrimaryBranch;
+    public SecondaryBranch taperedSecondaryBranch;
+    public SecondaryBranch nonTaperedSecondaryBranch;
+    public TertiaryBranch taperedTertiaryBranch;
+    public TertiaryBranch nonTaperedTertiaryBranch;
     public Leaf leaf;
 }

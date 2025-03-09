@@ -40,7 +40,7 @@ public class TertiaryBranch : TreeLimbBase
     }
     void Initialize()
     {
-        tertiaryBranchPrefab = limbContainer.tertiaryBranch;
+        tertiaryBranchPrefab = limbContainer.taperedTertiaryBranch;
         leafPrefab = limbContainer.leaf;
     }
 
