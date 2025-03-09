@@ -6309,10 +6309,11 @@ MonoBehaviour:
     Bashir: Watering can model, scissor sound with variations and audio manager implementation,
     main menu, post processing, rotation smoothing, couple of bug fixes\nIan Cherabier:
     Small table model, wire tool model and integration\nDarius \"TheOscillatingTortoise\"
-    Gourdine: Tree lost audio\nChris DeLeon: Particles (water, energy sparkle swirl),
-    mouse depth control, web/flat mode nearest branch detection improvement\nOriphiel
-    Blanco: Narrative prototyping (unused)\nPlaytesting: Klaim (A. Jo\xEBl Lamotte),
-    Elizabeth McMahill, Michael Avrie"
+    Gourdine: Tree lost audio\nJason Timms: Branch cutting improvement / bug fix\nChris
+    DeLeon: Particles (water, energy sparkle swirl), mouse depth control, web/flat
+    mode nearest branch detection improvement\nOriphiel Blanco: Narrative prototyping
+    (unused)\nPlaytesting: Klaim (A. Jo\xEBl Lamotte), Elizabeth McMahill, Michael
+    Avrie"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
