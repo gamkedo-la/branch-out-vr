@@ -7,8 +7,6 @@ public class Branch : TreeLimbBase
     private Branch taperedBranchPrefab; // This is used at the end of a branch that has multiple limbs
     private Branch nonTaperedBranchPrefab; 
 
-    private bool isLimbTerminated; // We keep track of whether this limb is done growing in length to determine which prefab to use.
-
     //Initialize if spawned from a trunk
     public void Initialize(UnityEvent growEvent, Trunk previousTrunk, ProceduralTree tree)
     {
@@ -26,7 +24,7 @@ public class Branch : TreeLimbBase
     }
 
     //Initialize if spawned from a branch
-    public void Initialize(UnityEvent growEvent, Branch previousBranch, ProceduralTree tree, bool isLastLimb)
+    public void Initialize(UnityEvent growEvent, Branch previousBranch, ProceduralTree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
@@ -36,7 +34,8 @@ public class Branch : TreeLimbBase
         {
             transform.localEulerAngles = GetRandomBranchRotation(); // Get the rotation this branch grows out of the previous branch
         }
-        isLimbTerminated = isLastLimb;
+
+        LimbTerminated();
         thisTree.UpdateGlobalPath(); // Update energy path points with our new branch nodes
         Initialize();
     }
@@ -45,7 +44,7 @@ public class Branch : TreeLimbBase
         taperedBranchPrefab = limbContainer.taperedPrimaryBranch;
         nonTaperedBranchPrefab = limbContainer.nonTaperedPrimaryBranch;
         secondaryBranchPrefab = limbContainer.taperedSecondaryBranch;
-
+        
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
 
@@ -78,23 +77,21 @@ public class Branch : TreeLimbBase
     {
         base.Grow();
 
-        if (!IsMature)
-            return;
-
-        if (isLimbTerminated) return;
-
-        isLimbTerminated = LimbTerminated();
-
+        if (!IsMature) {return;}
+        if (IsLimbTerminated)  {return;}
         if (nextLimb == null)
         {
             // if this is the last limb, use the tapered branch. Otherwise, use the non-tapered branch.
-            TreeLimbBase prefabToUse = isLimbTerminated ? taperedBranchPrefab : nonTaperedBranchPrefab;
+            TreeLimbBase prefabToUse = 
+                LimbTerminated() ? 
+                taperedBranchPrefab : 
+                nonTaperedBranchPrefab;
 
             TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, nodes[^1].transform);
             nextLimb = (limb);
             EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
             energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
-            (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree, isLimbTerminated);
+            (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree);
         }
     }
 }

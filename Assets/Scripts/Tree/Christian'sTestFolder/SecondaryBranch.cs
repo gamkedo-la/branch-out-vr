@@ -5,9 +5,11 @@ public class SecondaryBranch : TreeLimbBase
 {
     private TertiaryBranch taperedTertiaryBranchPrefab;
     private SecondaryBranch taperedSecondaryBranchPrefab;
+    private SecondaryBranch nonTaperedSecondaryBranchPrefab;
 
     //Initialize if spawned from a branch
-    public void Initialize(UnityEvent growEvent, Branch previousBranch, ProceduralTree tree)
+    public void Initialize(
+        UnityEvent growEvent, Branch previousBranch, ProceduralTree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousBranch;
@@ -18,6 +20,8 @@ public class SecondaryBranch : TreeLimbBase
         {
             transform.localEulerAngles = GetRandomBranchRotation();
         }
+
+        LimbTerminated();
         thisTree.UpdateGlobalPath();
         Initialize();
 
@@ -37,12 +41,12 @@ public class SecondaryBranch : TreeLimbBase
         
         thisTree.UpdateGlobalPath();
         Initialize();
-
     }
     void Initialize()
     {
         taperedTertiaryBranchPrefab = limbContainer.taperedTertiaryBranch;
         taperedSecondaryBranchPrefab = limbContainer.taperedSecondaryBranch;
+        nonTaperedSecondaryBranchPrefab = limbContainer.nonTaperedSecondaryBranch;
     }
 
     public override void AddChild()
@@ -64,15 +68,18 @@ public class SecondaryBranch : TreeLimbBase
     {
         base.Grow();
 
-        if (!IsMature)
-            return;
-
-        if (LimbTerminated())
-            return;
+        if (!IsMature) {return;}
+        if (IsLimbTerminated) {return;}
 
         if (nextLimb == null)
         {
-            TreeLimbBase limb = Instantiate(taperedSecondaryBranchPrefab, top.position, top.rotation, transform);
+            // Last limb? Use tapered tertiary branch. No? Use the non-tapered tertiary branch.
+            TreeLimbBase prefabToUse = 
+                LimbTerminated() ? 
+                taperedSecondaryBranchPrefab : 
+                nonTaperedSecondaryBranchPrefab;
+
+            TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, transform);
             nextLimb = (limb);
             (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         }
