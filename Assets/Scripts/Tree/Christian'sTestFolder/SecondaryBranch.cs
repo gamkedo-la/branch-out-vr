@@ -55,13 +55,22 @@ public class SecondaryBranch : TreeLimbBase
 
         BranchNode parentNode = GetClosestNodeToBranch(nextChildGrowPosition);
 
-        TreeLimbBase limb = Instantiate(taperedTertiaryBranchPrefab, GetRandomPositionOnLimb(), Quaternion.Euler(GetRandomBranchRotation()), parentNode.transform);
+        TreeLimbBase limb = 
+            Instantiate(
+                taperedTertiaryBranchPrefab, 
+                nextChildGrowPosition, 
+                Quaternion.Euler(nextChildGrowRotation), 
+                parentNode.transform);
+
         branchedLimbs.Add(limb);
         EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
         energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
         limb.nodes[0].pathNode.parent = energyPath;
         (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
+
+        nextChildGrowPosition = GetRandomPositionOnLimb();
+        nextChildGrowRotation = GetRandomBranchRotation();
     }
 
     public override void Grow()
@@ -73,14 +82,18 @@ public class SecondaryBranch : TreeLimbBase
 
         if (nextLimb == null)
         {
-            // Last limb? Use tapered tertiary branch. No? Use the non-tapered tertiary branch.
+            // Last limb? Use tapered secondary branch. No? Use the non-tapered secondary branch.
             TreeLimbBase prefabToUse = 
                 LimbTerminated() ? 
                 taperedSecondaryBranchPrefab : 
                 nonTaperedSecondaryBranchPrefab;
 
             TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, transform);
-            nextLimb = (limb);
+            nextLimb = limb;
+
+            EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
+            energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
+
             (limb as SecondaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
         }
     }

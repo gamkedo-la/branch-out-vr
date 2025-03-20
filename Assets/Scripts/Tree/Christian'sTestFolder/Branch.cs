@@ -62,7 +62,13 @@ public class Branch : TreeLimbBase
 
         BranchNode parentNode = GetClosestNodeToBranch(nextChildGrowPosition);
 
-        TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), parentNode.transform);
+        TreeLimbBase limb = 
+            Instantiate(
+                secondaryBranchPrefab, 
+                nextChildGrowPosition, 
+                Quaternion.Euler(nextChildGrowRotation), 
+                parentNode.transform);
+
         branchedLimbs.Add(limb);
         EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
         energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
@@ -88,7 +94,7 @@ public class Branch : TreeLimbBase
                 nonTaperedBranchPrefab;
 
             TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, nodes[^1].transform);
-            nextLimb = (limb);
+            nextLimb = limb;
             EnergyPathNode energyPath = nodes[^1].gameObject.GetComponent<EnergyPathNode>();
             energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
             (limb as Branch).Initialize(GrowthHappenedEvent, this, thisTree);
