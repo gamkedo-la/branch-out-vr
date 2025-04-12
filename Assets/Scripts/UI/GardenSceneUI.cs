@@ -22,7 +22,7 @@ public class GardenSceneUI : MonoBehaviour
     private Vector3 vrWorldScale = new(0.0022f, 0.0022f, 0.0022f);
     private Vector3 vrWorldRotation = new(0, 180, 0);
     private Vector3 vrWorldPos = new(15.074f, 4.3f, 9.021f);
-    private Vector2 widthHeight = new(800, 555);
+    private Vector2 widthHeight = new(2200, 1280);
 
     private float delayGameOverAmount = 0.5f;
 

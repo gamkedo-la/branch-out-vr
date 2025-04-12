@@ -79,13 +79,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energySystemValues: {fileID: 11400000, guid: 8b86754177dc16040b25ade5b8890740, type: 2}
-  energy: 0
+  energy: 100
   allocatedEnergy: 0
   allocateEnergyForGrowth: 0
   EnergyDepletedEvent:
     m_PersistentCalls:
       m_Calls: []
-  pathNode: {fileID: 0}
   thisTree: {fileID: 0}
   cut: 0
   isMature: 0
