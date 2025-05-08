@@ -155,7 +155,6 @@ public class Wire : Tool, IGrabbable
     /// </summary>
     private void RotateNode()
     {
-        Debug.Log("Rotate node");
         if (playerHoldingToolObject != null)
         {
             if (currentNearestNode != null)

@@ -161,7 +161,6 @@ public class BranchNode : TreePart
 
     public void RevertRotation()
     {
-        Debug.Log("Reverting rotation to " + previousRotation);
         transform.rotation = previousRotation;
     }
     /// <summary>
