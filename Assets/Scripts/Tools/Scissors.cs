@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Scissors : Tool, IGrabbable
 {
-    private TreePart lastNearestBranch;
+    private BranchNode lastNearestBranch;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class Scissors : Tool, IGrabbable
     {
         if (isActive)
         {
-            TreePart closestBranch = ClosestBranch();
+            BranchNode closestBranch = ClosestBranch();
 
             if (lastNearestBranch != closestBranch)
             {
@@ -89,7 +89,7 @@ public class Scissors : Tool, IGrabbable
     
     void TrimBranch()
     {
-        TreePart closestBranch = ClosestBranch();
+        BranchNode closestBranch = ClosestBranch();
         if (closestBranch != null)
         {
             AudioManager.Instance.PlaySFX("SFX_ScissorCut");

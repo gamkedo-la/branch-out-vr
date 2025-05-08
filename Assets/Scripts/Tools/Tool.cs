@@ -36,9 +36,9 @@ public abstract class Tool : MonoBehaviour
     /// <summary>
     /// Determine the closest BranchNode that the tool can interact with. 
     /// </summary>
-    public TreePart ClosestBranch()
+    public BranchNode ClosestBranch()
     {
-        TreePart closestBranch = null;
+        BranchNode closestBranch = null;
         //are any branches close enough to cut? 
         Collider[] closestBranches = Physics.OverlapSphere(proximityPoint.transform.position, overlapSphereRadius, branchNodeLayerForTools);
 
@@ -48,7 +48,7 @@ public abstract class Tool : MonoBehaviour
             //loop through any branches close enough to find the closest one
             for (int i = 0; i < closestBranches.Length; i++)
             {
-                if (!closestBranches[i].TryGetComponent<TreePart>(out var hasTpScript))
+                if (!closestBranches[i].TryGetComponent<BranchNode>(out var hasNodeScript))
                 {
                     continue;
                 }
@@ -56,12 +56,11 @@ public abstract class Tool : MonoBehaviour
                 float distance = Vector3.Distance(proximityPoint.transform.position, closestPointOnCollider);
                 if (distance < closestDistance)
                 {
-                    closestBranch = hasTpScript;
+                    closestBranch = hasNodeScript;
                     closestDistance = distance;
                 }
             }
         }
-
         return closestBranch;
     }
 

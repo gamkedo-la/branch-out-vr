@@ -178,11 +178,13 @@ public class ProceduralTree : MonoBehaviour
     {
         GardenSceneUI.OnPauseGame -= SetTreePaused;
         GardenSceneUI.OnResumeGame -= ResumeTreeSystem;
+        GrowthHappenedEvent.RemoveAllListeners();
     }
 
     private void OnDestroy()
     {
         GardenSceneUI.OnPauseGame -= SetTreePaused;
         GardenSceneUI.OnResumeGame -= ResumeTreeSystem;
+        GrowthHappenedEvent.RemoveAllListeners();
     }
 }

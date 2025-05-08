@@ -3793,6 +3793,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 942701950775559309, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
+      propertyPath: rotationSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 1408142393640040680, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
       propertyPath: m_Name
       value: TableAndTools
@@ -3803,7 +3807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2233341718251676505, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2507614361248508683, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
       propertyPath: toolRB
@@ -3811,7 +3815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3155543256112664790, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4647588458249750905, guid: e421141039e095a4abe9f76d56b8dd44, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16322,6 +16326,10 @@ PrefabInstance:
     - target: {fileID: 1854182297553228693, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584586844526934456, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
+      propertyPath: tools.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2584586844526934456, guid: 74297415e6f52e2499d0e9fc536669db, type: 3}
       propertyPath: tools.Array.data[0]
