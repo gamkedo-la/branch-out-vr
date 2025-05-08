@@ -382,15 +382,6 @@
             "id": "5b30e0f7-9c12-43b3-92da-b63fcb8f889b",
             "actions": [
                 {
-                    "name": "WebGLUseTool",
-                    "type": "Button",
-                    "id": "847065ee-fe19-4a30-9b03-e508d6fd88b6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "LeftHandUseTool",
                     "type": "Button",
                     "id": "454f7dd0-2f12-448e-9023-53624e67b17e",
@@ -419,17 +410,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "71f52dcf-51eb-4e1f-b0d7-1081c1f52a58",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "WebGLUseTool",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "608281b3-29e2-4305-bb74-277e0d543796",
@@ -534,6 +514,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "WebGLUseTool",
+                    "type": "Button",
+                    "id": "e15d08a3-5099-4097-a9e3-2d66756b00cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Position",
                     "type": "Value",
                     "id": "b51bed6e-c435-4425-9ead-da2cafe0ca89",
@@ -568,6 +557,15 @@
                     "processors": "Normalize(min=-1,max=1)",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "CancelWireToolRotation",
+                    "type": "Button",
+                    "id": "5d9e9e1c-5b45-4826-8e63-26c258e87e4f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -682,7 +680,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Alt Key (When have trackpad)",
+                    "name": "Alt Key",
                     "id": "ff36d749-984c-4da4-b967-e5cac43dbe07",
                     "path": "OneModifier",
                     "interactions": "",
@@ -757,6 +755,28 @@
                     "action": "Zoom",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "bbf88002-0469-4015-b862-8a848967901c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "WebGLUseTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afe4af21-a0e1-4e01-8f48-0f598b11ed3b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "CancelWireToolRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

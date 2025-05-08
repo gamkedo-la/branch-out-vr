@@ -10,14 +10,16 @@ public class BranchNode : TreePart
 
     [SerializeField] Material deadTreeMaterial;
 
-    float hideNodeDelay = 0.2f;
-
     public bool isTrunk = false;
     /// <summary>
     /// The EnergyPathNode that's attached to this BranchNode game object.
     /// </summary>
-    public EnergyPathNode pathNode; 
+    public EnergyPathNode pathNode;
 
+    private float hideNodeDelay = 0.2f;
+
+    //TODO: make this an array or list to allow for several steps of undo/redo for branch rotations with wire
+    private Quaternion previousRotation;
     private void Start()
     {
         name += " " + Random.Range(0, 1000);
@@ -105,18 +107,12 @@ public class BranchNode : TreePart
                 thisBranch.nextLimb.CutLimb();
             }
 
-            thisBranch.nodes.RemoveRange(nodeIndex, thisBranch.nodes.Count - nodeIndex - 1);
-
-
-
             if (nodeIndex >= 1)
             {
                 // For a partial cut of the branch, remove this objects path node from the previous node
                 thisBranch.nodes[nodeIndex - 1].pathNode.RemoveChild(pathNode);
             }
-
             StartCoroutine(HideandRemoveNodes(nodesToDeactivate));
-
         }
 
         else if (nodeIndex == 0)
@@ -125,7 +121,6 @@ public class BranchNode : TreePart
             {
                 AudioManager.Instance.PlaySFX("SFX_Leaves_Rustle_Short");
             }
-            thisBranch.previousLimb.nodes[^1].pathNode.RemoveChild(pathNode);
             thisBranch.CutLimb();
         }
     }
@@ -138,6 +133,9 @@ public class BranchNode : TreePart
         {
             if (node != null)
             {
+                int index = thisBranch.nodes.IndexOf(node);
+                thisBranch.nodes[index].pathNode.RemoveChild(pathNode);
+                thisBranch.nodes.Remove(node);
                 node.meshRendererObjectForBone.SetActive(false);
                 node.gameObject.SetActive(false);
             }
@@ -149,10 +147,22 @@ public class BranchNode : TreePart
     /// <param name="playerMotionDelta"></param>
     public void ApplyRotation(Vector3 playerMotionDelta)
     {
-        Vector3 currentRotation = new(transform.rotation.x, transform.rotation.y, transform.rotation.z);
-        Quaternion newRotation = new(currentRotation.x + playerMotionDelta.x, currentRotation.y + playerMotionDelta.y, currentRotation.z + playerMotionDelta.z, Quaternion.identity.w);
+        float yaw = playerMotionDelta.x;
+        float pitch = -playerMotionDelta.y;
 
-        transform.rotation = newRotation;
+        transform.Rotate(Vector3.up, yaw, Space.World);
+        transform.Rotate(transform.right, pitch, Space.World);
+    }
+
+    public void SetStartingRotation()
+    {
+        previousRotation = transform.rotation;
+    }
+
+    public void RevertRotation()
+    {
+        Debug.Log("Reverting rotation to " + previousRotation);
+        transform.rotation = previousRotation;
     }
     /// <summary>
     /// Make sure to remove this node's path point from the global list when the game object is destroyed.

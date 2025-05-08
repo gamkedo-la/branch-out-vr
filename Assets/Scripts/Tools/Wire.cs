@@ -8,21 +8,22 @@ public class Wire : Tool, IGrabbable
 
     [SerializeField] private float rotationSpeed = 50f;
 
-    private TreePart lastNearestBranch;
+    private BranchNode lastNearestNode;
 
     [SerializeField]
     GameObject playerHoldingToolObject;
     [SerializeField]
     private Vector3 previousPlayerPosition;
 
-    private TreePart closestBranch;
+    private BranchNode currentNearestNode;
 
-    [Header("VR input actions to track movement")]
+    [Header("VR input actions")]
     private InputAction rightHandPositionActionVR;
     private InputAction leftHandPositionActionVR;
 
-    [Header("WebGL input action to track movement")]
+    [Header("WebGL input actions")]
     private InputAction playerPositionWebGL;
+    private InputAction webGLCancelToolAction;
 
     private void OnEnable()
     {
@@ -40,6 +41,7 @@ public class Wire : Tool, IGrabbable
         else
         {
             playerPositionWebGL = PlayerInputManager.Instance.inputActions.FindAction("Position");
+            webGLCancelToolAction = PlayerInputManager.Instance.inputActions.FindAction("CancelWireToolRotation");
         }
     }
 
@@ -50,7 +52,7 @@ public class Wire : Tool, IGrabbable
 
     public override void UseTool()
     {
-        WireBranchNode();
+        ToggleWireBranchNode();
     }
     public override void WebGLMakeActiveTool(GameObject currentPlayerObject)
     {
@@ -59,6 +61,10 @@ public class Wire : Tool, IGrabbable
         if (playerPositionWebGL != null)
         {
             playerPositionWebGL.performed += TrackPlayerMotion;
+        }
+        if (webGLCancelToolAction != null)
+        {
+            webGLCancelToolAction.performed += (ctx) => OnCancelRotation();
         }
         playerHoldingToolObject = currentPlayerObject;
         previousPlayerPosition = playerHoldingToolObject.transform.localPosition;
@@ -72,6 +78,10 @@ public class Wire : Tool, IGrabbable
         {
             playerPositionWebGL.performed -= TrackPlayerMotion;
         }
+        if (webGLCancelToolAction != null)
+        {
+            webGLCancelToolAction.performed -= (ctx) => OnCancelRotation();
+        }
         previousPlayerPosition = Vector3.zero;
     }
 
@@ -79,23 +89,21 @@ public class Wire : Tool, IGrabbable
     {
         if (isActive && ! rotateBranchActive)
         {
-            closestBranch = ClosestBranch();
+            currentNearestNode = ClosestBranch();
 
-            if (lastNearestBranch != closestBranch)
+            if (lastNearestNode != currentNearestNode)
             {
-                if (lastNearestBranch != null)
+                if (lastNearestNode != null)
                 {
-                    BranchNode lastAffectedNode = lastNearestBranch.GetComponent<BranchNode>();
-                    lastAffectedNode.SetMeshRendMat(branchDefaultMat);
+                    lastNearestNode.SetMeshRendMat(branchDefaultMat);
                 }
 
-                if (closestBranch != null)
+                if (currentNearestNode != null)
                 {
-                    BranchNode currentAffectedNode = closestBranch.GetComponent<BranchNode>();
-                    currentAffectedNode.SetMeshRendMat(targetMat);
+                    currentNearestNode.SetMeshRendMat(targetMat);
                 }
 
-                lastNearestBranch = closestBranch;
+                lastNearestNode = currentNearestNode;
             }
         }
     }
@@ -107,6 +115,22 @@ public class Wire : Tool, IGrabbable
     }
 
     /// <summary>
+    /// Sets rotateBranchActive to true, which allows the calling of RotateNode() to apply a rotation to the targeted node. 
+    /// </summary>
+    private void ToggleWireBranchNode()
+    {
+        if (isActive && !rotateBranchActive)
+        {
+            rotateBranchActive = true;
+            currentNearestNode.SetStartingRotation();
+        }
+        else if (rotateBranchActive)
+        {
+            rotateBranchActive = false;
+        }
+    }
+
+    /// <summary>
     /// When the wire tool is active, track the position of the player object that is holding the tool in order to determine the movement delta for rotation.
     /// </summary>
     /// <param name="context"></param>
@@ -115,7 +139,6 @@ public class Wire : Tool, IGrabbable
         if (playerHoldingToolObject != null)
         {
             Vector3 currentPosition = playerHoldingToolObject.transform.localPosition;
-            Debug.Log(currentPosition + " current position, " + previousPlayerPosition + " previous position");
             if (currentPosition != previousPlayerPosition)
             {
                 if (rotateBranchActive)
@@ -135,14 +158,20 @@ public class Wire : Tool, IGrabbable
         Debug.Log("Rotate node");
         if (playerHoldingToolObject != null)
         {
-            if (closestBranch != null)
+            if (currentNearestNode != null)
             {
-                BranchNode closestBranchNode = closestBranch.GetComponent<BranchNode>();
+                BranchNode closestBranchNode = currentNearestNode.GetComponent<BranchNode>();
                 if (closestBranchNode != null)
                 {
                     Vector3 currentPosition = playerHoldingToolObject.transform.localPosition;
-                    Vector3 movementDelta = (currentPosition - previousPlayerPosition) * rotationSpeed;
+                    Vector3 movementDelta = (currentPosition - previousPlayerPosition);
+
+                    movementDelta = Camera.main.transform.InverseTransformDirection(movementDelta);
+
+                    movementDelta *= rotationSpeed;
+
                     closestBranchNode.ApplyRotation(movementDelta);
+
                 }
             }
         }
@@ -152,19 +181,17 @@ public class Wire : Tool, IGrabbable
         }
     }
 
-    /// <summary>
-    /// Sets rotateBranchActive to true, which allows the calling of RotateNode() to apply a rotation to the targeted node. 
-    /// </summary>
-    private void WireBranchNode()
+    private void OnCancelRotation()
     {
-        if (isActive && !rotateBranchActive)
+        if (!rotateBranchActive) return;
+
+        if (currentNearestNode != null)
         {
-            rotateBranchActive = true;
+            BranchNode closestBranchNode = currentNearestNode.GetComponent<BranchNode>();
+            closestBranchNode.RevertRotation();
+            ToggleWireBranchNode();
         }
-        else if (rotateBranchActive)
-        {
-            rotateBranchActive = false;
-        }
+
     }
 
     bool IGrabbable.CheckIfActive()
@@ -219,6 +246,11 @@ public class Wire : Tool, IGrabbable
         if (playerPositionWebGL != null)
         {
             playerPositionWebGL.performed -= TrackPlayerMotion;
+        }
+
+        if (webGLCancelToolAction != null)
+        {
+            webGLCancelToolAction.performed -= (ctx) => OnCancelRotation();
         }
     }
 }
