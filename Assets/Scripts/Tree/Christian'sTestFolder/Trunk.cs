@@ -33,7 +33,7 @@ public class Trunk : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
-        TreeLimbBase limb = Instantiate(taperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
+        TreeLimbBase limb = Instantiate(nonTaperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         EnergyPathNode lastTrunkNode = nodes[^1].GetComponent<EnergyPathNode>();
         lastTrunkNode.AddChild(limb.nodes[0].pathNode);

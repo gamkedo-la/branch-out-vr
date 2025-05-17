@@ -53,13 +53,10 @@ public class TreeLimbBase : MonoBehaviour
 
 
     public int maxChildLimbCount = 2;
-    public bool IsLimbTerminated {  
-        get {return terminated; }
-        set {terminated = value; } 
-    }
-    bool terminated;
-    
-    float terminateChance = 0.45f;
+    public bool IsLimbTerminated { get; protected set; }
+
+    protected virtual float TerminateChance => 0.45f;
+
     public LimbContainer limbContainer;
 
     public Vector2 minRotations, maxRotations;
@@ -212,10 +209,10 @@ public class TreeLimbBase : MonoBehaviour
         return energy >= 50;
     }
 
-    public bool LimbTerminated()
+    public bool CheckLimbTerminated()
     {
-        if(IsLimbTerminated == false)
-            IsLimbTerminated = Random.value < terminateChance;
+        if(!IsLimbTerminated)
+            IsLimbTerminated = Random.value < TerminateChance;
         return IsLimbTerminated;
     }
 

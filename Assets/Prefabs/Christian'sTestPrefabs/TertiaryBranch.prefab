@@ -53,13 +53,11 @@ MonoBehaviour:
   EnergyDepletedEvent:
     m_PersistentCalls:
       m_Calls: []
-  pathNode: {fileID: 0}
   thisTree: {fileID: 0}
   cut: 0
   isMature: 0
   maturityPercent: 0
   maxChildLimbCount: 3
-  terminated: 0
   limbContainer: {fileID: 11400000, guid: a8bca507b5a228246bd1f3066ef4ecd1, type: 2}
   minRotations: {x: -45, y: -45}
   maxRotations: {x: 45, y: 45}
@@ -79,6 +77,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _rigidbody: {fileID: 5782922591868728748}
+  terminateChance: 0.75
 --- !u!54 &5782922591868728748
 Rigidbody:
   m_ObjectHideFlags: 0

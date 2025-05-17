@@ -7,6 +7,9 @@ public class TertiaryBranch : TreeLimbBase
     private TertiaryBranch nonTaperedTertiaryBranchPrefab;
     private Leaf leafPrefab;
 
+    [SerializeField] private float terminateChance = 0.75f;
+    protected override float TerminateChance => terminateChance;
+
     public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, ProceduralTree tree)
     {
         base.Initialize(growEvent);
@@ -18,7 +21,7 @@ public class TertiaryBranch : TreeLimbBase
         {
             transform.localEulerAngles = GetRandomBranchRotation();
         }
-        LimbTerminated();
+        CheckLimbTerminated();
         thisTree.UpdateGlobalPath();
         Initialize();
 
@@ -34,7 +37,7 @@ public class TertiaryBranch : TreeLimbBase
         {
             transform.localEulerAngles = GetRandomBranchRotation();
         }
-        LimbTerminated();
+        CheckLimbTerminated();
         thisTree.UpdateGlobalPath();
         Initialize();
 
@@ -60,9 +63,6 @@ public class TertiaryBranch : TreeLimbBase
                 transform);
 
         branchedLimbs.Add(limb);
-        EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
-        energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
-        limb.nodes[0].pathNode.parent = energyPath;
         (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
         //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
 
@@ -73,14 +73,20 @@ public class TertiaryBranch : TreeLimbBase
     {
         base.Grow();
 
-        if (!IsMature) {return;}
-        if (IsLimbTerminated) {return;}
+        if (!IsMature || nextLimb != null)
+            return;
+
+        // Determine if this is the final branch segment
+        if (!IsLimbTerminated)
+        {
+            CheckLimbTerminated();
+        }
 
         if (nextLimb == null)
         {
             // Last limb? Use tapered tertiary branch. No? Use the non-tapered tertiary branch.
             TreeLimbBase prefabToUse = 
-                LimbTerminated() ? 
+                IsLimbTerminated ? 
                 taperedTertiaryBranchPrefab : 
                 nonTaperedTertiaryBranchPrefab;
 

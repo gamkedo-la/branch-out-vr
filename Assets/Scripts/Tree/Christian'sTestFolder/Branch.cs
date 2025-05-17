@@ -5,7 +5,10 @@ public class Branch : TreeLimbBase
 {
     private SecondaryBranch secondaryBranchPrefab;
     private Branch taperedBranchPrefab; // This is used at the end of a branch that has multiple limbs
-    private Branch nonTaperedBranchPrefab; 
+    private Branch nonTaperedBranchPrefab;
+
+    [SerializeField] private float terminateChance = 0.65f;
+    protected override float TerminateChance => terminateChance;
 
     //Initialize if spawned from a trunk
     public void Initialize(UnityEvent growEvent, Trunk previousTrunk, ProceduralTree tree)
@@ -35,7 +38,7 @@ public class Branch : TreeLimbBase
             transform.localEulerAngles = GetRandomBranchRotation(); // Get the rotation this branch grows out of the previous branch
         }
 
-        LimbTerminated();
+        CheckLimbTerminated();
         thisTree.UpdateGlobalPath(); // Update energy path points with our new branch nodes
         Initialize();
     }
@@ -68,7 +71,6 @@ public class Branch : TreeLimbBase
                 nextChildGrowPosition, 
                 Quaternion.Euler(nextChildGrowRotation), 
                 parentNode.transform);
-
         branchedLimbs.Add(limb);
         EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
         energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
@@ -83,13 +85,20 @@ public class Branch : TreeLimbBase
     {
         base.Grow();
 
-        if (!IsMature) {return;}
-        if (IsLimbTerminated)  {return;}
+        if (!IsMature || nextLimb != null) 
+            return;
+        
+        // Determine if this is the final branch segment
+        if (!IsLimbTerminated)
+        {
+            CheckLimbTerminated();
+        }
+
         if (nextLimb == null)
         {
             // if this is the last limb, use the tapered branch. Otherwise, use the non-tapered branch.
             TreeLimbBase prefabToUse = 
-                LimbTerminated() ? 
+                IsLimbTerminated ? 
                 taperedBranchPrefab : 
                 nonTaperedBranchPrefab;
 

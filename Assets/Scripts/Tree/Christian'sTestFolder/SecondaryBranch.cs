@@ -7,6 +7,9 @@ public class SecondaryBranch : TreeLimbBase
     private SecondaryBranch taperedSecondaryBranchPrefab;
     private SecondaryBranch nonTaperedSecondaryBranchPrefab;
 
+    [SerializeField] private float terminateChance = 0.7f;
+    protected override float TerminateChance => terminateChance;
+
     //Initialize if spawned from a branch
     public void Initialize(
         UnityEvent growEvent, Branch previousBranch, ProceduralTree tree)
@@ -21,7 +24,7 @@ public class SecondaryBranch : TreeLimbBase
             transform.localEulerAngles = GetRandomBranchRotation();
         }
 
-        LimbTerminated();
+        CheckLimbTerminated();
         thisTree.UpdateGlobalPath();
         Initialize();
 
@@ -61,7 +64,6 @@ public class SecondaryBranch : TreeLimbBase
                 nextChildGrowPosition, 
                 Quaternion.Euler(nextChildGrowRotation), 
                 parentNode.transform);
-
         branchedLimbs.Add(limb);
         EnergyPathNode energyPath = parentNode.gameObject.GetComponent<EnergyPathNode>();
         energyPath.AddChild(limb.nodes[0].GetComponent<EnergyPathNode>());
@@ -77,14 +79,20 @@ public class SecondaryBranch : TreeLimbBase
     {
         base.Grow();
 
-        if (!IsMature) {return;}
-        if (IsLimbTerminated) {return;}
+        if (!IsMature || nextLimb != null) 
+            return;
+
+        // Determine if this is the final branch segment
+        if (!IsLimbTerminated)
+        {
+            CheckLimbTerminated();
+        }
 
         if (nextLimb == null)
         {
             // Last limb? Use tapered secondary branch. No? Use the non-tapered secondary branch.
             TreeLimbBase prefabToUse = 
-                LimbTerminated() ? 
+                IsLimbTerminated ? 
                 taperedSecondaryBranchPrefab : 
                 nonTaperedSecondaryBranchPrefab;
 

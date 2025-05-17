@@ -171,7 +171,10 @@ public class ProceduralTree : MonoBehaviour
             trunkTest.Energy += energy > 2 ? energy : 2;
         }
 
-        GrowthHappenedEvent?.Invoke();
+        if (Application.isPlaying)
+        {
+            GrowthHappenedEvent?.Invoke();
+        }
     }
 
     private void OnDisable()
