@@ -13,7 +13,6 @@ public class ProceduralTree : MonoBehaviour
     public float currentTotalEnergy = 1800f;
     public float currentFreeEnergy = 1800f;
     public HashSet<TreeLimbBase> growingLimbs = new();
-    public int numPotentialGrowthLocations = 0;
 
     public EnergyPathNode rootNode; //Root of the tree, for the energy particles path
     private List<Transform> globalPathPoints = new();
@@ -119,25 +118,6 @@ public class ProceduralTree : MonoBehaviour
             }
 
         }
-    }
-
-    /// <summary>
-    /// Used to allocate/pool energy in preparation for use, ie. when pooling energy for new growth. If meant to spend and remove energy (such as when actively growing), use SpendAndRemoveEnergy() instead.
-    /// </summary>
-    /// <param name="amount"></param>
-    public void AllocateEnergy(float amount)
-    {
-        currentFreeEnergy -= amount;
-
-        if (currentFreeEnergy <= 0 )
-        {
-            Debug.LogWarning("Attempted to allocate more free energy than was available; please check logic and ensure limbs cannot use free energy that doesn't exist!");
-        }
-    }
-
-    public void ReleaseAllocatedEnergy(float amount)
-    {
-        currentFreeEnergy += amount;
     }
 
     public void StressReaction()

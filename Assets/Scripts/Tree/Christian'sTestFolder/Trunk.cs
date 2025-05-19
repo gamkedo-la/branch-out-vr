@@ -9,7 +9,7 @@ public class Trunk : TreeLimbBase
     private Branch taperedBranchPrefab;
 
     private Trunk trunkPrefab;
-    private Branch nonTaperedBranchPrefab;
+    //private Branch nonTaperedBranchPrefab;
 
 
     public void Initialize(UnityEvent growEvent)
@@ -19,7 +19,7 @@ public class Trunk : TreeLimbBase
 
         trunkPrefab = limbContainer.trunk;
         taperedBranchPrefab = limbContainer.taperedPrimaryBranch;
-        nonTaperedBranchPrefab = limbContainer.nonTaperedPrimaryBranch;
+        //nonTaperedBranchPrefab = limbContainer.nonTaperedPrimaryBranch;
         transform.localScale = Vector3.one;
         //randomize number of branches on this node
         branchCount = Random.Range(0, 6);
@@ -33,7 +33,7 @@ public class Trunk : TreeLimbBase
     public override void AddChild()
     {
         base.AddChild();
-        TreeLimbBase limb = Instantiate(nonTaperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
+        TreeLimbBase limb = Instantiate(taperedBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), transform);
         branchedLimbs.Add(limb);
         EnergyPathNode lastTrunkNode = nodes[^1].GetComponent<EnergyPathNode>();
         lastTrunkNode.AddChild(limb.nodes[0].pathNode);

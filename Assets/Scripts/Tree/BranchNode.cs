@@ -93,7 +93,7 @@ public class BranchNode : TreePart
             for (int i = thisBranch.branchedLimbs.Count - 1; i >= 0; i--) 
             {
                 var limb = thisBranch.branchedLimbs[i];
-                var closestNode = limb.GetClosestNodeToBranch(limb.transform.position);
+                var closestNode = limb.GetClosestNode(limb.transform.position);
 
                 if (nodesToDeactivate.Contains(closestNode)) 
                 {

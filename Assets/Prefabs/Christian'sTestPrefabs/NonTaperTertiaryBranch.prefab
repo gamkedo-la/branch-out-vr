@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7606673416792428332}
   - component: {fileID: 1965099928456513949}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Branch-0(Base)
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,9 +104,9 @@ GameObject:
   - component: {fileID: 5959939132726810732}
   - component: {fileID: 5057399740386951196}
   - component: {fileID: 4146320903938882881}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone.001
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 8028217445324995329}
   m_Layer: 3
   m_Name: NonTaperTertiaryBranch
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,9 +333,9 @@ GameObject:
   - component: {fileID: 8414425618452248542}
   - component: {fileID: 4841004265536549590}
   - component: {fileID: 6280904198312765483}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone.003
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,9 +457,9 @@ GameObject:
   - component: {fileID: 2080544270700811445}
   - component: {fileID: 2408612722093279227}
   - component: {fileID: 431062186990793200}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone.004
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -577,9 +577,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5861159031044005160}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,9 +612,9 @@ GameObject:
   - component: {fileID: 8810601913005035665}
   - component: {fileID: 264583318039701396}
   - component: {fileID: 7713998094013529037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,9 +732,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6559680878782938721}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.004_end
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -764,9 +764,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2407745226893364358}
   - component: {fileID: 5164217414738869377}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Branch-3
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -855,9 +855,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5190369011404200609}
   - component: {fileID: 3612447880268556484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Branch-1
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,9 +945,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7789303725802437572}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Armature
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -978,9 +978,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6014127701948401372}
   - component: {fileID: 1851677665254561338}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Branch-4(Tip)
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1068,9 +1068,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6352318507579648206}
   - component: {fileID: 7996341908128593176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Branch-2
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,9 +1162,9 @@ GameObject:
   - component: {fileID: 5111817657668333075}
   - component: {fileID: 1726404165727443248}
   - component: {fileID: 6654202550040758040}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bone.002
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1282,9 +1282,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6381149775274911050}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: branch1 no taper2 no boolean
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,48 +4,48 @@ using UnityEngine.Events;
 public class TertiaryBranch : TreeLimbBase
 {
     private TertiaryBranch taperedTertiaryBranchPrefab;
-    private TertiaryBranch nonTaperedTertiaryBranchPrefab;
+    //private TertiaryBranch nonTaperedTertiaryBranchPrefab;
     private Leaf leafPrefab;
 
     [SerializeField] private float terminateChance = 0.75f;
     protected override float TerminateChance => terminateChance;
 
-    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, ProceduralTree tree)
+    // initialize if spawned from a tertiary branch
+    public void Initialize(UnityEvent growEvent, TertiaryBranch previousTertiaryBranch, ProceduralTree tree, bool isLastLimb)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousTertiaryBranch;
         SetThisTree(tree);
         thisTree.growingLimbs.Add(this);
-        thisTree.numPotentialGrowthLocations--;
         if (previousTertiaryBranch != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
         }
-        CheckLimbTerminated();
+
+        IsLimbTerminated = isLastLimb;
         thisTree.UpdateGlobalPath();
         Initialize();
 
     } 
+
+    // initialize if spawned from a secondary branch
     public void Initialize(UnityEvent growEvent, SecondaryBranch previousSecondaryBranch, ProceduralTree tree)
     {
         base.Initialize(growEvent);
         this.previousLimb = previousSecondaryBranch;
         SetThisTree(tree);
         thisTree.growingLimbs.Add(this);
-        thisTree.numPotentialGrowthLocations--;
         if (previousSecondaryBranch != null)
         {
             transform.localEulerAngles = GetRandomBranchRotation();
         }
-        CheckLimbTerminated();
         thisTree.UpdateGlobalPath();
         Initialize();
-
     }
     void Initialize()
     {
         taperedTertiaryBranchPrefab = limbContainer.taperedTertiaryBranch;
-        nonTaperedTertiaryBranchPrefab = limbContainer.nonTaperedTertiaryBranch;
+        //nonTaperedTertiaryBranchPrefab = limbContainer.nonTaperedTertiaryBranch;
         leafPrefab = limbContainer.leaf;
     }
 
@@ -53,7 +53,7 @@ public class TertiaryBranch : TreeLimbBase
     {
         base.AddChild();
 
-        BranchNode parentNode = GetClosestNodeToBranch(nextChildGrowPosition);
+        BranchNode parentNode = GetClosestNode(nextChildGrowPosition);
 
         TreeLimbBase limb = 
             Instantiate(
@@ -64,7 +64,6 @@ public class TertiaryBranch : TreeLimbBase
 
         branchedLimbs.Add(limb);
         (limb as Leaf).Initialize(GrowthHappenedEvent, this, thisTree);
-        //when switched to BranchNode growing child, add logic for Bone0 EnergyPathNode to have this node as parent for calculating path
 
         nextChildGrowPosition = GetRandomPositionOnLimb();
         nextChildGrowRotation = GetRandomBranchRotation();
@@ -77,22 +76,21 @@ public class TertiaryBranch : TreeLimbBase
             return;
 
         // Determine if this is the final branch segment
-        if (!IsLimbTerminated)
-        {
-            CheckLimbTerminated();
-        }
+        IsLimbTerminated = CheckLimbTerminated();
 
         if (nextLimb == null)
         {
             // Last limb? Use tapered tertiary branch. No? Use the non-tapered tertiary branch.
-            TreeLimbBase prefabToUse = 
-                IsLimbTerminated ? 
-                taperedTertiaryBranchPrefab : 
-                nonTaperedTertiaryBranchPrefab;
+            /*            TreeLimbBase prefabToUse = 
+                            IsLimbTerminated ? 
+                            taperedTertiaryBranchPrefab : 
+                            nonTaperedTertiaryBranchPrefab;*/
 
+            // remove non-tapered branches for now
+            TreeLimbBase prefabToUse = taperedTertiaryBranchPrefab;
             TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, transform);
             nextLimb = limb;
-            (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this, thisTree);
+            (limb as TertiaryBranch).Initialize(GrowthHappenedEvent, this, thisTree, IsLimbTerminated);
 
             // TreeLimbBase limb = Instantiate(leafPrefab, top.position, Quaternion.Euler(GetRandomBranchRotation()), transform);
             // nextLimb = (limb);

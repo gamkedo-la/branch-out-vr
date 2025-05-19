@@ -17,10 +17,6 @@ public class TreeLimbBase : MonoBehaviour
         set { energy = value; }
     }
 
-    public float allocatedEnergy = 0f;
-
-    public bool allocateEnergyForGrowth = false;
-
 
     public UnityEvent EnergyDepletedEvent;
 
@@ -86,19 +82,9 @@ public class TreeLimbBase : MonoBehaviour
         growEvent.AddListener(Grow);
     }
 
-    public void AllocateEnergy(float amount)
-    {
-        allocatedEnergy += amount;
-        if (allocatedEnergy > Energy)
-        {
-            Debug.LogWarning("Limb is attempting to allocate more energy than is available.");
-        }
-        thisTree.AllocateEnergy(amount);
-    }
     public virtual void AddChild()
     {
         Energy -= 50;
-        allocateEnergyForGrowth = false;
     }
 
     public virtual void SetThisTree(ProceduralTree tree)
@@ -114,7 +100,7 @@ public class TreeLimbBase : MonoBehaviour
     }
 
     /// <summary>
-    /// This should use the available allocated/pooled energy from the previous limb for growing new limbs.
+    /// Takes energy from the limb instance it's called on.
     /// </summary>
     /// <param name="amount"></param>
     /// <returns></returns>
@@ -124,11 +110,6 @@ public class TreeLimbBase : MonoBehaviour
         {
             Energy -= amount;
 
-            //CHRISTIAN NOTE : removing this so that tree limbs will take energy from there parent dynamically
-
-            //allocatedEnergy -= amount;
-
-            //thisTree.UpdateEnergy(-amount);
             return amount;
         }
         else
@@ -154,10 +135,11 @@ public class TreeLimbBase : MonoBehaviour
     }
     public Vector3 GetRandomPositionOnLimb()
     {
+        Debug.Log("top: " + top.position + " transform: " + transform.position);
         return Vector3.Lerp(transform.position, top.position, Random.value);
     }
 
-    public BranchNode GetClosestNodeToBranch(Vector3 growPosition)
+    public BranchNode GetClosestNode(Vector3 growPosition)
     {
         if (nodes.Count > 0)
         {
@@ -211,9 +193,14 @@ public class TreeLimbBase : MonoBehaviour
 
     public bool CheckLimbTerminated()
     {
-        if(!IsLimbTerminated)
-            IsLimbTerminated = Random.value < TerminateChance;
-        return IsLimbTerminated;
+        if (!IsLimbTerminated)
+        {
+            return Random.value < TerminateChance;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public virtual void CutLimb()
