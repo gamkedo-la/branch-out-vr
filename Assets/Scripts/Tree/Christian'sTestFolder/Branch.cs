@@ -90,7 +90,7 @@ public class Branch : TreeLimbBase
             // if this is the last limb, use the tapered branch. Otherwise, use the non-tapered branch.
             //TreeLimbBase prefabToUse = isLimbTerminated ? taperedBranchPrefab : noTaperBranchPrefab;
 
-            // for now, we just use the tapered branch, but TODO: uncomment line above and fine-tune using non-tapered branch models as well
+            // Just use tapered branch
             TreeLimbBase prefabToUse = taperedBranchPrefab;
 
             TreeLimbBase limb = Instantiate(prefabToUse, top.position, top.rotation, nodes[^1].transform);
