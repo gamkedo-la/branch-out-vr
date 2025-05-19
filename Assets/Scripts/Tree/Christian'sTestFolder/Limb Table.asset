@@ -16,7 +16,7 @@ MonoBehaviour:
   taperedPrimaryBranch: {fileID: 344552957425278452, guid: bbe139d529137df4ba37ba3203774e8e, type: 3}
   nonTaperedPrimaryBranch: {fileID: 8577751382407731348, guid: 8bc682150cc7da6469d78fe39b9b0b2a, type: 3}
   taperedSecondaryBranch: {fileID: 4359772727681169963, guid: f0d1e95487b723c45af3231fb79480bf, type: 3}
-  nonTaperedSecondaryBranch: {fileID: 623411758974865451, guid: a4a8e2e9006872245be06111c10482a2, type: 3}
+  nonTaperedSecondaryBranch: {fileID: 0}
   taperedTertiaryBranch: {fileID: 3148299759137610709, guid: 37f1047ac33466f4a976ad0dbd2e92b9, type: 3}
-  nonTaperedTertiaryBranch: {fileID: 3071150777008898733, guid: baa48fc7b872ac243a4394cfbda2fdcb, type: 3}
+  nonTaperedTertiaryBranch: {fileID: 0}
   leaf: {fileID: 1418462976451482003, guid: c1a9b4fe11fd29240875953b7d0a074a, type: 3}
