@@ -61,7 +61,7 @@ public class Branch : TreeLimbBase
     {
         base.AddChild();
 
-        BranchNode parentNode = GetClosestNodeToBranch(nextChildGrowPosition);
+        BranchNode parentNode = GetClosestNode(nextChildGrowPosition);
 
         TreeLimbBase limb = Instantiate(secondaryBranchPrefab, nextChildGrowPosition, Quaternion.Euler(nextChildGrowRotation), parentNode.transform);
         branchedLimbs.Add(limb);
@@ -83,7 +83,7 @@ public class Branch : TreeLimbBase
 
         if (isLimbTerminated) return;
 
-        isLimbTerminated = LimbTerminated();
+        isLimbTerminated = CheckLimbTerminated();
 
         if (nextLimb == null)
         {

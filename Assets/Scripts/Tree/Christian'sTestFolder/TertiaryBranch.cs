@@ -60,7 +60,7 @@ public class TertiaryBranch : TreeLimbBase
         if (!IsMature)
             return;
 
-        if (LimbTerminated())
+        if (CheckLimbTerminated())
             return;
 
 
